@@ -17,8 +17,41 @@
 		8F372B1816F244C800302B80 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F372B1716F244C800302B80 /* Default@2x.png */; };
 		8F372B1A16F244C800302B80 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F372B1916F244C800302B80 /* Default-568h@2x.png */; };
 		8F372B1D16F244C800302B80 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F372B1B16F244C800302B80 /* MainStoryboard.storyboard */; };
-		8F372B2016F244C800302B80 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B1F16F244C800302B80 /* ViewController.m */; };
+		8F372B2016F244C800302B80 /* YelpMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B1F16F244C800302B80 /* YelpMapViewController.m */; };
+		8F372B3216F24B3900302B80 /* libYelpKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F372B2D16F24AC200302B80 /* libYelpKit.a */; };
+		8F372B3416F24B4800302B80 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F372B3316F24B4800302B80 /* QuartzCore.framework */; };
+		8F372B3616F24B5200302B80 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F372B3516F24B5200302B80 /* MapKit.framework */; };
+		8F372B4A16F2644000302B80 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F372B4916F2644000302B80 /* CoreLocation.framework */; };
+		8F372B4E16F265FA00302B80 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B4D16F265FA00302B80 /* Venue.m */; };
+		8F372B5216F2666C00302B80 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B5116F2666C00302B80 /* APIManager.m */; };
+		8F372B5516F266E900302B80 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B5416F266E900302B80 /* LocationManager.m */; };
+		8F372B5816F2672100302B80 /* ResultsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B5716F2672100302B80 /* ResultsManager.m */; };
+		8F372B5B16F2678A00302B80 /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B5A16F2678A00302B80 /* Annotation.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8F372B2C16F24AC200302B80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F372B2616F24AC200302B80 /* YelpKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 005592E8140B0085001E9C43;
+			remoteInfo = YelpKit;
+		};
+		8F372B2E16F24AC200302B80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F372B2616F24AC200302B80 /* YelpKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 00DB563915BE198600E247FA;
+			remoteInfo = YelpKitCatalog;
+		};
+		8F372B3016F24B1F00302B80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F372B2616F24AC200302B80 /* YelpKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 005592E7140B0085001E9C43;
+			remoteInfo = YelpKit;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		8F372B0016F244C800302B80 /* MappingMashupApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MappingMashupApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,8 +68,23 @@
 		8F372B1716F244C800302B80 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8F372B1916F244C800302B80 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8F372B1C16F244C800302B80 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		8F372B1E16F244C800302B80 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8F372B1F16F244C800302B80 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8F372B1E16F244C800302B80 /* YelpMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YelpMapViewController.h; sourceTree = "<group>"; };
+		8F372B1F16F244C800302B80 /* YelpMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YelpMapViewController.m; sourceTree = "<group>"; };
+		8F372B2616F24AC200302B80 /* YelpKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = YelpKit.xcodeproj; path = YelpKit/YelpKit.xcodeproj; sourceTree = "<group>"; };
+		8F372B3316F24B4800302B80 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8F372B3516F24B5200302B80 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8F372B4916F2644000302B80 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		8F372B4B16F265CB00302B80 /* DataSourceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataSourceDelegate.h; sourceTree = "<group>"; };
+		8F372B4C16F265FA00302B80 /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
+		8F372B4D16F265FA00302B80 /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
+		8F372B5016F2666C00302B80 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		8F372B5116F2666C00302B80 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+		8F372B5316F266E900302B80 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		8F372B5416F266E900302B80 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		8F372B5616F2672100302B80 /* ResultsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsManager.h; sourceTree = "<group>"; };
+		8F372B5716F2672100302B80 /* ResultsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsManager.m; sourceTree = "<group>"; };
+		8F372B5916F2678A00302B80 /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
+		8F372B5A16F2678A00302B80 /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +92,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F372B4A16F2644000302B80 /* CoreLocation.framework in Frameworks */,
+				8F372B3616F24B5200302B80 /* MapKit.framework in Frameworks */,
+				8F372B3416F24B4800302B80 /* QuartzCore.framework in Frameworks */,
+				8F372B3216F24B3900302B80 /* libYelpKit.a in Frameworks */,
 				8F372B0416F244C800302B80 /* UIKit.framework in Frameworks */,
 				8F372B0616F244C800302B80 /* Foundation.framework in Frameworks */,
 				8F372B0816F244C800302B80 /* CoreGraphics.framework in Frameworks */,
@@ -59,6 +111,7 @@
 				8F372B0916F244C800302B80 /* MappingMashupApp */,
 				8F372B0216F244C800302B80 /* Frameworks */,
 				8F372B0116F244C800302B80 /* Products */,
+				8F372B2616F24AC200302B80 /* YelpKit.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,9 +126,12 @@
 		8F372B0216F244C800302B80 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8F372B0316F244C800302B80 /* UIKit.framework */,
-				8F372B0516F244C800302B80 /* Foundation.framework */,
 				8F372B0716F244C800302B80 /* CoreGraphics.framework */,
+				8F372B4916F2644000302B80 /* CoreLocation.framework */,
+				8F372B0516F244C800302B80 /* Foundation.framework */,
+				8F372B3516F24B5200302B80 /* MapKit.framework */,
+				8F372B3316F24B4800302B80 /* QuartzCore.framework */,
+				8F372B0316F244C800302B80 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -83,11 +139,11 @@
 		8F372B0916F244C800302B80 /* MappingMashupApp */ = {
 			isa = PBXGroup;
 			children = (
-				8F372B1216F244C800302B80 /* AppDelegate.h */,
-				8F372B1316F244C800302B80 /* AppDelegate.m */,
 				8F372B1B16F244C800302B80 /* MainStoryboard.storyboard */,
-				8F372B1E16F244C800302B80 /* ViewController.h */,
-				8F372B1F16F244C800302B80 /* ViewController.m */,
+				8F372B5C16F2698B00302B80 /* Classes */,
+				8F372B4F16F2661300302B80 /* Delegates */,
+				8F372B5D16F269A700302B80 /* Managers */,
+				8F372B5E16F269B100302B80 /* View Controllers */,
 				8F372B0A16F244C800302B80 /* Supporting Files */,
 			);
 			path = MappingMashupApp;
@@ -107,6 +163,58 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		8F372B2716F24AC200302B80 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8F372B2D16F24AC200302B80 /* libYelpKit.a */,
+				8F372B2F16F24AC200302B80 /* YelpKitCatalog.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8F372B4F16F2661300302B80 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				8F372B1216F244C800302B80 /* AppDelegate.h */,
+				8F372B1316F244C800302B80 /* AppDelegate.m */,
+				8F372B4B16F265CB00302B80 /* DataSourceDelegate.h */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
+		8F372B5C16F2698B00302B80 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8F372B5916F2678A00302B80 /* Annotation.h */,
+				8F372B5A16F2678A00302B80 /* Annotation.m */,
+				8F372B4C16F265FA00302B80 /* Venue.h */,
+				8F372B4D16F265FA00302B80 /* Venue.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		8F372B5D16F269A700302B80 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				8F372B5016F2666C00302B80 /* APIManager.h */,
+				8F372B5116F2666C00302B80 /* APIManager.m */,
+				8F372B5316F266E900302B80 /* LocationManager.h */,
+				8F372B5416F266E900302B80 /* LocationManager.m */,
+				8F372B5616F2672100302B80 /* ResultsManager.h */,
+				8F372B5716F2672100302B80 /* ResultsManager.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		8F372B5E16F269B100302B80 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8F372B1E16F244C800302B80 /* YelpMapViewController.h */,
+				8F372B1F16F244C800302B80 /* YelpMapViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -121,6 +229,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				8F372B3116F24B1F00302B80 /* PBXTargetDependency */,
 			);
 			name = MappingMashupApp;
 			productName = MappingMashupApp;
@@ -146,12 +255,35 @@
 			mainGroup = 8F372AF716F244C800302B80;
 			productRefGroup = 8F372B0116F244C800302B80 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8F372B2716F24AC200302B80 /* Products */;
+					ProjectRef = 8F372B2616F24AC200302B80 /* YelpKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8F372AFF16F244C800302B80 /* MappingMashupApp */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		8F372B2D16F24AC200302B80 /* libYelpKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libYelpKit.a;
+			remoteRef = 8F372B2C16F24AC200302B80 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8F372B2F16F24AC200302B80 /* YelpKitCatalog.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = YelpKitCatalog.app;
+			remoteRef = 8F372B2E16F24AC200302B80 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8F372AFE16F244C800302B80 /* Resources */ = {
@@ -175,11 +307,24 @@
 			files = (
 				8F372B1016F244C800302B80 /* main.m in Sources */,
 				8F372B1416F244C800302B80 /* AppDelegate.m in Sources */,
-				8F372B2016F244C800302B80 /* ViewController.m in Sources */,
+				8F372B2016F244C800302B80 /* YelpMapViewController.m in Sources */,
+				8F372B4E16F265FA00302B80 /* Venue.m in Sources */,
+				8F372B5216F2666C00302B80 /* APIManager.m in Sources */,
+				8F372B5516F266E900302B80 /* LocationManager.m in Sources */,
+				8F372B5816F2672100302B80 /* ResultsManager.m in Sources */,
+				8F372B5B16F2678A00302B80 /* Annotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8F372B3116F24B1F00302B80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = YelpKit;
+			targetProxy = 8F372B3016F24B1F00302B80 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8F372B0C16F244C800302B80 /* InfoPlist.strings */ = {
@@ -262,7 +407,12 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MappingMashupApp/MappingMashupApp-Prefix.pch";
+				"HEADER_SEARCH_PATHS[arch=*]" = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				INFOPLIST_FILE = "MappingMashupApp/MappingMashupApp-Info.plist";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -273,7 +423,12 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MappingMashupApp/MappingMashupApp-Prefix.pch";
+				"HEADER_SEARCH_PATHS[arch=*]" = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				INFOPLIST_FILE = "MappingMashupApp/MappingMashupApp-Info.plist";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

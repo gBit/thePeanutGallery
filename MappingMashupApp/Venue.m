@@ -1,13 +1,14 @@
 //
-//  ViewController.h
+//  Venue.m
 //  MappingMashupApp
 //
 //  Created by gBit on 3/14/13.
 //  Copyright (c) 2013 The Peanut Gallery. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "Venue.h"
 
-@interface ViewController : UIViewController
+@implementation Venue
+@synthesize location, name;
 
 @end
