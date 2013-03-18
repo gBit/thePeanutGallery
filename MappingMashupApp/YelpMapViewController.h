@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "DataSourceDelegate.h"
+#import <CoreData/CoreData.h>
 
 @interface YelpMapViewController : UIViewController <DataSourceDelegate>
 
 @property (strong, nonatomic) NSMutableArray *returnedArray;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 -(void)addPinsToMap;
 

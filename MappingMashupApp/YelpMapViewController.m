@@ -13,6 +13,8 @@
 #import "Venue.h"
 #import "APIManager.h"
 #import "LocationManager.h"
+#import "AppDelegate.h"
+
 
 @interface YelpMapViewController ()
 {
@@ -25,10 +27,14 @@
 
 @implementation YelpMapViewController
 @synthesize returnedArray;
+@synthesize managedObjectContext;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    self.managedObjectContext = appDelegate.managedObjectContext;
     
     mobileMakersLocation = [[LocationManager alloc] init];
     

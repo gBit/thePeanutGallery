@@ -22,11 +22,15 @@
 		8F372B3416F24B4800302B80 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F372B3316F24B4800302B80 /* QuartzCore.framework */; };
 		8F372B3616F24B5200302B80 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F372B3516F24B5200302B80 /* MapKit.framework */; };
 		8F372B4A16F2644000302B80 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F372B4916F2644000302B80 /* CoreLocation.framework */; };
-		8F372B4E16F265FA00302B80 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B4D16F265FA00302B80 /* Venue.m */; };
 		8F372B5216F2666C00302B80 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B5116F2666C00302B80 /* APIManager.m */; };
 		8F372B5516F266E900302B80 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B5416F266E900302B80 /* LocationManager.m */; };
 		8F372B5816F2672100302B80 /* ResultsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B5716F2672100302B80 /* ResultsManager.m */; };
 		8F372B5B16F2678A00302B80 /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B5A16F2678A00302B80 /* Annotation.m */; };
+		B40B477516F68FC1006BD4CE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B40B477416F68FC1006BD4CE /* CoreData.framework */; };
+		B40B477916F691CE006BD4CE /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B40B477716F691CE006BD4CE /* Model.xcdatamodeld */; };
+		B425500916F6B158005CCC9E /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = B425500816F6B158005CCC9E /* Venue.m */; };
+		B425500C16F6B1C2005CCC9E /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = B425500B16F6B1C2005CCC9E /* Business.m */; };
+		B425500F16F6B1C2005CCC9E /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = B425500E16F6B1C2005CCC9E /* Photo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,8 +79,6 @@
 		8F372B3516F24B5200302B80 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8F372B4916F2644000302B80 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8F372B4B16F265CB00302B80 /* DataSourceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataSourceDelegate.h; sourceTree = "<group>"; };
-		8F372B4C16F265FA00302B80 /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
-		8F372B4D16F265FA00302B80 /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
 		8F372B5016F2666C00302B80 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		8F372B5116F2666C00302B80 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		8F372B5316F266E900302B80 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
@@ -85,6 +87,15 @@
 		8F372B5716F2672100302B80 /* ResultsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsManager.m; sourceTree = "<group>"; };
 		8F372B5916F2678A00302B80 /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
 		8F372B5A16F2678A00302B80 /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
+		B40B477116F68CB4006BD4CE /* copyOfVenue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = copyOfVenue.h; sourceTree = "<group>"; };
+		B40B477416F68FC1006BD4CE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B40B477816F691CE006BD4CE /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		B425500716F6B158005CCC9E /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Venue.h; path = ../Venue.h; sourceTree = "<group>"; };
+		B425500816F6B158005CCC9E /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Venue.m; path = ../Venue.m; sourceTree = "<group>"; };
+		B425500A16F6B1C2005CCC9E /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Business.h; path = ../Business.h; sourceTree = "<group>"; };
+		B425500B16F6B1C2005CCC9E /* Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Business.m; path = ../Business.m; sourceTree = "<group>"; };
+		B425500D16F6B1C2005CCC9E /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = ../Photo.h; sourceTree = "<group>"; };
+		B425500E16F6B1C2005CCC9E /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photo.m; path = ../Photo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B40B477516F68FC1006BD4CE /* CoreData.framework in Frameworks */,
 				8F372B4A16F2644000302B80 /* CoreLocation.framework in Frameworks */,
 				8F372B3616F24B5200302B80 /* MapKit.framework in Frameworks */,
 				8F372B3416F24B4800302B80 /* QuartzCore.framework in Frameworks */,
@@ -108,6 +120,7 @@
 		8F372AF716F244C800302B80 = {
 			isa = PBXGroup;
 			children = (
+				B40B477716F691CE006BD4CE /* Model.xcdatamodeld */,
 				8F372B0916F244C800302B80 /* MappingMashupApp */,
 				8F372B0216F244C800302B80 /* Frameworks */,
 				8F372B0116F244C800302B80 /* Products */,
@@ -126,6 +139,7 @@
 		8F372B0216F244C800302B80 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B40B477416F68FC1006BD4CE /* CoreData.framework */,
 				8F372B0716F244C800302B80 /* CoreGraphics.framework */,
 				8F372B4916F2644000302B80 /* CoreLocation.framework */,
 				8F372B0516F244C800302B80 /* Foundation.framework */,
@@ -139,6 +153,7 @@
 		8F372B0916F244C800302B80 /* MappingMashupApp */ = {
 			isa = PBXGroup;
 			children = (
+				B40B477616F69055006BD4CE /* Backups */,
 				8F372B1B16F244C800302B80 /* MainStoryboard.storyboard */,
 				8F372B5C16F2698B00302B80 /* Classes */,
 				8F372B4F16F2661300302B80 /* Delegates */,
@@ -185,10 +200,11 @@
 		8F372B5C16F2698B00302B80 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B425501016F6B1D1005CCC9E /* Managed */,
+				B425500716F6B158005CCC9E /* Venue.h */,
+				B425500816F6B158005CCC9E /* Venue.m */,
 				8F372B5916F2678A00302B80 /* Annotation.h */,
 				8F372B5A16F2678A00302B80 /* Annotation.m */,
-				8F372B4C16F265FA00302B80 /* Venue.h */,
-				8F372B4D16F265FA00302B80 /* Venue.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -213,6 +229,25 @@
 				8F372B1F16F244C800302B80 /* YelpMapViewController.m */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		B40B477616F69055006BD4CE /* Backups */ = {
+			isa = PBXGroup;
+			children = (
+				B40B477116F68CB4006BD4CE /* copyOfVenue.h */,
+			);
+			name = Backups;
+			sourceTree = "<group>";
+		};
+		B425501016F6B1D1005CCC9E /* Managed */ = {
+			isa = PBXGroup;
+			children = (
+				B425500D16F6B1C2005CCC9E /* Photo.h */,
+				B425500E16F6B1C2005CCC9E /* Photo.m */,
+				B425500A16F6B1C2005CCC9E /* Business.h */,
+				B425500B16F6B1C2005CCC9E /* Business.m */,
+			);
+			name = Managed;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,11 +343,14 @@
 				8F372B1016F244C800302B80 /* main.m in Sources */,
 				8F372B1416F244C800302B80 /* AppDelegate.m in Sources */,
 				8F372B2016F244C800302B80 /* YelpMapViewController.m in Sources */,
-				8F372B4E16F265FA00302B80 /* Venue.m in Sources */,
 				8F372B5216F2666C00302B80 /* APIManager.m in Sources */,
 				8F372B5516F266E900302B80 /* LocationManager.m in Sources */,
 				8F372B5816F2672100302B80 /* ResultsManager.m in Sources */,
 				8F372B5B16F2678A00302B80 /* Annotation.m in Sources */,
+				B40B477916F691CE006BD4CE /* Model.xcdatamodeld in Sources */,
+				B425500916F6B158005CCC9E /* Venue.m in Sources */,
+				B425500C16F6B1C2005CCC9E /* Business.m in Sources */,
+				B425500F16F6B1C2005CCC9E /* Photo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +494,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B40B477716F691CE006BD4CE /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B40B477816F691CE006BD4CE /* Model.xcdatamodel */,
+			);
+			currentVersion = B40B477816F691CE006BD4CE /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8F372AF816F244C800302B80 /* Project object */;
 }
