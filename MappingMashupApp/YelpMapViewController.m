@@ -14,6 +14,8 @@
 #import "APIManager.h"
 #import "LocationManager.h"
 #import "AppDelegate.h"
+#import "Photo.h"
+#import "Business.h"
 
 
 @interface YelpMapViewController ()
@@ -43,6 +45,7 @@
     yelpProcess.delegate = self;
     
     [yelpProcess getYelpJSON];
+
 }
 
 - (void)grabArray:(NSArray *)data
@@ -99,10 +102,32 @@
         
         //add to map
         [myMapView addAnnotation:myAnnotation];
+        
+        
     }
+    NSLog(@"%@", [[myMapView.annotations objectAtIndex:0] title]);
 }
 
+//This method gets called when you select an annotation
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    //Note: This should break when we switch from Yelp annotations
+    //to Flickr photos.
+    //Once it doees work, delete this comment
+    
+    Business *selectedBusiness = [NSEntityDescription insertNewObjectForEntityForName:@"Business" inManagedObjectContext:managedObjectContext];
+    
+    selectedBusiness.name = view.annotation.title;
+    NSError *error;
+    if (![managedObjectContext save:&error])
+    {
+        NSLog(@"failed to save: %@", [error userInfo]);
+    }
 
+    
+    
+    //NSLog(@"Logging out the annotation %@", view.annotation.title);
+}
 
 - (void)didReceiveMemoryWarning
 {
