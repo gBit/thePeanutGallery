@@ -24,7 +24,7 @@
 //api method call for yelp
 - (APIManager*)initWithYelpSearch:(NSString*)search andLocation:(LocationManager*)userLocation
 {
-    apiCall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=10&limit=5&ywsid=SHvJpobPrBabhrCyJ8FMag",search, userLocation.coordinate.latitude, userLocation.coordinate.longitude];
+    apiCall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=1&limit=20&ywsid=z8HZy2Hb2axZox05xfTW9w",search, userLocation.coordinate.latitude, userLocation.coordinate.longitude];
     return self;
 }
 
