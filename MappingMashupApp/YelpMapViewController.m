@@ -118,6 +118,7 @@
     Business *selectedBusiness = [NSEntityDescription insertNewObjectForEntityForName:@"Business" inManagedObjectContext:managedObjectContext];
     
     selectedBusiness.name = view.annotation.title;
+    
     NSError *error;
     if (![managedObjectContext save:&error])
     {
