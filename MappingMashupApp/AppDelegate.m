@@ -11,6 +11,7 @@
 @implementation AppDelegate
 
 @synthesize managedObjectContext = managedObjectContext;
+@synthesize locationManager, myCurrentGPSLocation;
 
 
 
@@ -36,6 +37,12 @@
         //set new database to myPersistentStoreCoordinator
         managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator;
     }
+    
+    //Begin working with location services
+    locationManager = [[LocationManager alloc] init];
+    myCurrentGPSLocation = locationManager.coordinate;
+    NSLog(@"This is our coordinate %f", locationManager.coordinate.latitude);
+    
     return YES;
 }
 							

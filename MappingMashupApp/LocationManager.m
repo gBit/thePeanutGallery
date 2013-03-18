@@ -8,6 +8,7 @@
 
 #import "LocationManager.h"
 
+
 @implementation LocationManager
 {
     CLLocationManager *locationManager;
@@ -31,7 +32,7 @@
     coordinate.longitude = longitude;
     return self;
 }
-/*
+
  - (id)initWithCurrentLocationAndUpdates
  {
  self = [super init];
@@ -71,10 +72,12 @@
  
  }
  }
- 
+
+
+
  - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
  UIAlertView *alert;
  alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error description] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
  [alert show];
- } */
+ } 
 @end

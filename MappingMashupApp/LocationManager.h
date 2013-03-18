@@ -7,8 +7,10 @@
 //
 
 #import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface LocationManager : NSObject
+@interface LocationManager : NSObject <CLLocationManagerDelegate>
 
 @property (assign, nonatomic) CLLocationCoordinate2D coordinate;
 
