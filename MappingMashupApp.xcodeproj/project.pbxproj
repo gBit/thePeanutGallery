@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8335571616F6D27600DB17D5 /* YelpWebPageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8335571516F6D27600DB17D5 /* YelpWebPageBrowser.m */; };
+		8335571916F754C800DB17D5 /* xmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8335571816F754C800DB17D5 /* xmark.png */; };
+		8335571D16F7579600DB17D5 /* wifiIcon2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8335571C16F7579600DB17D5 /* wifiIcon2@2x.png */; };
+		8335571F16F759B600DB17D5 /* wifiIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8335571E16F759B600DB17D5 /* wifiIcon@2x.png */; };
 		8F372B0416F244C800302B80 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F372B0316F244C800302B80 /* UIKit.framework */; };
 		8F372B0616F244C800302B80 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F372B0516F244C800302B80 /* Foundation.framework */; };
 		8F372B0816F244C800302B80 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F372B0716F244C800302B80 /* CoreGraphics.framework */; };
@@ -58,6 +62,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8335571416F6D27600DB17D5 /* YelpWebPageBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YelpWebPageBrowser.h; sourceTree = "<group>"; };
+		8335571516F6D27600DB17D5 /* YelpWebPageBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YelpWebPageBrowser.m; sourceTree = "<group>"; };
+		8335571816F754C800DB17D5 /* xmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xmark.png; sourceTree = "<group>"; };
+		8335571C16F7579600DB17D5 /* wifiIcon2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wifiIcon2@2x.png"; sourceTree = "<group>"; };
+		8335571E16F759B600DB17D5 /* wifiIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wifiIcon@2x.png"; sourceTree = "<group>"; };
 		8F372B0016F244C800302B80 /* MappingMashupApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MappingMashupApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F372B0316F244C800302B80 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F372B0516F244C800302B80 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -120,6 +129,9 @@
 		8F372AF716F244C800302B80 = {
 			isa = PBXGroup;
 			children = (
+				8335571E16F759B600DB17D5 /* wifiIcon@2x.png */,
+				8335571C16F7579600DB17D5 /* wifiIcon2@2x.png */,
+				8335571816F754C800DB17D5 /* xmark.png */,
 				B40B477716F691CE006BD4CE /* Model.xcdatamodeld */,
 				8F372B0916F244C800302B80 /* MappingMashupApp */,
 				8F372B0216F244C800302B80 /* Frameworks */,
@@ -225,6 +237,8 @@
 		8F372B5E16F269B100302B80 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8335571416F6D27600DB17D5 /* YelpWebPageBrowser.h */,
+				8335571516F6D27600DB17D5 /* YelpWebPageBrowser.m */,
 				8F372B1E16F244C800302B80 /* YelpMapViewController.h */,
 				8F372B1F16F244C800302B80 /* YelpMapViewController.m */,
 			);
@@ -330,6 +344,9 @@
 				8F372B1816F244C800302B80 /* Default@2x.png in Resources */,
 				8F372B1A16F244C800302B80 /* Default-568h@2x.png in Resources */,
 				8F372B1D16F244C800302B80 /* MainStoryboard.storyboard in Resources */,
+				8335571916F754C800DB17D5 /* xmark.png in Resources */,
+				8335571D16F7579600DB17D5 /* wifiIcon2@2x.png in Resources */,
+				8335571F16F759B600DB17D5 /* wifiIcon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +368,7 @@
 				B425500916F6B158005CCC9E /* Venue.m in Sources */,
 				B425500C16F6B1C2005CCC9E /* Business.m in Sources */,
 				B425500F16F6B1C2005CCC9E /* Photo.m in Sources */,
+				8335571616F6D27600DB17D5 /* YelpWebPageBrowser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

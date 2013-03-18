@@ -10,7 +10,7 @@
 #import "DataSourceDelegate.h"
 #import <CoreData/CoreData.h>
 
-@interface YelpMapViewController : UIViewController <DataSourceDelegate>
+@interface YelpMapViewController : UIViewController <DataSourceDelegate, MKMapViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *returnedArray;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
