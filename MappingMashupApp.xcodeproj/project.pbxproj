@@ -129,8 +129,8 @@
 		8F372AF716F244C800302B80 = {
 			isa = PBXGroup;
 			children = (
+
 				8335571E16F759B600DB17D5 /* wifiIcon@2x.png */,
-				8335571C16F7579600DB17D5 /* wifiIcon2@2x.png */,
 				8335571816F754C800DB17D5 /* xmark.png */,
 				B40B477716F691CE006BD4CE /* Model.xcdatamodeld */,
 				8F372B0916F244C800302B80 /* MappingMashupApp */,
@@ -165,8 +165,9 @@
 		8F372B0916F244C800302B80 /* MappingMashupApp */ = {
 			isa = PBXGroup;
 			children = (
-				B40B477616F69055006BD4CE /* Backups */,
+				B40B477716F691CE006BD4CE /* Model.xcdatamodeld */,
 				8F372B1B16F244C800302B80 /* MainStoryboard.storyboard */,
+				B40B477616F69055006BD4CE /* Backups */,
 				8F372B5C16F2698B00302B80 /* Classes */,
 				8F372B4F16F2661300302B80 /* Delegates */,
 				8F372B5D16F269A700302B80 /* Managers */,
@@ -520,7 +521,8 @@
 				B40B477816F691CE006BD4CE /* Model.xcdatamodel */,
 			);
 			currentVersion = B40B477816F691CE006BD4CE /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			name = Model.xcdatamodeld;
+			path = ../Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

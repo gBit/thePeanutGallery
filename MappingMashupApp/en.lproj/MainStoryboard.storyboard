@@ -15,7 +15,7 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="fse-RH-zXz">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                 <connections>
-                                    <outlet property="delegate" destination="2" id="xSJ-gt-oCr"/>
+                                    <outlet property="delegate" destination="2" id="43E-w0-dI6"/>
                                 </connections>
                             </mapView>
                         </subviews>

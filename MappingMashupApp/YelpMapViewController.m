@@ -15,6 +15,8 @@
 #import "LocationManager.h"
 #import "AppDelegate.h"
 #import "YelpWebPageBrowser.h"
+#import "Photo.h"
+#import "Business.h"
 
 
 @interface YelpMapViewController ()
@@ -72,6 +74,7 @@
     yelpProcess.delegate = self;
     
     [yelpProcess getYelpJSON];
+
 }
 
 - (void)grabArray:(NSArray *)data
@@ -138,7 +141,10 @@
         
         //add to map
         [myMapView addAnnotation:myAnnotation];
+        
+        
     }
+    NSLog(@"%@", [[myMapView.annotations objectAtIndex:0] title]);
 }
 
 -(MKAnnotationView*)mapView:(MKMapView*)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -168,7 +174,6 @@
 //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"m.yelp.com"]];
     [self performSegueWithIdentifier:@"toYelpWebPage" sender:nil];
     
-
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -177,15 +182,25 @@
     ywpb.yelpURLString = selectedAnnotation.yelpPageURL;
 }
 
-//Look at this
 //This method gets called when you select an annotation
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     selectedAnnotation = view.annotation;
     
+    //Note: This should break when we switch from Yelp annotations
+    //to Flickr photos.
+    //Once it doees work, delete this comment
+    Business *selectedBusiness = [NSEntityDescription insertNewObjectForEntityForName:@"Business" inManagedObjectContext:managedObjectContext];
+    
+    selectedBusiness.name = view.annotation.title;
+    NSError *error;
+    if (![managedObjectContext save:&error])
+    {
+        NSLog(@"failed to save: %@", [error userInfo]);
+    }
+    
+    //NSLog(@"Logging out the annotation %@", view.annotation.title);
 }
-
-
 
 //Method for unwind action
 -(IBAction) backToYelpMapView: (UIStoryboardSegue *)segue
