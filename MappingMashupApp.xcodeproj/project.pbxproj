@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		830729D416F766D6000F0037 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 830729D216F766D6000F0037 /* Model.xcdatamodeld */; };
 		8335571616F6D27600DB17D5 /* YelpWebPageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8335571516F6D27600DB17D5 /* YelpWebPageBrowser.m */; };
 		8335571916F754C800DB17D5 /* xmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8335571816F754C800DB17D5 /* xmark.png */; };
 		8335571D16F7579600DB17D5 /* wifiIcon2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8335571C16F7579600DB17D5 /* wifiIcon2@2x.png */; };
@@ -31,7 +32,6 @@
 		8F372B5816F2672100302B80 /* ResultsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B5716F2672100302B80 /* ResultsManager.m */; };
 		8F372B5B16F2678A00302B80 /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B5A16F2678A00302B80 /* Annotation.m */; };
 		B40B477516F68FC1006BD4CE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B40B477416F68FC1006BD4CE /* CoreData.framework */; };
-		B40B477916F691CE006BD4CE /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B40B477716F691CE006BD4CE /* Model.xcdatamodeld */; };
 		B425500916F6B158005CCC9E /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = B425500816F6B158005CCC9E /* Venue.m */; };
 		B425500C16F6B1C2005CCC9E /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = B425500B16F6B1C2005CCC9E /* Business.m */; };
 		B425500F16F6B1C2005CCC9E /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = B425500E16F6B1C2005CCC9E /* Photo.m */; };
@@ -62,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		830729D316F766D6000F0037 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		8335571416F6D27600DB17D5 /* YelpWebPageBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YelpWebPageBrowser.h; sourceTree = "<group>"; };
 		8335571516F6D27600DB17D5 /* YelpWebPageBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YelpWebPageBrowser.m; sourceTree = "<group>"; };
 		8335571816F754C800DB17D5 /* xmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xmark.png; sourceTree = "<group>"; };
@@ -98,7 +99,6 @@
 		8F372B5A16F2678A00302B80 /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
 		B40B477116F68CB4006BD4CE /* copyOfVenue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = copyOfVenue.h; sourceTree = "<group>"; };
 		B40B477416F68FC1006BD4CE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		B40B477816F691CE006BD4CE /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		B425500716F6B158005CCC9E /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Venue.h; path = ../Venue.h; sourceTree = "<group>"; };
 		B425500816F6B158005CCC9E /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Venue.m; path = ../Venue.m; sourceTree = "<group>"; };
 		B425500A16F6B1C2005CCC9E /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Business.h; path = ../Business.h; sourceTree = "<group>"; };
@@ -129,10 +129,8 @@
 		8F372AF716F244C800302B80 = {
 			isa = PBXGroup;
 			children = (
-
 				8335571E16F759B600DB17D5 /* wifiIcon@2x.png */,
 				8335571816F754C800DB17D5 /* xmark.png */,
-				B40B477716F691CE006BD4CE /* Model.xcdatamodeld */,
 				8F372B0916F244C800302B80 /* MappingMashupApp */,
 				8F372B0216F244C800302B80 /* Frameworks */,
 				8F372B0116F244C800302B80 /* Products */,
@@ -165,7 +163,7 @@
 		8F372B0916F244C800302B80 /* MappingMashupApp */ = {
 			isa = PBXGroup;
 			children = (
-				B40B477716F691CE006BD4CE /* Model.xcdatamodeld */,
+				830729D216F766D6000F0037 /* Model.xcdatamodeld */,
 				8F372B1B16F244C800302B80 /* MainStoryboard.storyboard */,
 				B40B477616F69055006BD4CE /* Backups */,
 				8F372B5C16F2698B00302B80 /* Classes */,
@@ -365,11 +363,11 @@
 				8F372B5516F266E900302B80 /* LocationManager.m in Sources */,
 				8F372B5816F2672100302B80 /* ResultsManager.m in Sources */,
 				8F372B5B16F2678A00302B80 /* Annotation.m in Sources */,
-				B40B477916F691CE006BD4CE /* Model.xcdatamodeld in Sources */,
 				B425500916F6B158005CCC9E /* Venue.m in Sources */,
 				B425500C16F6B1C2005CCC9E /* Business.m in Sources */,
 				B425500F16F6B1C2005CCC9E /* Photo.m in Sources */,
 				8335571616F6D27600DB17D5 /* YelpWebPageBrowser.m in Sources */,
+				830729D416F766D6000F0037 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,12 +513,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		B40B477716F691CE006BD4CE /* Model.xcdatamodeld */ = {
+		830729D216F766D6000F0037 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				B40B477816F691CE006BD4CE /* Model.xcdatamodel */,
+				830729D316F766D6000F0037 /* Model.xcdatamodel */,
 			);
-			currentVersion = B40B477816F691CE006BD4CE /* Model.xcdatamodel */;
+			currentVersion = 830729D316F766D6000F0037 /* Model.xcdatamodel */;
 			name = Model.xcdatamodeld;
 			path = ../Model.xcdatamodeld;
 			sourceTree = "<group>";
