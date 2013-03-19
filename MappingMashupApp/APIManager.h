@@ -14,24 +14,18 @@
 
 @interface APIManager : NSObject
 
-@property (strong, nonatomic) NSArray *flickrPhotosArray;
 @property (strong, nonatomic) NSString *apiCall;
-@property (strong, nonatomic) NSMutableArray *venuesArray;
+@property (strong, nonatomic) NSMutableArray *yelpVenuesArray;
+@property (strong, nonatomic) NSMutableArray *flickrPhotosArray;
 
 @property (strong, nonatomic) id <DataSourceDelegate> delegate;
 
-
 - (APIManager*)initWithFlickrSearch:(NSString*)search andLocation:(LocationManager*)userLocation;
-
 - (APIManager*)initWithYelpSearch:(NSString*)search andLocation:(LocationManager*)userLocation;
 
-//the getter and the setting of the json from flickr
-- (void)getFlickrJSON;
-- (void)setArrayOfDictsFromFlickrJSONWithResponse:(NSURLResponse*)myResponse andData:(NSData*)myData andError:(NSError*)theirError;
+- (NSMutableArray*)searchYelpParseResults;
+- (NSMutableArray*)searchFlickrParseResults;
 
-
-//the getting of the json from yelp
-- (NSMutableArray*)getYelpArrayFromAPICall;
-
+//- (void)setArrayOfDictsFromFlickrJSONWithResponse:(NSURLResponse*)myResponse andData:(NSData*)myData andError:(NSError*)theirError;
 
 @end
