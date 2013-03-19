@@ -56,7 +56,8 @@
     venuesArray = [yelpAPIManager searchYelpParseResults];
     
     [self addPinsToMap];
-}
+    
+   }
 
 # pragma mark - User Location Methods
 // deprecated: fix later

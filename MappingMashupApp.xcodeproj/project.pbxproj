@@ -10,10 +10,10 @@
 		6B2D7B2A16F8FE2B00E6D3A5 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D7B2916F8FE2B00E6D3A5 /* Photo.m */; };
 		6B2D7B2D16F8FE2B00E6D3A5 /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D7B2C16F8FE2B00E6D3A5 /* Business.m */; };
 		830729D416F766D6000F0037 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 830729D216F766D6000F0037 /* Model.xcdatamodeld */; };
+		83332D2316F90F460085BDB6 /* wifiIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83332D2216F90F460085BDB6 /* wifiIcon@2x.png */; };
 		8335571616F6D27600DB17D5 /* YelpWebPageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8335571516F6D27600DB17D5 /* YelpWebPageBrowser.m */; };
 		8335571916F754C800DB17D5 /* xmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8335571816F754C800DB17D5 /* xmark.png */; };
 		8335571D16F7579600DB17D5 /* wifiIcon2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8335571C16F7579600DB17D5 /* wifiIcon2@2x.png */; };
-		8335571F16F759B600DB17D5 /* wifiIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8335571E16F759B600DB17D5 /* wifiIcon@2x.png */; };
 		83FE37E216F76CD6000C9935 /* FlickrMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FE37E116F76CD6000C9935 /* FlickrMapViewController.m */; };
 		8F372B0416F244C800302B80 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F372B0316F244C800302B80 /* UIKit.framework */; };
 		8F372B0616F244C800302B80 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F372B0516F244C800302B80 /* Foundation.framework */; };
@@ -68,11 +68,11 @@
 		6B2D7B2B16F8FE2B00E6D3A5 /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Business.h; path = ../Business.h; sourceTree = "<group>"; };
 		6B2D7B2C16F8FE2B00E6D3A5 /* Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Business.m; path = ../Business.m; sourceTree = "<group>"; };
 		830729D316F766D6000F0037 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		83332D2216F90F460085BDB6 /* wifiIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wifiIcon@2x.png"; sourceTree = "<group>"; };
 		8335571416F6D27600DB17D5 /* YelpWebPageBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YelpWebPageBrowser.h; sourceTree = "<group>"; };
 		8335571516F6D27600DB17D5 /* YelpWebPageBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YelpWebPageBrowser.m; sourceTree = "<group>"; };
 		8335571816F754C800DB17D5 /* xmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xmark.png; sourceTree = "<group>"; };
 		8335571C16F7579600DB17D5 /* wifiIcon2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wifiIcon2@2x.png"; sourceTree = "<group>"; };
-		8335571E16F759B600DB17D5 /* wifiIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wifiIcon@2x.png"; sourceTree = "<group>"; };
 		83FE37E016F76CD6000C9935 /* FlickrMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrMapViewController.h; sourceTree = "<group>"; };
 		83FE37E116F76CD6000C9935 /* FlickrMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrMapViewController.m; sourceTree = "<group>"; };
 		8F372B0016F244C800302B80 /* MappingMashupApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MappingMashupApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -251,7 +251,7 @@
 		8F3AD83816F90A0300BEEB3A /* Custom Images */ = {
 			isa = PBXGroup;
 			children = (
-				8335571E16F759B600DB17D5 /* wifiIcon@2x.png */,
+				83332D2216F90F460085BDB6 /* wifiIcon@2x.png */,
 				8335571816F754C800DB17D5 /* xmark.png */,
 			);
 			name = "Custom Images";
@@ -359,7 +359,7 @@
 				8F372B1D16F244C800302B80 /* MainStoryboard.storyboard in Resources */,
 				8335571916F754C800DB17D5 /* xmark.png in Resources */,
 				8335571D16F7579600DB17D5 /* wifiIcon2@2x.png in Resources */,
-				8335571F16F759B600DB17D5 /* wifiIcon@2x.png in Resources */,
+				83332D2316F90F460085BDB6 /* wifiIcon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
