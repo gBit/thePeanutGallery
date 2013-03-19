@@ -10,13 +10,9 @@
 #import <MapKit/MapKit.h>
 #import <CoreData/CoreData.h>
 #import "DataSourceDelegate.h"
-#import "AppDelegate.h"
 
 @interface FlickrMapViewController : UIViewController <MKMapViewDelegate, DataSourceDelegate>
 
-@property (strong, nonatomic) NSMutableArray *venuesArray;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
--(void)addPinsToMap;
 
 @end

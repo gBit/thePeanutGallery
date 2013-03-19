@@ -132,8 +132,6 @@
 		8F372AF716F244C800302B80 = {
 			isa = PBXGroup;
 			children = (
-				8335571E16F759B600DB17D5 /* wifiIcon@2x.png */,
-				8335571816F754C800DB17D5 /* xmark.png */,
 				8F372B0916F244C800302B80 /* MappingMashupApp */,
 				8F372B0216F244C800302B80 /* Frameworks */,
 				8F372B0116F244C800302B80 /* Products */,
@@ -181,6 +179,7 @@
 		8F372B0A16F244C800302B80 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8F3AD83816F90A0300BEEB3A /* Custom Images */,
 				8F372B0B16F244C800302B80 /* MappingMashupApp-Info.plist */,
 				8F372B0C16F244C800302B80 /* InfoPlist.strings */,
 				8F372B0F16F244C800302B80 /* main.m */,
@@ -247,6 +246,16 @@
 				8F372B1F16F244C800302B80 /* YelpMapViewController.m */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		8F3AD83816F90A0300BEEB3A /* Custom Images */ = {
+			isa = PBXGroup;
+			children = (
+				8335571E16F759B600DB17D5 /* wifiIcon@2x.png */,
+				8335571816F754C800DB17D5 /* xmark.png */,
+			);
+			name = "Custom Images";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		B40B477616F69055006BD4CE /* Backups */ = {

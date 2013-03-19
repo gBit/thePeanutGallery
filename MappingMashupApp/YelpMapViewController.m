@@ -1,137 +1,159 @@
 //
-//  ViewController.m
+//  YelpMapViewController.m
 //  MappingMashupApp
 //
 //  Created by gBit on 3/14/13.
 //  Copyright (c) 2013 The Peanut Gallery. All rights reserved.
 //
 
+
+//
+// NEED TO UPDATE DATA POPULATION
+// CURRENTLY BASED ON USER LOCATION AND API CALL
+// SHOULD TAKE IN OBJECTS FROM FLICKRMAPVIEWCONTROLLER
+//
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
+
 #import "YelpMapViewController.h"
-#import "Annotation.h"
-#import "Venue.h"
-#import "APIManager.h"
-#import "LocationManager.h"
-#import "AppDelegate.h"
 #import "YelpWebPageBrowser.h"
+#import "AppDelegate.h"
+
+#import "LocationManager.h"
+#import "APIManager.h"
+#import "Venue.h"
+#import "Annotation.h"
 #import "Photo.h"
 #import "Business.h"
 
-
 @interface YelpMapViewController ()
 {
-    APIManager *yelpProcess;
-    __weak IBOutlet MKMapView *myMapView;
-    NSMutableArray *yelpData;
-    LocationManager *mobileMakersLocation;
-    Annotation * selectedAnnotation;
+    LocationManager *locationManager;
+    Annotation *selectedAnnotation;
+    NSMutableArray *venuesArray;
+    NSMutableArray *photosArray;
+    
+    __weak IBOutlet MKMapView *mapView;
 }
 
 -(void)addPinsToMap;
-
 @end
 
 @implementation YelpMapViewController
-@synthesize venuesArray;
 @synthesize managedObjectContext;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    // Core Data
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
     
-    mobileMakersLocation = [[LocationManager alloc] init];
+    // Location Services
+    locationManager = appDelegate.locationManager;
+    [mapView setShowsUserLocation:YES];
     
-    //Ross' changes 3.17.13
-    CLLocationCoordinate2D mmCoordinate =
-    {
-        .latitude = 41.894032f,
-        .longitude = -87.634742f
-    };
-
-    MKCoordinateSpan defaultSpan =
-    {
-        .latitudeDelta = 0.02f,
-        .longitudeDelta = 0.02f
-    };
+    APIManager *yelpAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:locationManager];
+    yelpAPIManager.delegate = self;
     
-    MKCoordinateRegion myRegion = {mmCoordinate, defaultSpan};
-    //MKUserLocation *myCurrentLocation = [[MKUserLocation alloc] init];
-    //    myCurrentLocation.annotationType = @"currentLocation";
-    //    myCurrentLocation.title = @"You are here.";
-    //    myCurrentLocation.coordinate = mmCoordinate;
+    // Allocate objects
+    // [possibly allocate the venuesArray later?]
+    venuesArray = [[NSMutableArray alloc]init];
+    venuesArray = [yelpAPIManager searchYelpParseResults];
     
-    //[myMapView addAnnotation:myCurrentLocation];
-    
-    
-    [myMapView setRegion:myRegion animated:YES];
-    
-    //End ross' changes
-    
-    
-    yelpProcess = [[APIManager alloc]initWithYelpSearch:@"free%20wifi" andLocation:mobileMakersLocation];
-    
-    yelpProcess.delegate = self;
-    
-    [yelpProcess getYelpArrayFromAPICall];
-
+    [self addPinsToMap];
 }
 
-
-- (void)grabArray:(NSArray *)data
+# pragma mark - User Location Methods
+// deprecated: fix later
+-(void)locationManager:(CLLocationManager*)manager
+   didUpdateToLocation:(CLLocation *)newLocation
+          fromLocation:(CLLocation *)oldLocation
 {
-    yelpData = [self createPlacesArray:data];
-    //[self addPinsToMap];
+    //how many seconds ago was this new location created
+    NSTimeInterval time = [[newLocation timestamp] timeIntervalSinceNow];
+    
+    //CLLocation manager will return last found location
+    //if this location was made more than 3 minutes ago, ignore
+    if (time<-180) {
+        return;
+    }
+    [self foundLocation:newLocation];
 }
 
+-(void)mapView:(MKMapView *)userMapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    CLLocationCoordinate2D loc = userLocation.coordinate;
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
+    
+    [userMapView setRegion:region animated:YES];
+}
 
+# pragma mark - Annotation Methods
+-(void)foundLocation:(CLLocation*)loc
+{
+    CLLocationCoordinate2D coord = [loc coordinate];
+    
+    //create an instances of annotation with the current data
+    Annotation *annotation = [[Annotation alloc]initWithCoordinate:coord
+                                                             title:@"title"
+                                                          subtitle:@"Somebody does not want poop"
+                                                           yelpURL:@"http://www.catstache.biz"];
+    //add annotation to mapview
+    [mapView addAnnotation:annotation];
+    
+    //zoom to region of location
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
+    
+    [mapView setRegion:region animated:YES];
+    
+    [locationManager stopUpdatingLocation];
+}
 
-/*
 -(void)addPinsToMap
 {
-    //make region our area
+    // make region our area
     MKCoordinateSpan span =
     {
         .latitudeDelta = 0.01810686f,
         .longitudeDelta = 0.01810686f
     };
     
-    MKCoordinateRegion myRegion = {mobileMakersLocation.coordinate, span};
+    MKCoordinateRegion region = {locationManager.coordinate, span};
     //set region to mapview
-    [myMapView setRegion:myRegion animated:YES];
+    [mapView setRegion:region animated:YES];
     
-    
-    for (int i = 0; i < returnedArray.count; i++)
+    for (int i = 0; i < venuesArray.count; i++)
     {
-        CLLocation *locationOfPlace = [[returnedArray objectAtIndex:i] location];
-        NSString *nameOfPlace = [[returnedArray objectAtIndex:i] name];
-//        NSString *addressOfPlace = [[returnedArray objectAtIndex:i] addres];
+        CLLocation *venueLocation = [[venuesArray objectAtIndex:i] location];
+        NSString *venueName = [[venuesArray objectAtIndex:i] name];
         
         //coordinate make
-        CLLocationCoordinate2D placeCoordinate;
-        placeCoordinate.longitude = locationOfPlace.coordinate.longitude;
-        placeCoordinate.latitude = locationOfPlace.coordinate.latitude;
+        CLLocationCoordinate2D venueCoordinate;
+        venueCoordinate.longitude = venueLocation.coordinate.longitude;
+        venueCoordinate.latitude = venueLocation.coordinate.latitude;
         
-        //annotation make
-        Annotation *myAnnotation = [[Annotation alloc] initWithPosition:placeCoordinate];
-        myAnnotation.title = nameOfPlace;
-        myAnnotation.subtitle = @"Demo subtitle";
+        //
+        // REVISE TO LEVERAGE NEW CUSTOM INITS //
+        //
+        // create annotation
+        // Annotation *myAnnotation = [[Annotation alloc] initWithPosition:placeCoordinate];
+        // myAnnotation.title = nameOfPlace;
+        // myAnnotation.subtitle = @"Demo subtitle";
         
-        NSLog(@"%@", returnedArray);
+        //NSLog(@"%@", returnedArray);
         //Add code here to capture yelp page URL
-        NSString *yelpURLString = [[returnedArray objectAtIndex:i] valueForKey:@"yelpURL"];
-        NSLog(@"%@", yelpURLString);
-        myAnnotation.yelpPageURL = yelpURLString;
+        //NSString *yelpURLString = [[returnedArray objectAtIndex:i] valueForKey:@"yelpURL"];
+        //NSLog(@"%@", yelpURLString);
+        //myAnnotation.yelpPageURL = yelpURLString;
         
         //add to map
-        [myMapView addAnnotation:myAnnotation];
+        //[myMapView addAnnotation:myAnnotation];
         
         
     }
-    NSLog(@"%@", [[myMapView.annotations objectAtIndex:0] title]);
+    //NSLog(@"%@", [[myMapView.annotations objectAtIndex:0] title]);
 }
 
 -(MKAnnotationView*)mapView:(MKMapView*)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -144,32 +166,25 @@
         annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
     }
     
-//    [detailButton addTarget:self
-//                     action:@selector(goToYelpPage)
-//           forControlEvents:UIControlEventTouchUpInside];
+    //    [detailButton addTarget:self
+    //                     action:@selector(goToYelpPage)
+    //           forControlEvents:UIControlEventTouchUpInside];
     annotationView.canShowCallout = YES;
     annotationView.image = [UIImage imageNamed:@"wifiIcon.png"];
     annotationView.rightCalloutAccessoryView = detailButton;
     
+    if([annotation isKindOfClass: [MKUserLocation class]])
+    {
+        return nil;
+    }
+    
     return annotationView;
 }
 
-//User taps on disclosure button to see more Yelp data.
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
-{
-    NSLog(@"This is the method we want!");
-//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"m.yelp.com"]];
-    [self performSegueWithIdentifier:@"toYelpWebPage" sender:nil];
-    
-}
-
--(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    YelpWebPageBrowser * ywpb = [segue destinationViewController];
-    ywpb.yelpURLString = selectedAnnotation.yelpPageURL;
-}
-
-//This method gets called when you select an annotation
+# pragma mark - User Actions
+//
+// User selects an annotation
+//
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     selectedAnnotation = view.annotation;
@@ -190,13 +205,34 @@
     //NSLog(@"Logging out the annotation %@", view.annotation.title);
 }
 
-//Method for unwind action
+//
+// User taps on disclosure button to see more Yelp data.
+//
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    NSLog(@"This is the method we want!");
+    // [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"m.yelp.com"]];
+    [self performSegueWithIdentifier:@"toYelpWebPage" sender:nil];
+    
+}
+
+# pragma mark - Transitions
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    YelpWebPageBrowser * ywpb = [segue destinationViewController];
+    ywpb.yelpURLString = selectedAnnotation.yelpPageURL;
+}
+
+//
+// Method for unwind action
+//
 -(IBAction) backToYelpMapView: (UIStoryboardSegue *)segue
 {
 	//Any additional actions to be performed during unwind
 }
-*/
-# pragma  mark -- End of document
+
+# pragma  mark - End of document
 
 - (void)didReceiveMemoryWarning
 {
