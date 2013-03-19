@@ -15,6 +15,4 @@
 @property (strong, nonatomic) NSMutableArray *returnedArray;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
--(void)addPinsToMap;
-
 @end

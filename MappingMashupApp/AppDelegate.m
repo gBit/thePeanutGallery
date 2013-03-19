@@ -11,7 +11,7 @@
 @implementation AppDelegate
 
 @synthesize managedObjectContext = managedObjectContext;
-@synthesize locationManager, myCurrentGPSLocation;
+@synthesize locationManager;
 
 
 
@@ -40,8 +40,8 @@
     
     //Begin working with location services
     locationManager = [[LocationManager alloc] init];
-    myCurrentGPSLocation = locationManager.coordinate;
-    NSLog(@"This is our coordinate %f", locationManager.coordinate.latitude);
+    //myCurrentGPSLocation = locationManager.coordinate;
+    //NSLog(@"This is our coordinate %f", locationManager.coordinate.latitude);
     
     return YES;
 }

@@ -14,7 +14,7 @@
 
 @interface FlickrMapViewController : UIViewController <MKMapViewDelegate, DataSourceDelegate>
 
-@property (strong, nonatomic) NSMutableArray *returnedArray;
+@property (strong, nonatomic) NSMutableArray *venuesArray;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 -(void)addPinsToMap;

@@ -16,15 +16,13 @@
     NSManagedObjectModel *managedObjectModel;
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
 }
+
 @property (strong, nonatomic) UIWindow *window;
-
-//@property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-//@property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
 //Property for current location coordinate
 @property (strong, nonatomic) LocationManager *locationManager;
-@property (assign, nonatomic) CLLocationCoordinate2D myCurrentGPSLocation;
+
+
 
 
 @end

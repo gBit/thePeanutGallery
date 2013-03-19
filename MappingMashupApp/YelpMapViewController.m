@@ -27,10 +27,13 @@
     LocationManager *mobileMakersLocation;
     Annotation * selectedAnnotation;
 }
+
+-(void)addPinsToMap;
+
 @end
 
 @implementation YelpMapViewController
-@synthesize returnedArray;
+@synthesize venuesArray;
 @synthesize managedObjectContext;
 
 - (void)viewDidLoad
@@ -56,12 +59,12 @@
     };
     
     MKCoordinateRegion myRegion = {mmCoordinate, defaultSpan};
-    MKUserLocation *myCurrentLocation = [[Annotation alloc] init];
+    //MKUserLocation *myCurrentLocation = [[MKUserLocation alloc] init];
     //    myCurrentLocation.annotationType = @"currentLocation";
     //    myCurrentLocation.title = @"You are here.";
     //    myCurrentLocation.coordinate = mmCoordinate;
     
-    [myMapView addAnnotation:myCurrentLocation];
+    //[myMapView addAnnotation:myCurrentLocation];
     
     
     [myMapView setRegion:myRegion animated:YES];
@@ -73,36 +76,20 @@
     
     yelpProcess.delegate = self;
     
-    [yelpProcess getYelpJSON];
+    [yelpProcess getYelpArrayFromAPICall];
 
 }
+
 
 - (void)grabArray:(NSArray *)data
 {
     yelpData = [self createPlacesArray:data];
-    [self addPinsToMap];
+    //[self addPinsToMap];
 }
 
-- (NSMutableArray *)createPlacesArray:(NSArray *)placesData
-{
-    returnedArray = [[NSMutableArray alloc] init];
-    
-    for (NSDictionary *placeDictionary in placesData)
-    {
-        float placeLatitude = [[placeDictionary valueForKey:@"latitude"] floatValue];
-        float placeLongitude = [[placeDictionary valueForKey:@"longitude"] floatValue];
-        CLLocation *placeLocation = [[CLLocation alloc] initWithLatitude:placeLatitude longitude:placeLongitude];
-        
-        Venue *place = [[Venue alloc] init];
-        place.name = [placeDictionary valueForKey:@"name"];
-        place.location = placeLocation;
-        place.yelpURL= [placeDictionary valueForKey:@"url"];
-        
-        [returnedArray addObject:place];
-    }
-    return returnedArray;
-}
 
+
+/*
 -(void)addPinsToMap
 {
     //make region our area
@@ -129,7 +116,7 @@
         placeCoordinate.latitude = locationOfPlace.coordinate.latitude;
         
         //annotation make
-        Annotation *myAnnotation = [[Annotation alloc] initWithPosition:&placeCoordinate];
+        Annotation *myAnnotation = [[Annotation alloc] initWithPosition:placeCoordinate];
         myAnnotation.title = nameOfPlace;
         myAnnotation.subtitle = @"Demo subtitle";
         
@@ -208,7 +195,7 @@
 {
 	//Any additional actions to be performed during unwind
 }
-
+*/
 # pragma  mark -- End of document
 
 - (void)didReceiveMemoryWarning

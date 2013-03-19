@@ -16,6 +16,11 @@
 @property (assign, nonatomic) CLLocationCoordinate2D coordinate;
 @property (strong, nonatomic) NSString *yelpPageURL;
 
-- initWithPosition:(CLLocationCoordinate2D *)coordinates;
+//- initWithPosition:(CLLocationCoordinate2D)coordinates;
+
+- (id)initWithCoordinate:(CLLocationCoordinate2D)coord
+                   title:(NSString*)titleString
+                subtitle:(NSString*)subtitleString
+                 yelpURL:(NSString*)yelpURLString;
 
 @end

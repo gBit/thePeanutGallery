@@ -8,10 +8,11 @@
 
 #import "APIManager.h"
 #import <YelpKit/YelpKit.h>
+#import "Venue.h"
 
 @implementation APIManager
 
-@synthesize apiCall,flickrPhotosArray,yelpBusinessesArray;
+@synthesize apiCall,flickrPhotosArray, venuesArray;
 
 
 //api method call for flickr
@@ -42,9 +43,34 @@
                            completionHandler:^ void (NSURLResponse* myResponse, NSData* myData, NSError* theirError)
      {
          [self setArrayOfDictsFromFlickrJSONWithResponse:myResponse andData:myData andError:theirError];
-         [self.delegate grabArray:flickrPhotosArray];
+         //[self.delegate grabArray:flickrPhotosArray];
          
      }];
+}
+
+//
+//
+//This came from YelpMapViewController and needs to be refactored
+//
+//
+- (NSMutableArray *)createPlacesArray:(NSArray *)placesData
+{
+    returnedArray = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *placeDictionary in placesData)
+    {
+        float placeLatitude = [[placeDictionary valueForKey:@"latitude"] floatValue];
+        float placeLongitude = [[placeDictionary valueForKey:@"longitude"] floatValue];
+        CLLocation *placeLocation = [[CLLocation alloc] initWithLatitude:placeLatitude longitude:placeLongitude];
+        
+        Venue *place = [[Venue alloc] init];
+        place.name = [placeDictionary valueForKey:@"name"];
+        place.location = placeLocation;
+        place.yelpURL= [placeDictionary valueForKey:@"url"];
+        
+        [returnedArray addObject:place];
+    }
+    return returnedArray;
 }
 
 - (void)setArrayOfDictsFromFlickrJSONWithResponse:(NSURLResponse*)myResponse andData:(NSData*)myData andError:(NSError*)theirError
@@ -65,16 +91,21 @@
     }
 }
 
-- (void)getYelpJSON
+- (NSMutableArray*)getYelpArrayFromAPICall
 {
     YKURL *yelpURL = [YKURL URLString:apiCall];
     [YKJSONRequest requestWithURL:yelpURL
                       finishBlock:^ void (id myData)
-     {
-         [self setUpYelpVenuesWithData:myData];
-         [self.delegate grabArray:yelpBusinessesArray];
-         
-     }
+         {
+             NSDictionary *jsonDictionary = (NSDictionary *)myData;
+             NSArray *yelpBusinessesArray = [jsonDictionary valueForKey:@"businesses"];
+             //
+             //probably delete this delegate and push it to
+             //createVenuesArray method
+             //
+             //[self.delegate grabArray:yelpBusinessesArray];
+            [self createVenuesArray:yelpBusinessesArray];
+         }
                         failBlock:^ void (YKHTTPError *error)
      {
          if (error)
@@ -83,10 +114,26 @@
          }
      }];
     
+    // return array to view controller
+    return venuesArray;
 }
--(void) setUpYelpVenuesWithData: (id)data
+
+- (void)createVenuesArray:(NSArray *)jsonArray
 {
-    NSDictionary *myYelpVenues = (NSDictionary *)data;
-    yelpBusinessesArray = [myYelpVenues valueForKey:@"businesses"];
+    venuesArray = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *business in jsonArray)
+    {
+        float latitude = [[business valueForKey:@"latitude"] floatValue];
+        float longitude = [[business valueForKey:@"longitude"] floatValue];
+        CLLocation *loc = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+        
+        Venue *currentVenue = [[Venue alloc] init];
+        currentVenue.name = [business valueForKey:@"name"];
+        currentVenue.location = loc;
+        currentVenue.yelpURL= [business valueForKey:@"url"];
+        
+        [venuesArray addObject:currentVenue];
+    }
 }
 @end

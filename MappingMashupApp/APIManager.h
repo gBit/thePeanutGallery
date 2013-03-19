@@ -10,12 +10,13 @@
 #import <YelpKit/YelpKit.h>
 #import "DataSourceDelegate.h"
 #import "LocationManager.h"
+#import <MapKit/MapKit.h>
 
 @interface APIManager : NSObject
 
 @property (strong, nonatomic) NSArray *flickrPhotosArray;
-@property (strong, nonatomic) NSArray *yelpBusinessesArray;
 @property (strong, nonatomic) NSString *apiCall;
+@property (strong, nonatomic) NSMutableArray *venuesArray;
 
 @property (strong, nonatomic) id <DataSourceDelegate> delegate;
 
@@ -30,8 +31,7 @@
 
 
 //the getting of the json from yelp
-- (void)getYelpJSON;
-- (void)setUpYelpVenuesWithData: (id)data;
+- (NSMutableArray*)getYelpArrayFromAPICall;
 
 
 @end

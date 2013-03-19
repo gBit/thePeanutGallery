@@ -10,6 +10,8 @@
 
 @protocol DataSourceDelegate <NSObject>
 
-- (void)grabArray:(NSArray *)data;
+//- (void)grabArray:(NSArray *)data;
+
+-(void)addPinsToMap:(NSArray*)data;
 
 @end
