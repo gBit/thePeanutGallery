@@ -2,7 +2,7 @@
 //  Photo.h
 //  MappingMashupApp
 //
-//  Created by StopBitingMe on 3/17/13.
+//  Created by David Johnston on 3/19/13.
 //  Copyright (c) 2013 The Peanut Gallery. All rights reserved.
 //
 
@@ -13,10 +13,10 @@
 
 @interface Photo : NSManagedObject
 
-@property (nonatomic, retain) NSString * fullSizedURL;
+@property (nonatomic, retain) NSString * fullSizedURLString;
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
-@property (nonatomic, retain) NSString * thumbnailURL;
+@property (nonatomic, retain) NSString * thumbnailURLString;
 @property (nonatomic, retain) Business *business;
 
 @end

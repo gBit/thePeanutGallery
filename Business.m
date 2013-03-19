@@ -2,7 +2,7 @@
 //  Business.m
 //  MappingMashupApp
 //
-//  Created by StopBitingMe on 3/17/13.
+//  Created by David Johnston on 3/19/13.
 //  Copyright (c) 2013 The Peanut Gallery. All rights reserved.
 //
 
@@ -12,10 +12,13 @@
 
 @implementation Business
 
-@dynamic name;
 @dynamic latitude;
 @dynamic longitude;
+@dynamic name;
 @dynamic phone;
+@dynamic isBookmarked;
+@dynamic viewDate;
+@dynamic yelpURLString;
 @dynamic photo;
 
 @end

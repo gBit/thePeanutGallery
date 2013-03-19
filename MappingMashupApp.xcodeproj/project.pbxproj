@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B2D7B2A16F8FE2B00E6D3A5 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D7B2916F8FE2B00E6D3A5 /* Photo.m */; };
+		6B2D7B2D16F8FE2B00E6D3A5 /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D7B2C16F8FE2B00E6D3A5 /* Business.m */; };
 		830729D416F766D6000F0037 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 830729D216F766D6000F0037 /* Model.xcdatamodeld */; };
 		8335571616F6D27600DB17D5 /* YelpWebPageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8335571516F6D27600DB17D5 /* YelpWebPageBrowser.m */; };
 		8335571916F754C800DB17D5 /* xmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8335571816F754C800DB17D5 /* xmark.png */; };
@@ -34,8 +36,6 @@
 		8F372B5B16F2678A00302B80 /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B5A16F2678A00302B80 /* Annotation.m */; };
 		B40B477516F68FC1006BD4CE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B40B477416F68FC1006BD4CE /* CoreData.framework */; };
 		B425500916F6B158005CCC9E /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = B425500816F6B158005CCC9E /* Venue.m */; };
-		B425500C16F6B1C2005CCC9E /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = B425500B16F6B1C2005CCC9E /* Business.m */; };
-		B425500F16F6B1C2005CCC9E /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = B425500E16F6B1C2005CCC9E /* Photo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +63,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B2D7B2816F8FE2B00E6D3A5 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = ../Photo.h; sourceTree = "<group>"; };
+		6B2D7B2916F8FE2B00E6D3A5 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photo.m; path = ../Photo.m; sourceTree = "<group>"; };
+		6B2D7B2B16F8FE2B00E6D3A5 /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Business.h; path = ../Business.h; sourceTree = "<group>"; };
+		6B2D7B2C16F8FE2B00E6D3A5 /* Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Business.m; path = ../Business.m; sourceTree = "<group>"; };
 		830729D316F766D6000F0037 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		8335571416F6D27600DB17D5 /* YelpWebPageBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YelpWebPageBrowser.h; sourceTree = "<group>"; };
 		8335571516F6D27600DB17D5 /* YelpWebPageBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YelpWebPageBrowser.m; sourceTree = "<group>"; };
@@ -104,10 +108,6 @@
 		B40B477416F68FC1006BD4CE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B425500716F6B158005CCC9E /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Venue.h; path = ../Venue.h; sourceTree = "<group>"; };
 		B425500816F6B158005CCC9E /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Venue.m; path = ../Venue.m; sourceTree = "<group>"; };
-		B425500A16F6B1C2005CCC9E /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Business.h; path = ../Business.h; sourceTree = "<group>"; };
-		B425500B16F6B1C2005CCC9E /* Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Business.m; path = ../Business.m; sourceTree = "<group>"; };
-		B425500D16F6B1C2005CCC9E /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = ../Photo.h; sourceTree = "<group>"; };
-		B425500E16F6B1C2005CCC9E /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photo.m; path = ../Photo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,10 +260,10 @@
 		B425501016F6B1D1005CCC9E /* Managed */ = {
 			isa = PBXGroup;
 			children = (
-				B425500D16F6B1C2005CCC9E /* Photo.h */,
-				B425500E16F6B1C2005CCC9E /* Photo.m */,
-				B425500A16F6B1C2005CCC9E /* Business.h */,
-				B425500B16F6B1C2005CCC9E /* Business.m */,
+				6B2D7B2B16F8FE2B00E6D3A5 /* Business.h */,
+				6B2D7B2C16F8FE2B00E6D3A5 /* Business.m */,
+				6B2D7B2816F8FE2B00E6D3A5 /* Photo.h */,
+				6B2D7B2916F8FE2B00E6D3A5 /* Photo.m */,
 			);
 			name = Managed;
 			sourceTree = "<group>";
@@ -369,11 +369,11 @@
 				8F372B5816F2672100302B80 /* ResultsManager.m in Sources */,
 				8F372B5B16F2678A00302B80 /* Annotation.m in Sources */,
 				B425500916F6B158005CCC9E /* Venue.m in Sources */,
-				B425500C16F6B1C2005CCC9E /* Business.m in Sources */,
-				B425500F16F6B1C2005CCC9E /* Photo.m in Sources */,
 				8335571616F6D27600DB17D5 /* YelpWebPageBrowser.m in Sources */,
 				830729D416F766D6000F0037 /* Model.xcdatamodeld in Sources */,
 				83FE37E216F76CD6000C9935 /* FlickrMapViewController.m in Sources */,
+				6B2D7B2A16F8FE2B00E6D3A5 /* Photo.m in Sources */,
+				6B2D7B2D16F8FE2B00E6D3A5 /* Business.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

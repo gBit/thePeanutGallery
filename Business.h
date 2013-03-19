@@ -2,7 +2,7 @@
 //  Business.h
 //  MappingMashupApp
 //
-//  Created by StopBitingMe on 3/17/13.
+//  Created by David Johnston on 3/19/13.
 //  Copyright (c) 2013 The Peanut Gallery. All rights reserved.
 //
 
@@ -13,10 +13,13 @@
 
 @interface Business : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
+@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * phone;
+@property (nonatomic, retain) NSNumber * isBookmarked;
+@property (nonatomic, retain) NSDate * viewDate;
+@property (nonatomic, retain) NSString * yelpURLString;
 @property (nonatomic, retain) NSSet *photo;
 @end
 

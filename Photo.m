@@ -2,7 +2,7 @@
 //  Photo.m
 //  MappingMashupApp
 //
-//  Created by StopBitingMe on 3/17/13.
+//  Created by David Johnston on 3/19/13.
 //  Copyright (c) 2013 The Peanut Gallery. All rights reserved.
 //
 
@@ -12,10 +12,10 @@
 
 @implementation Photo
 
-@dynamic fullSizedURL;
+@dynamic fullSizedURLString;
 @dynamic latitude;
 @dynamic longitude;
-@dynamic thumbnailURL;
+@dynamic thumbnailURLString;
 @dynamic business;
 
 @end
