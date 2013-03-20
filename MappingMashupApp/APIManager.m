@@ -155,7 +155,7 @@
                                                      //
                                                      // IS THIS GOING TO BE A PROBLEM? (INSIDE BLOCK)
                                                      //
-                                                     [self createPhotosArray:flickrPhotosArray];
+                                                     //[self createPhotosArray:flickrPhotosArray];
                                                  }
                                              }
      ];

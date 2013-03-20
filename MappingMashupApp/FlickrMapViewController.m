@@ -139,6 +139,8 @@
     
     APIManager *flickrAPIManager = [[APIManager alloc] initWithFlickrSearch:@"color" andVenue:[parsedArray objectAtIndex:0]];
     
+    [flickrAPIManager searchFlickrParseResults];
+    
     NSLog(@"latitude from venue: %@", [[parsedArray objectAtIndex:0] valueForKey:@"latitude"]);
     
     NSLog(@"------------%@----------", flickrAPIManager);
