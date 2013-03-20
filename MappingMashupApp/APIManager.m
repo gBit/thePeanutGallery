@@ -20,9 +20,10 @@
 // Initialize Yelp APIManager w/ custom API call
 // Passes in custom search string and user's current location
 //
-- (APIManager*)initWithYelpSearch:(NSString*)search andLocation:(LocationManager*)userLocation
+- (APIManager*)initWithYelpSearch:(NSString*)search andLocation:(CLLocationManager*)userLocation
 {
-    apiCall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=1&limit=5&ywsid=z8HZy2Hb2axZox05xfTW9w",search, userLocation.coordinate.latitude, userLocation.coordinate.longitude];
+ //   userLocation.location.coordinate.latitude;
+    apiCall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=1&limit=5&ywsid=z8HZy2Hb2axZox05xfTW9w",search, userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude];
     //Restricting search to 5 results for now - 3.18.13
     
     // SHOULD WE BE KICKING OFF THE SEARCHES HERE?
@@ -49,8 +50,9 @@
                                  {
                                      NSDictionary *jsonDictionary = (NSDictionary *)data;
                                      NSArray *yelpBusinessesArray = [jsonDictionary valueForKey:@"businesses"];
-                                     //[self createVenuesArray:yelpBusinessesArray];
+                                     [self createVenuesArray:yelpBusinessesArray];
                                      NSLog(@"%@", yelpBusinessesArray);
+
                                  }
                         failBlock:^ void (YKHTTPError *error)
                                  {

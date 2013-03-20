@@ -6,13 +6,10 @@
 //  Copyright (c) 2013 The Peanut Gallery. All rights reserved.
 //
 
-#import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
-
 #import "FlickrMapViewController.h"
 #import "YelpMapViewController.h"
 #import "YelpWebPageBrowser.h"
-
 #import "AppDelegate.h"
 #import "LocationManager.h"
 #import "APIManager.h"
@@ -39,6 +36,9 @@
 {
     [super viewDidLoad];
     
+    //God help us, please make the location services work! Puh_LEASE JESUS
+    [self startLocationUpdates];
+    
     //Edit by ross: 3.19.13 - add navigation button to Bookmarks viewController (not implemented yet)
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(bookmarkButtonPressed)];
     //Created method "bookmarkButtonPressed, currently has no action - End edit
@@ -51,7 +51,7 @@
     locationManager = appDelegate.locationManager;
     [mapView setShowsUserLocation:YES];
     
-    APIManager *yelpAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:locationManager];
+    APIManager *yelpAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:missLocationManager];
     yelpAPIManager.delegate = self;
      
     // Allocate objects
@@ -72,14 +72,32 @@
           fromLocation:(CLLocation *)oldLocation
 {
     //how many seconds ago was this new location created
-    NSTimeInterval time = [[newLocation timestamp] timeIntervalSinceNow];
+    //NSTimeInterval time = [[newLocation timestamp] timeIntervalSinceNow];
     
     //CLLocation manager will return last found location
     //if this location was made more than 3 minutes ago, ignore
-    if (time<-180) {
-        return;
-    }
-    [self foundLocation:newLocation];
+//    if (time<-180) {
+//        return;
+//    }
+    NSLog(@"%@", [newLocation description]);
+
+    //[self foundLocation:newLocation];
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error
+{
+    //Code goes here, but it won't error quite yet, so HA.
+}
+
+-(void) startLocationUpdates
+{
+    if(missLocationManager == nil)
+        {
+            missLocationManager = [[CLLocationManager alloc]init];
+        }
+    missLocationManager.delegate = self;
+    [missLocationManager startUpdatingLocation];
 }
 
 -(void)mapView:(MKMapView *)userMapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -120,7 +138,7 @@
         .longitudeDelta = 0.01810686f
     };
     
-    MKCoordinateRegion region = {locationManager.coordinate, span};
+    MKCoordinateRegion region = {missLocationManager.location.coordinate, span};
     //set region to mapview
     [mapView setRegion:region animated:YES];
     
@@ -134,22 +152,26 @@
         venueCoordinate.longitude = venueLocation.coordinate.longitude;
         venueCoordinate.latitude = venueLocation.coordinate.latitude;
         
+        
+        
+//        myAnnotation.title = venueName;
+//        myAnnotation.subtitle = @"Demo subtitle";
+        
+        NSLog(@"%@", venuesArray);
+        //Add code here to capture yelp page URL
+        NSString *yelpURLString = [[venuesArray objectAtIndex:i] valueForKey:@"yelpURL"];
+//        myAnnotation.yelpPageURL = yelpURLString;
+        
         //
         // REVISE TO LEVERAGE NEW CUSTOM INITS //
         //
         // create annotation
-        // Annotation *myAnnotation = [[Annotation alloc] initWithPosition:placeCoordinate];
-        // myAnnotation.title = nameOfPlace;
-        // myAnnotation.subtitle = @"Demo subtitle";
-        
-        //NSLog(@"%@", returnedArray);
-        //Add code here to capture yelp page URL
-        //NSString *yelpURLString = [[returnedArray objectAtIndex:i] valueForKey:@"yelpURL"];
-        //NSLog(@"%@", yelpURLString);
-        //myAnnotation.yelpPageURL = yelpURLString;
+         //Annotation *myAnnotation = [[Annotation alloc] initWithPosition:venueCoordinate];
+        Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:@"Demo Subtite" yelpURL:yelpURLString];
+
         
         //add to map
-        //[myMapView addAnnotation:myAnnotation];
+        [mapView addAnnotation:myAnnotation];
         
         
     }
