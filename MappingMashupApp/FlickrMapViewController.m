@@ -39,6 +39,10 @@
 {
     [super viewDidLoad];
     
+    //Edit by ross: 3.19.13 - add navigation button to Bookmarks viewController (not implemented yet)
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(bookmarkButtonPressed)];
+    //Created method "bookmarkButtonPressed, currently has no action - End edit
+    
     // Core Data
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
@@ -228,6 +232,11 @@
 -(IBAction) backToFlickrMapView: (UIStoryboardSegue *)segue
 {
 	//Any additional actions to be performed during unwind
+}
+
+-(void) bookmarkButtonPressed
+{
+    NSLog(@"User pressed button to go to bookmarks");
 }
 
 # pragma  mark - End of document
