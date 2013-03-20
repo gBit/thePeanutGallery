@@ -59,15 +59,23 @@
 // Initialize Flickr APIManager w/ custom API call
 // Passes in custom search string and user's current location
 //
-- (APIManager*)initWithFlickrSearch:(NSString*)search andLocation:(LocationManager*)userLocation
+- (APIManager*)initWithFlickrSearch:(NSString*)search andVenue:(Venue*)venue
 {
-    apiCall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=bd02a7a94fbe1f4c40a1661af4cb7bbe&tags=%@&format=json&nojsoncallback=1&lat=%f&lon=%f&radius=0.5&extras=geo", search, userLocation.coordinate.latitude, userLocation.coordinate.longitude];
+//    apiCall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=bd02a7a94fbe1f4c40a1661af4cb7bbe&tags=%@&format=json&nojsoncallback=1&lat=%f&lon=%f&radius=0.5&extras=geo", search, venue.latitude, venue.longitude];
+    
+
+    
+        apiCall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=bd02a7a94fbe1f4c40a1661af4cb7bbe&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.5&extras=geo", search, [NSString stringWithFormat:@"%f", venue.latitude], [NSString stringWithFormat:@"%f", venue.longitude]];
+//    
+    NSLog(@"%@", apiCall);
+    
+    
     return self;
 }
 
 #pragma mark - Yelp Methods
 
-- (void)searchYelpParseResults
+- (NSMutableArray*)searchYelpParseResults
 {
     YKURL *yelpURL = [YKURL URLString:apiCall];
     [YKJSONRequest requestWithURL:yelpURL
@@ -78,7 +86,7 @@
                                      [self createVenuesArray:yelpBusinessesArray];
                                      
                                      [[self delegate]addPinsToMap:yelpVenuesArray];
-                                     NSLog(@"%@", yelpBusinessesArray);
+                                     //NSLog(@"%@", yelpBusinessesArray);
 
                                  }
                         failBlock:^ void (YKHTTPError *error)
@@ -96,7 +104,7 @@
     //
     
     // return array to view controller
-    //return yelpVenuesArray;
+    return yelpVenuesArray;
 }
 
 - (NSMutableArray*)createVenuesArray:(NSArray *)jsonArray
@@ -105,14 +113,16 @@
     
     for (NSDictionary *business in jsonArray)
     {
-        float latitude = [[business valueForKey:@"latitude"] floatValue];
-        float longitude = [[business valueForKey:@"longitude"] floatValue];
-        CLLocation *loc = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+//        float latitude = [[business valueForKey:@"latitude"] floatValue];
+//        float longitude = [[business valueForKey:@"longitude"] floatValue];
+//        CLLocation *loc = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
         
         Venue *currentVenue = [[Venue alloc] init];
         currentVenue.name = [business valueForKey:@"name"];
-        currentVenue.location = loc;
+        //currentVenue.location = loc;
         currentVenue.yelpURL= [business valueForKey:@"url"];
+        currentVenue.longitude =[[ business valueForKey:@"longitude"] floatValue];
+        currentVenue.latitude = [[business valueForKey:@"latitude"] floatValue];
         
         [yelpVenuesArray addObject:currentVenue];
         

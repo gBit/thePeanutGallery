@@ -11,6 +11,7 @@
 #import "DataSourceDelegate.h"
 #import "LocationManager.h"
 #import <MapKit/MapKit.h>
+#import "Venue.h"
 
 @interface APIManager : NSObject
 
@@ -20,7 +21,7 @@
 
 @property (strong, nonatomic) id <DataSourceDelegate> delegate;
 
-- (APIManager*)initWithFlickrSearch:(NSString*)search andLocation:(LocationManager*)userLocation;
+- (APIManager*)initWithFlickrSearch:(NSString*)search andVenue:(Venue*)venue;
 - (APIManager*)initWithYelpSearch:(NSString*)search andLocation:(LocationManager*)userLocation;
 
 - (NSMutableArray*)searchYelpParseResults;

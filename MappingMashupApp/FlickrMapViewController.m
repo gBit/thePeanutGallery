@@ -81,7 +81,7 @@
 //    if (time<-180) {
 //        return;
 //    }
-    NSLog(@"%@", [newLocation description]);
+    //NSLog(@"%@", [newLocation description]);
 
     //[self foundLocation:newLocation];
 }
@@ -134,6 +134,16 @@
 - (void)addPinsToMap:(NSMutableArray*)parsedArray;
 {
     NSMutableArray *venuesArray = parsedArray;
+    
+    NSLog(@"%@", [[parsedArray objectAtIndex:0] valueForKey:@"latitude"]);
+    
+    APIManager *flickrAPIManager = [[APIManager alloc] initWithFlickrSearch:@"color" andVenue:[parsedArray objectAtIndex:0]];
+    
+    NSLog(@"latitude from venue: %@", [[parsedArray objectAtIndex:0] valueForKey:@"latitude"]);
+    
+    NSLog(@"------------%@----------", flickrAPIManager);
+    
+    
     // make region our area
     MKCoordinateSpan span =
     {
