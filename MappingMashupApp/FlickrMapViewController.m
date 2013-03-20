@@ -272,6 +272,8 @@
 -(void) bookmarkButtonPressed
 {
     NSLog(@"User pressed button to go to bookmarks");
+    [self performSegueWithIdentifier: @"toBookmarksAndHistory" sender:self];
+
 }
 
 # pragma  mark - End of document

@@ -29,9 +29,39 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//Add title field to navigation bar
+    
+
+    //self.navigationItem.title = [[UIBarButtonItem alloc] init];
+
+    self.navigationItem.title = @"Bookmarks";
+    
+    //Working code starst here - placemarker array
     testBookmarks = [[NSArray alloc] initWithObjects:@"First Bookmark", @"Second Bookmark", @"Third Bookmark", nil];
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+     //   [self removeBookmarkStatusFrom:<#(Venue *)#>];
+    }
+}
+
+//Remove from bookmarks, but do not remove from history.
+-(void)removeBookmarkStatusFrom: (Venue*)venue
+{
+    //venue.isBookmarked = NO;
+    NSError *error;
+    //if (![self.myManagedObjectContext save:&error])
+    {
+        NSLog(@"Add bookmark status failed.");
+    }
+}
 #pragma mark -- table methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -65,7 +95,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"bookmarkToWebView" sender:self];
+//    [self performSegueWithIdentifier:@"bookmarkToWebView" sender:self];
     [tableView deselectRowAtIndexPath: indexPath animated:YES];
     
 }

@@ -50,6 +50,9 @@ myAnnotation.image = maskedAnnotationImage;
 ------------------------------------------------------------------------
 Fetch requests for bookmarks and history
 
+To manually call a segue, add this method to bookmarkButtonPressed method
+[self performSegueWithIdentifier: @”toBookmarksAndHistory” sender:self]
+
 //Do we need to instantiate our lists before we begin?
 MMAppDelegate *mmAppDelegate = (MMAppDelegate*)[[UIApplication sharedApplication] delegate];
 self.myManagedObjectContext = mmAppDelegate.managedObjectContext;
@@ -131,7 +134,7 @@ freak = [NSEntityDescription insertNewObjectForEntityForName: @"Freak" inManaged
     }
 }
 
-//Remove from bookmarks, but do not remove from history.
+//Add to bookmarks.
 -(void)addBookmarkStatusFrom: (Venue*)venue
 {
     venue.isBookmarked = YES;

@@ -78,34 +78,23 @@
                                     <outletCollection property="gestureRecognizers" destination="aMq-dz-sRv" appends="YES" id="mHB-oi-SQu"/>
                                 </connections>
                             </webView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="v2A-LT-eS2">
-                                <rect key="frame" x="288" y="472" width="32" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Back" image="xmark.png">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="5YE-ke-7F9" kind="unwind" unwindAction="backToYelpMapView:" id="feb-hB-Kev"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" id="JIq-gF-FaR">
-                                <rect key="frame" x="0.0" y="382" width="320" height="47"/>
+                                <rect key="frame" x="0.0" y="408" width="320" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Swipe to go forward or back" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="emB-3U-nsG">
-                                        <rect key="frame" x="55" y="13" width="211" height="21"/>
+                                    <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" image="webViewPopOut@2x.png" id="07p-dX-8kh">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Swipe to go forward or back" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="emB-3U-nsG">
+                                        <rect key="frame" x="20" y="13" width="280" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -118,7 +107,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UfP-Tc-Lc4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="5YE-ke-7F9" userLabel="Exit" sceneMemberID="exit"/>
                 <swipeGestureRecognizer direction="right" id="wLz-no-EhL">
                     <connections>
                         <action selector="swipeRightAction:" destination="qVE-kj-ncM" id="Qha-LN-PxN"/>
@@ -264,12 +252,12 @@
             </objects>
             <point key="canvasLocation" x="768" y="734"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar Controller - Bookmarks-->
         <scene sceneID="oO3-Hi-Sd7">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="jTz-JW-Bre" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="tTS-da-KVz"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationItem key="navigationItem" title="Bookmarks" id="tTS-da-KVz"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="vFv-sq-U5G">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -286,7 +274,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="xmark.png" width="64" height="64"/>
+        <image name="webViewPopOut@2x.png" width="640" height="94"/>
     </resources>
     <classes>
         <class className="BookmarksViewController" superclassName="UIViewController">
