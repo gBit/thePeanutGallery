@@ -51,15 +51,15 @@
     locationManager = appDelegate.locationManager;
     [mapView setShowsUserLocation:YES];
     
-    APIManager *yelpAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:missLocationManager];
+    APIManager *mrAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:missLocationManager];
     
     //deleagtion begins
-    yelpAPIManager.delegate = self;
+    mrAPIManager.delegate = self;
      
     // Allocate objects
     // [possibly allocate the venuesArray later?]
    
-    [yelpAPIManager searchYelpAndSendToDelegates];
+    [mrAPIManager searchYelpAndSendToDelegates];
     
     //NSLog(@"----- venues array --------%@", venuesArray);
     
