@@ -51,7 +51,7 @@
     self.managedObjectContext = appDelegate.managedObjectContext;
     
     // Location Services
-    locationManager = appDelegate.locationManager;
+    //locationManager = appDelegate.locationManager;
     [mapView setShowsUserLocation:YES];
     
     APIManager *yelpAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:locationManager];
@@ -67,6 +67,8 @@
 
 # pragma mark - User Location Methods
 // deprecated: fix later
+
+/*
 -(void)locationManager:(CLLocationManager*)manager
    didUpdateToLocation:(CLLocation *)newLocation
           fromLocation:(CLLocation *)oldLocation
@@ -82,6 +84,8 @@
     [self foundLocation:newLocation];
 }
 
+
+
 -(void)mapView:(MKMapView *)userMapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     CLLocationCoordinate2D loc = userLocation.coordinate;
@@ -89,6 +93,8 @@
     
     [userMapView setRegion:region animated:YES];
 }
+*/
+
 
 # pragma mark - Annotation Methods
 -(void)foundLocation:(CLLocation*)loc

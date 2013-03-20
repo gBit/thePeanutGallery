@@ -11,6 +11,10 @@
 #import "Venue.h"
 
 @implementation APIManager
+{
+    float latitude;
+    float longitude;
+}
 
 @synthesize apiCall,flickrPhotosArray, yelpVenuesArray;
 
@@ -22,9 +26,30 @@
 //
 - (APIManager*)initWithYelpSearch:(NSString*)search andLocation:(CLLocationManager*)userLocation
 {
+    
+    latitude = 41.894032;
+    longitude = -87.634742;
+    int maxItems = 6;
+    float radius = 0.402336;
+    
  //   userLocation.location.coordinate.latitude;
-    apiCall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=1&limit=5&ywsid=z8HZy2Hb2axZox05xfTW9w",search, userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude];
-    //Restricting search to 5 results for now - 3.18.13
+    
+    //David's Yelp API key
+    //ylWkpXJFz6-ZI3PvDG519A
+    
+    apiCall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=%f&limit=%d&ywsid=z8HZy2Hb2axZox05xfTW9w", search, latitude, longitude, radius, maxItems];
+               
+               
+               
+               
+               
+               //@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=1&limit=5&ywsid=z8HZy2Hb2axZox05xfTW9w",search, latitude, longitude];
+               
+               
+               //userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude];
+   
+               
+               //Restricting search to 5 results for now - 3.18.13
     
     // SHOULD WE BE KICKING OFF THE SEARCHES HERE?
     return self;
@@ -42,7 +67,7 @@
 
 #pragma mark - Yelp Methods
 
-- (NSMutableArray*)searchYelpParseResults
+- (void)searchYelpParseResults
 {
     YKURL *yelpURL = [YKURL URLString:apiCall];
     [YKJSONRequest requestWithURL:yelpURL
@@ -51,6 +76,8 @@
                                      NSDictionary *jsonDictionary = (NSDictionary *)data;
                                      NSArray *yelpBusinessesArray = [jsonDictionary valueForKey:@"businesses"];
                                      [self createVenuesArray:yelpBusinessesArray];
+                                     
+                                     [[self delegate]addPinsToMap:yelpVenuesArray];
                                      NSLog(@"%@", yelpBusinessesArray);
 
                                  }
@@ -69,10 +96,10 @@
     //
     
     // return array to view controller
-    return yelpVenuesArray;
+    //return yelpVenuesArray;
 }
 
-- (void)createVenuesArray:(NSArray *)jsonArray
+- (NSMutableArray*)createVenuesArray:(NSArray *)jsonArray
 {
     yelpVenuesArray = [[NSMutableArray alloc] init];
     
@@ -88,7 +115,10 @@
         currentVenue.yelpURL= [business valueForKey:@"url"];
         
         [yelpVenuesArray addObject:currentVenue];
+        
     }
+    return yelpVenuesArray;
+    
 }
 
 #pragma mark - Flickr Methods

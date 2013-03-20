@@ -22,7 +22,7 @@
 {
     LocationManager *locationManager;
     Annotation *selectedAnnotation;
-    NSMutableArray *venuesArray;
+    //NSMutableArray *venuesArray;
     
     __weak IBOutlet MKMapView *mapView;
 }
@@ -56,14 +56,16 @@
      
     // Allocate objects
     // [possibly allocate the venuesArray later?]
-    venuesArray = [[NSMutableArray alloc]init];
-    venuesArray = [yelpAPIManager searchYelpParseResults];
+   
+    [yelpAPIManager searchYelpParseResults];
     
-    NSLog(@"%@", venuesArray);
+    //NSLog(@"----- venues array --------%@", venuesArray);
     
-    [self addPinsToMap];
+    //[self addPinsToMap];
     
    }
+
+
 
 # pragma mark - User Location Methods
 // deprecated: fix later
@@ -129,8 +131,9 @@
     [locationManager stopUpdatingLocation];
 }
 
--(void)addPinsToMap
-{    
+- (void)addPinsToMap:(NSMutableArray*)parsedArray;
+{
+    NSMutableArray *venuesArray = parsedArray;
     // make region our area
     MKCoordinateSpan span =
     {

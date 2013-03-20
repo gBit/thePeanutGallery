@@ -10,10 +10,10 @@
 
 @protocol DataSourceDelegate <NSObject>
 
-// SHOULD LOCATIONMANAGER BE THE DATASOURCE DELEGATE?
 
-//- (void)grabArray:(NSArray *)data;
+
+//- (void)grabArray:(NSMutableArray *)parsedArray;
 //processYelpSearch?
-//- (void)addPinsToMap:(NSArray*)data;
+- (void)addPinsToMap:(NSMutableArray*)parsedArray;
 
 @end
