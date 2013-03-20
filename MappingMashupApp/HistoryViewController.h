@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Venue.h"
 
 @interface HistoryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 

@@ -29,6 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"History";
     
     testHistory = [[NSArray alloc] initWithObjects:@"History 1", @"History 2", @"History 3", nil];
 }
@@ -73,9 +74,39 @@
 }
 
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
 
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //The following occurs when you swipe to delete and hit delete.
+        //[self deleteVenue:(Venue*)];
+        
+        //From vokal spies project, to delete on swipe...
+//        Person * person = [displaySpies objectAtIndex:indexPath.row];
+//        [self deletePerson:person];
+//        
+//        displaySpies = [self getCurrentSpies];
+//        
+//        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//        
+//        [tableView reloadData];
+    }
+}
 
-
+//Delete an object from the History.
+-(void)deleteVenue: (Venue*)venue
+{
+//    [self.myManagedObjectContext deleteObject:venue];
+    NSError *error;
+//    if (![self.myManagedObjectContext save:&error])
+    {
+        NSLog(@"Delete History item method failed.");
+    }
+}
 
 
 

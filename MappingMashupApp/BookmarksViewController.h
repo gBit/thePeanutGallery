@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Venue.h"
 
 @interface BookmarksViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
