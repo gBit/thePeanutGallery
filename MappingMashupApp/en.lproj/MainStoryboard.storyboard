@@ -93,11 +93,11 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" id="JIq-gF-FaR">
-                                <rect key="frame" x="0.0" y="472" width="320" height="32"/>
+                                <rect key="frame" x="0.0" y="382" width="320" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Swipe to go forward or back" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="emB-3U-nsG">
-                                        <rect key="frame" x="55" y="5" width="211" height="21"/>
+                                        <rect key="frame" x="55" y="13" width="211" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -111,6 +111,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="yelp!" id="JLn-lF-25V"/>
                     <connections>
+                        <outlet property="popoutView" destination="JIq-gF-FaR" id="lQi-S7-0QM"/>
+                        <outlet property="popoutViewTextLabel" destination="emB-3U-nsG" id="8I0-rY-eUi"/>
                         <outlet property="webView" destination="tBs-TS-l6k" id="kQ5-DS-WTP"/>
                     </connections>
                 </viewController>
