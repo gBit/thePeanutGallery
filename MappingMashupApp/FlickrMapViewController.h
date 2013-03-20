@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import <CoreData/CoreData.h>
-#import "DataSourceDelegate.h"
+#import "APIManager.h"
 #import <CoreLocation/CoreLocation.h>
 
-@interface FlickrMapViewController : UIViewController <MKMapViewDelegate, DataSourceDelegate, CLLocationManagerDelegate>
+
+@interface FlickrMapViewController : UIViewController <MKMapViewDelegate, APIManagerDelegate, CLLocationManagerDelegate>
 {
     CLLocationManager *missLocationManager;
 }

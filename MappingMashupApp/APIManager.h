@@ -13,6 +13,12 @@
 #import <MapKit/MapKit.h>
 #import "Venue.h"
 
+@protocol APIManagerDelegate <NSObject>
+@optional
+-(void)didReceiveYelpData: (NSMutableArray*)venuesArray;
+-(void)didReceiveFlickrData:(NSMutableArray*)photosArray;
+@end
+
 @interface APIManager : NSObject
 
 @property (strong, nonatomic) NSString *apiCall;
@@ -24,7 +30,7 @@
 - (APIManager*)initWithFlickrSearch:(NSString*)search andVenue:(Venue*)venue;
 - (APIManager*)initWithYelpSearch:(NSString*)search andLocation:(LocationManager*)userLocation;
 
-- (NSMutableArray*)searchYelpParseResults;
+- (void)searchYelpAndSendToDelegates;
 - (NSMutableArray*)searchFlickrParseResults;
 
 //- (void)setArrayOfDictsFromFlickrJSONWithResponse:(NSURLResponse*)myResponse andData:(NSData*)myData andError:(NSError*)theirError;

@@ -16,4 +16,6 @@
 //processYelpSearch?
 - (void)addPinsToMap:(NSMutableArray*)parsedArray;
 
+-(void) addPhotosToMap: (NSMutableArray*)photosArray;
+
 @end

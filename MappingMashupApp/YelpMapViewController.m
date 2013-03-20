@@ -60,7 +60,7 @@
     // Allocate objects
     // [possibly allocate the venuesArray later?]
     venuesArray = [[NSMutableArray alloc]init];
-    venuesArray = [yelpAPIManager searchYelpParseResults];
+    venuesArray = [yelpAPIManager searchYelpAndSendToDelegates];
     
     [self addPinsToMap];
 }

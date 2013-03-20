@@ -52,12 +52,14 @@
     [mapView setShowsUserLocation:YES];
     
     APIManager *yelpAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:missLocationManager];
+    
+    //deleagtion begins
     yelpAPIManager.delegate = self;
      
     // Allocate objects
     // [possibly allocate the venuesArray later?]
    
-    [yelpAPIManager searchYelpParseResults];
+    [yelpAPIManager searchYelpAndSendToDelegates];
     
     //NSLog(@"----- venues array --------%@", venuesArray);
     
@@ -131,19 +133,31 @@
     [locationManager stopUpdatingLocation];
 }
 
+-(void)didReceiveFlickrData:(NSMutableArray*)photosArray
+{
+    //this wiil be called whenever thereis new flickr data to process
+}
+
+
+-(void)didReceiveYelpData: (NSMutableArray*)venuesArray
+{
+    [self addPinsToMap:venuesArray];
+}
+
+
 - (void)addPinsToMap:(NSMutableArray*)parsedArray;
 {
     NSMutableArray *venuesArray = parsedArray;
     
     NSLog(@"%@", [[parsedArray objectAtIndex:0] valueForKey:@"latitude"]);
     
-    APIManager *flickrAPIManager = [[APIManager alloc] initWithFlickrSearch:@"color" andVenue:[parsedArray objectAtIndex:0]];
+    //APIManager *flickrAPIManager = [[APIManager alloc] initWithFlickrSearch:@"color" andVenue:[parsedArray objectAtIndex:0]];
     
-    [flickrAPIManager searchFlickrParseResults];
+    //[flickrAPIManager searchFlickrParseResults];
     
     NSLog(@"latitude from venue: %@", [[parsedArray objectAtIndex:0] valueForKey:@"latitude"]);
     
-    NSLog(@"------------%@----------", flickrAPIManager);
+    //NSLog(@"------------%@----------", flickrAPIManager);
     
     
     // make region our area
@@ -192,6 +206,13 @@
     }
         //NSLog(@"%@", [[myMapView.annotations objectAtIndex:0] title]);
 }
+
+
+-(void) addPhotosToMap: (NSMutableArray*)photosArray
+{
+    NSLog(@"%@", photosArray);
+}
+
 
 -(MKAnnotationView*)mapView:(MKMapView*)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
