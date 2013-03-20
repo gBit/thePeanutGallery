@@ -55,6 +55,8 @@
     venuesArray = [[NSMutableArray alloc]init];
     venuesArray = [yelpAPIManager searchYelpParseResults];
     
+    NSLog(@"%@", venuesArray);
+    
     [self addPinsToMap];
     
    }
@@ -164,6 +166,8 @@
     //                     action:@selector(goToYelpPage)
     //           forControlEvents:UIControlEventTouchUpInside];
     annotationView.canShowCallout = YES;
+    //if you place an invalid image name - the annotation will be blank
+    //good for yelp results while testing
     annotationView.image = [UIImage imageNamed:@"wifiIcon.png"];
     annotationView.rightCalloutAccessoryView = detailButton;
     

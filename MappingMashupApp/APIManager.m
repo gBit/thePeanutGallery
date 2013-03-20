@@ -49,7 +49,8 @@
                                  {
                                      NSDictionary *jsonDictionary = (NSDictionary *)data;
                                      NSArray *yelpBusinessesArray = [jsonDictionary valueForKey:@"businesses"];
-                                     [self createVenuesArray:yelpBusinessesArray];
+                                     //[self createVenuesArray:yelpBusinessesArray];
+                                     NSLog(@"%@", yelpBusinessesArray);
                                  }
                         failBlock:^ void (YKHTTPError *error)
                                  {
@@ -59,6 +60,11 @@
                                      }
                                  }
      ];
+    
+    //
+    //COMMENT FROM PAUL
+    //How does this return the array?
+    //
     
     // return array to view controller
     return yelpVenuesArray;

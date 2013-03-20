@@ -33,8 +33,8 @@
     return self;
 }
 
- - (id)initWithCurrentLocationAndUpdates
- {
+- (id)initWithCurrentLocationAndUpdates
+{
      //self = [super init];
      locationManager = [[CLLocationManager alloc] init];
      locationManager.delegate = self;
@@ -43,7 +43,7 @@
      [self startUpdatingLocations];
      
      return self;
- }
+}
 //possibly delete
 -(void)findLocation
 {
