@@ -14,6 +14,8 @@
 		8335571616F6D27600DB17D5 /* YelpWebPageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8335571516F6D27600DB17D5 /* YelpWebPageBrowser.m */; };
 		8335571916F754C800DB17D5 /* xmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8335571816F754C800DB17D5 /* xmark.png */; };
 		8335571D16F7579600DB17D5 /* wifiIcon2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8335571C16F7579600DB17D5 /* wifiIcon2@2x.png */; };
+		83B0D00516FA1A1900C9D8F8 /* BookmarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0D00416FA1A1900C9D8F8 /* BookmarksViewController.m */; };
+		83B0D00A16FA1A8900C9D8F8 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0D00916FA1A8900C9D8F8 /* HistoryViewController.m */; };
 		83BB6B6B16FA0A31003A4506 /* circleMask6464.png in Resources */ = {isa = PBXBuildFile; fileRef = 83BB6B6A16FA0A31003A4506 /* circleMask6464.png */; };
 		83BB6B6E16FA0A64003A4506 /* circleMask6464@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83BB6B6D16FA0A64003A4506 /* circleMask6464@2x.png */; };
 		83FE37E216F76CD6000C9935 /* FlickrMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FE37E116F76CD6000C9935 /* FlickrMapViewController.m */; };
@@ -75,6 +77,10 @@
 		8335571516F6D27600DB17D5 /* YelpWebPageBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YelpWebPageBrowser.m; sourceTree = "<group>"; };
 		8335571816F754C800DB17D5 /* xmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xmark.png; sourceTree = "<group>"; };
 		8335571C16F7579600DB17D5 /* wifiIcon2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wifiIcon2@2x.png"; sourceTree = "<group>"; };
+		83B0D00316FA1A1900C9D8F8 /* BookmarksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarksViewController.h; sourceTree = "<group>"; };
+		83B0D00416FA1A1900C9D8F8 /* BookmarksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarksViewController.m; sourceTree = "<group>"; };
+		83B0D00816FA1A8900C9D8F8 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
+		83B0D00916FA1A8900C9D8F8 /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		83BB6B6A16FA0A31003A4506 /* circleMask6464.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circleMask6464.png; sourceTree = "<group>"; };
 		83BB6B6D16FA0A64003A4506 /* circleMask6464@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circleMask6464@2x.png"; sourceTree = "<group>"; };
 		83BB6B6F16FA0B1A003A4506 /* RossScratchpad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RossScratchpad.h; sourceTree = "<group>"; };
@@ -134,6 +140,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		83B0D00716FA1A2000C9D8F8 /* Tab View Items */ = {
+			isa = PBXGroup;
+			children = (
+				83B0D00816FA1A8900C9D8F8 /* HistoryViewController.h */,
+				83B0D00916FA1A8900C9D8F8 /* HistoryViewController.m */,
+				83B0D00316FA1A1900C9D8F8 /* BookmarksViewController.h */,
+				83B0D00416FA1A1900C9D8F8 /* BookmarksViewController.m */,
+			);
+			name = "Tab View Items";
+			sourceTree = "<group>";
+		};
 		8F372AF716F244C800302B80 = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +260,7 @@
 		8F372B5E16F269B100302B80 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				83B0D00716FA1A2000C9D8F8 /* Tab View Items */,
 				83FE37E016F76CD6000C9935 /* FlickrMapViewController.h */,
 				83FE37E116F76CD6000C9935 /* FlickrMapViewController.m */,
 				8335571416F6D27600DB17D5 /* YelpWebPageBrowser.h */,
@@ -393,6 +411,8 @@
 				83FE37E216F76CD6000C9935 /* FlickrMapViewController.m in Sources */,
 				6B2D7B2A16F8FE2B00E6D3A5 /* Photo.m in Sources */,
 				6B2D7B2D16F8FE2B00E6D3A5 /* Business.m in Sources */,
+				83B0D00516FA1A1900C9D8F8 /* BookmarksViewController.m in Sources */,
+				83B0D00A16FA1A8900C9D8F8 /* HistoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

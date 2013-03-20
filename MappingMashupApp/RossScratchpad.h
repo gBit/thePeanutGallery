@@ -47,5 +47,99 @@ UIImage *maskedAnnotationImage = [self createMaskWith:mask onImage:photoThumbnai
 myImageView = [[UIImageView alloc] initWithImage:maskedAnnotationImage];
 myAnnotation.image = maskedAnnotationImage;
 
+------------------------------------------------------------------------
+Fetch requests for bookmarks and history
+
+//Do we need to instantiate our lists before we begin?
+MMAppDelegate *mmAppDelegate = (MMAppDelegate*)[[UIApplication sharedApplication] delegate];
+self.myManagedObjectContext = mmAppDelegate.managedObjectContext;
+//Instantiate your freak and geek lists
+geek = [NSEntityDescription insertNewObjectForEntityForName: @"Geek" inManagedObjectContext: self.myManagedObjectContext];
+freak = [NSEntityDescription insertNewObjectForEntityForName: @"Freak" inManagedObjectContext: self.myManagedObjectContext];
+
+
+
+
+
+//A sample fetch request
+//To enter the basic fetch request (automated)
+-(NSArray *)allEntitiesNamed:(NSString *)entityName
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.myManagedObjectContext];
+    NSError *error;
+    
+    fetchRequest.entity = entity;
+    
+    return [self.myManagedObjectContext executeFetchRequest:fetchRequest error:&error];
+}
+
+//Another chunk from that project - 
+//Fetch request
+-(NSArray*) getCurrentSpies
+{
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Person" inManagedObjectContext:self.myManagedObjectContext];
+    NSFetchRequest * fetchRequest = [[NSFetchRequest alloc]init];
+    NSFetchedResultsController * fetchResultsController;
+    
+    //Now customize your search! We'd want to switch this to see if isBookmarked == true
+    NSArray * sortDescriptors = [[NSArray alloc] initWithObjects:nil];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name contains[c] '%@'", mySearchText]];
+    NSError *searchError;
+    
+    if ([mySearchText isEqualToString:@""])
+    {
+        predicate = nil;
+    }
+    
+    //Lock and load
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setEntity:entityDescription];
+    fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.myManagedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    
+    [fetchResultsController performFetch:&searchError];
+    //Something about making the arrays equal size or some shit. Gawd.
+    //This will update your display array with your fetch results
+    displaySpies = fetchResultsController.fetchedObjects;
+    
+    
+    return fetchResultsController.fetchedObjects;
+    
+}
+
+
+//Delete an object from the History.
+-(void)deletePerson: (Person*)person
+{
+    [self.myManagedObjectContext deleteObject:person];
+    NSError *error;
+    if (![self.myManagedObjectContext save:&error])
+    {
+        NSLog(@"Delete History item method failed.");
+    }
+}
+
+//Remove from bookmarks, but do not remove from history.
+-(void)removeBookmarkStatusFrom: (Venue*)venue 
+{
+    venue.isBookmarked = NO;
+    NSError *error;
+    if (![self.myManagedObjectContext save:&error])
+    {
+        NSLog(@"Remove bookmark status failed.");
+    }
+}
+
+//Remove from bookmarks, but do not remove from history.
+-(void)addBookmarkStatusFrom: (Venue*)venue
+{
+    venue.isBookmarked = YES;
+    NSError *error;
+    if (![self.myManagedObjectContext save:&error])
+    {
+        NSLog(@"Add bookmark status failed.");
+    }
+}
 
 #endif
