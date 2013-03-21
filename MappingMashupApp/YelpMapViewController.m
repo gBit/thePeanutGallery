@@ -57,6 +57,11 @@
     APIManager *yelpAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:locationManager];
     yelpAPIManager.delegate = self;
     
+    //Add Bookmarks button
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(bookmarkButtonPressed)];
+    //Note bookmarkButtonPressed method needs to be copied in
+    
+    
     // Allocate objects
     // [possibly allocate the venuesArray later?]
         //Commented line 63 our 3.21.13
@@ -261,6 +266,9 @@
 //
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
+    //If statement for not having people tap on "you are here" thingy
+    //Note that as of 3.21.13, if you tap on the "you are here" annotation, app crashes
+    
     selectedAnnotation = view.annotation;
     
     Business *selectedBusiness = [NSEntityDescription insertNewObjectForEntityForName:@"Business" inManagedObjectContext:managedObjectContext];
@@ -321,14 +329,25 @@
     
 }
 
+-(void) bookmarkButtonPressed
+{
+    NSLog(@"User pressed button to go to bookmarks");
+    [self performSegueWithIdentifier: @"yelpPageToBookmarks" sender:self];
+    
+}
+
 # pragma mark - Transitions
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if ([segue.identifier isEqual:@"toYelpWebPage"])
+    {
+        
     YelpWebPageBrowser * ywpb = [segue destinationViewController];
     //Future Ross, this might break
     ywpb.yelpURLString = selectedAnnotation.yelpURLString;
     
+    }
 }
 
 //
