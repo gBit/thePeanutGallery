@@ -123,16 +123,7 @@
     NSPredicate * predicate = [NSPredicate predicateWithFormat:@"isBookmarked == %@", [NSNumber numberWithBool:YES]];
     NSError *searchError;
     
-    //David's Predicate Format Notes: may be deleted with impunity......................................
-    //    NSPredicate *newPredicate = [NSPredicate predicateWithFormat:@"anAttribute == %@",[NSNumber numberWithBool:aBool]];
-    //    NSPredicate *testForTrue = [NSPredicate predicateWithFormat:@"anAttribute == YES"];
-    //.............................................................................................
-    
-    
-    //    if ([mySearchText isEqualToString:@""])
-    //    {
-    //        predicate = nil;
-    //    }
+
     
     //Lock and load
     [fetchRequest setSortDescriptors:sortDescriptors];
