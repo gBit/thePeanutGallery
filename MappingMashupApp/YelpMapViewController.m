@@ -174,25 +174,13 @@
         CLLocationCoordinate2D venueCoordinate = {annotationLatitude, annotationLongitude};
         
         NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"urlString"];
-        //NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"urlString"];
-//        
-//        @property (nonatomic, retain) NSNumber * latitude;
-//        @property (nonatomic, retain) NSNumber * longitude;
-//        @property (nonatomic, retain) NSString * name;
-//        @property (nonatomic, retain) NSString * phone;
-//        @property (nonatomic, retain) NSNumber * isBookmarked;
-//        @property (nonatomic, retain) NSDate * viewDate;
-//        @property (nonatomic, retain) NSString * yelpURLString;
-//        @property (nonatomic, retain) NSSet *photo;
-        //        Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:@"Demo Subtite" urlString:urlString];
-        
+
         Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:@"Demo Subtite" urlString:urlString];
         myAnnotation.longitude = longitude;
         myAnnotation.latitude = latitude;
         myAnnotation.name = [[venuesArray objectAtIndex:i] valueForKey:@"name"];
         myAnnotation.viewDate = [NSDate date];
         myAnnotation.yelpURLString = urlString;
-        
         
         
         //add to map
@@ -247,6 +235,7 @@
     //           forControlEvents:UIControlEventTouchUpInside];
     annotationView.canShowCallout = YES;
     annotationView.image = [UIImage imageNamed:@"wifiIcon.png"];
+    //annotationView.image = selectedannotation.thumbnail;
     annotationView.rightCalloutAccessoryView = detailButton;
     
     if([annotation isKindOfClass: [MKUserLocation class]])
