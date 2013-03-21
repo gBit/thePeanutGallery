@@ -137,8 +137,7 @@
 
 -(void)didReceiveFlickrData:(NSMutableArray*)photosArray
 {
-    //this wiil be called whenever thereis new flickr data to process
-    NSLog(@"%@", photosArray);
+    [self addPinsToMap:photosArray];
 }
 
 
@@ -149,20 +148,8 @@
 }
 
 
-- (void)addPinsToMap:(NSMutableArray*)parsedArray;
+- (void)addPinsToMap:(NSMutableArray*)venuesArray;
 {
-    NSMutableArray *venuesArray = parsedArray;
-    
-    NSLog(@"%@", [[parsedArray objectAtIndex:0] valueForKey:@"latitude"]);
-    
-    //APIManager *flickrAPIManager = [[APIManager alloc] initWithFlickrSearch:@"color" andVenue:[parsedArray objectAtIndex:0]];
-    
-    //[flickrAPIManager searchFlickrParseResults];
-    
-    NSLog(@"latitude from venue: %@", [[parsedArray objectAtIndex:0] valueForKey:@"latitude"]);
-    
-    //NSLog(@"------------%@----------", flickrAPIManager);
-    
     
     // make region our area
     MKCoordinateSpan span =
@@ -175,32 +162,22 @@
     //set region to mapview
     [mapView setRegion:region animated:YES];
     
-    for (int i = 0; i < venuesArray.count; i++)
-    {
-        CLLocation *venueLocation = [[venuesArray objectAtIndex:i] location];
-        NSString *venueName = [[venuesArray objectAtIndex:i] name];
+//    for (int i = 0; i < venuesArray.count; i++)
+//    {
+        //CLLocation *venueLocation = [[venuesArray objectAtIndex:i] location];
+        NSString *venueName = [[venuesArray objectAtIndex:0] name];
         
         //coordinate make
-        CLLocationCoordinate2D venueCoordinate;
-        venueCoordinate.longitude = venueLocation.coordinate.longitude;
-        venueCoordinate.latitude = venueLocation.coordinate.latitude;
         
-        
-        
-//        myAnnotation.title = venueName;
-//        myAnnotation.subtitle = @"Demo subtitle";
-        
-        NSLog(@"%@", venuesArray);
-        //Add code here to capture yelp page URL
+
+        float annotationLatitude =[[[venuesArray objectAtIndex:0] valueForKey:@"latitude"] floatValue];
+        float annotationLongitude =[[[venuesArray objectAtIndex:0] valueForKey:@"longitude"] floatValue];
+    
+        CLLocationCoordinate2D venueCoordinate = {annotationLatitude, annotationLongitude};
+
         //NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"yelpURL"];
-        NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"urlString"];
-//        myAnnotation.yelpPageURL = yelpURLString;
+        NSString *urlString = [[venuesArray objectAtIndex:0] valueForKey:@"urlString"];
         
-        //
-        // REVISE TO LEVERAGE NEW CUSTOM INITS //
-        //
-        // create annotation
-         //Annotation *myAnnotation = [[Annotation alloc] initWithPosition:venueCoordinate];
         Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:@"Demo Subtite" urlString:urlString];
 
         
@@ -208,8 +185,7 @@
         [mapView addAnnotation:myAnnotation];
         
         
-    }
-        //NSLog(@"%@", [[myMapView.annotations objectAtIndex:0] title]);
+//    }
 }
 
 
