@@ -90,9 +90,9 @@
     [mapView setRegion:originRegion animated:YES];
     
     
-    [yelpAPIManager searchYelpThenFlickrForDelegates];
+    [yelpAPIManager searchYelpForDelegates];
     
-    [self addPinsToMap];
+    //[self addPinsToMap];
 }
 
 # pragma mark - User Location Methods
@@ -124,20 +124,16 @@
     [userMapView setRegion:region animated:YES];
 }
 */
+-(void) didReceiveYelpData:(NSMutableArray *)venuesArray
+{
+     [self addPinsToMap:photosArray];
 
+}
 
 # pragma mark - Annotation Methods
 -(void)foundLocation:(CLLocation*)loc
 {
     CLLocationCoordinate2D coord = [loc coordinate];
-    
-    //create an instances of annotation with the current data
-//    Annotation *annotation = [[Annotation alloc]initWithCoordinate:coord
-//                                                             title:@"title"
-//                                                          subtitle:@"Somebody does not want poop"
-//                                                           yelpURL:@"http://www.catstache.biz"];
-    //add annotation to mapview
-//    [mapView addAnnotation:annotation];
     
     //zoom to region of location
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
@@ -147,16 +143,16 @@
     [locationManager stopUpdatingLocation];
 }
 
--(void)addPinsToMap
+- (void)addPinsToMap:(NSMutableArray*)venuesArray;
 {
     // make region our area
-    MKCoordinateSpan span =
-    {
-        .latitudeDelta = 0.01810686f,
-        .longitudeDelta = 0.01810686f
-    };
-    
-    MKCoordinateRegion region = {locationManager.coordinate, span};
+//    MKCoordinateSpan span =
+//    {
+//        .latitudeDelta = 0.01810686f,
+//        .longitudeDelta = 0.01810686f
+//    };
+//    
+//    MKCoordinateRegion region = {locationManager.coordinate, span};
     //set region to mapview
     //[mapView setRegion:region animated:YES];
     

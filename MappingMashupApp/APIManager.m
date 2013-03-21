@@ -86,6 +86,32 @@
      ];
 }
 
+//New method for just yelp search, no flickr integration
+//Use this in yelpMapViewController only
+- (void)searchYelpForDelegates
+{
+    YKURL *yelpURL = [YKURL URLString:yelpAPICall];
+    [YKJSONRequest requestWithURL:yelpURL
+                      finishBlock:^ void (id data)
+     {
+         NSDictionary *jsonDictionary = (NSDictionary *)data;
+         NSArray *yelpBusinessesArray = [jsonDictionary valueForKey:@"businesses"];
+         NSMutableArray *venuesArray = [self createVenuesArray:yelpBusinessesArray];
+         
+         [[self delegate] didReceiveYelpData:venuesArray];
+         }
+     
+                        failBlock:^ void (YKHTTPError *error)
+     {
+         if (error)
+         {
+             NSLog(@"Yelp Error: %@", [error description]);
+         }
+     }
+     ];
+}
+
+
 - (NSMutableArray*)createVenuesArray:(NSArray *)jsonArray
 {
     NSMutableArray *yelpVenuesArray = [[NSMutableArray alloc] init];

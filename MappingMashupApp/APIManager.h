@@ -33,6 +33,7 @@
 - (APIManager*)initWithYelpSearch:(NSString*)search andLocation:(LocationManager*)userLocation;
 
 - (void)searchYelpThenFlickrForDelegates;
+- (void)searchYelpForDelegates;
 - (NSMutableArray*)searchFlickr;
 
 
