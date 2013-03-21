@@ -102,6 +102,32 @@
         //The following occurs when you swipe to delete and hit delete.
         //[self deleteVenue:(Venue*)];
         
+        
+        //Put code here to delete the object from the managedObjectContext..............
+        
+        Business *business = [historyArray objectAtIndex:indexPath.row];
+        //business.isBookmarked = [NSNumber numberWithBool:NO];
+        
+        [managedObjectContext deleteObject:business];
+        
+        NSError *error;
+        if (![self.managedObjectContext save:&error])
+        {
+            //NSLog(@"Add bookmark status failed.");
+        }
+        
+        historyArray = [self allEntitiesNamed:@"Business"];
+        
+        
+        //bookmarkArray = [self fetchBookmarks];
+        
+        [tableView reloadData];
+        //[self removeBookmarkStatusFrom:business]
+        
+        
+        
+        
+        
         //From vokal spies project, to delete on swipe...
 //        Person * person = [displaySpies objectAtIndex:indexPath.row];
 //        [self deletePerson:person];

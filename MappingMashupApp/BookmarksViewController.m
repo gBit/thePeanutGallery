@@ -55,8 +55,17 @@
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        
+        
         Business *business = [bookmarkArray objectAtIndex:indexPath.row];
         business.isBookmarked = [NSNumber numberWithBool:NO];
+        
+        NSError *error;
+        if (![self.managedObjectContext save:&error])
+        {
+            //NSLog(@"Add bookmark status failed.");
+        }
         
         bookmarkArray = [self fetchBookmarks];
         
