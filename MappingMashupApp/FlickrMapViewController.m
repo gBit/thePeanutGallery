@@ -13,7 +13,7 @@
 #import "AppDelegate.h"
 #import "LocationManager.h"
 #import "APIManager.h"
-#import "Venue.h"
+
 #import "Annotation.h"
 #import "Photo.h"
 #import "Business.h"
@@ -51,15 +51,15 @@
     locationManager = appDelegate.locationManager;
     [mapView setShowsUserLocation:YES];
     
-    APIManager *yelpAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:missLocationManager];
+    APIManager *mrAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:missLocationManager];
     
     //deleagtion begins
-    yelpAPIManager.delegate = self;
+    mrAPIManager.delegate = self;
      
     // Allocate objects
     // [possibly allocate the venuesArray later?]
    
-    [yelpAPIManager searchYelpAndSendToDelegates];
+    [mrAPIManager searchYelpThenFlickrForDelegates];
     
     //NSLog(@"----- venues array --------%@", venuesArray);
     
@@ -121,7 +121,7 @@
     Annotation *annotation = [[Annotation alloc]initWithCoordinate:coord
                                                              title:@"title"
                                                           subtitle:@"Somebody does not want poop"
-                                                           yelpURL:@"http://www.catstache.biz"];
+                                                           urlString:@"http://www.catstache.biz"];
     //add annotation to mapview
     [mapView addAnnotation:annotation];
     
@@ -136,11 +136,13 @@
 -(void)didReceiveFlickrData:(NSMutableArray*)photosArray
 {
     //this wiil be called whenever thereis new flickr data to process
+    NSLog(@"%@", photosArray);
 }
 
 
 -(void)didReceiveYelpData: (NSMutableArray*)venuesArray
 {
+    
     [self addPinsToMap:venuesArray];
 }
 
@@ -188,7 +190,8 @@
         
         NSLog(@"%@", venuesArray);
         //Add code here to capture yelp page URL
-        NSString *yelpURLString = [[venuesArray objectAtIndex:i] valueForKey:@"yelpURL"];
+        //NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"yelpURL"];
+        NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"urlString"];
 //        myAnnotation.yelpPageURL = yelpURLString;
         
         //
@@ -196,7 +199,7 @@
         //
         // create annotation
          //Annotation *myAnnotation = [[Annotation alloc] initWithPosition:venueCoordinate];
-        Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:@"Demo Subtite" yelpURL:yelpURLString];
+        Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:@"Demo Subtite" urlString:urlString];
 
         
         //add to map

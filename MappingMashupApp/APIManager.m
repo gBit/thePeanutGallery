@@ -11,12 +11,6 @@
 #import "Venue.h"
 
 @implementation APIManager
-{
-    float latitude;
-    float longitude;
-}
-
-@synthesize apiCall,flickrPhotosArray, yelpVenuesArray;
 
 #pragma mark - Custom Initializers
 
@@ -27,72 +21,53 @@
 - (APIManager*)initWithYelpSearch:(NSString*)search andLocation:(CLLocationManager*)userLocation
 {
     
-    latitude = 41.894032;
-    longitude = -87.634742;
+    float latitude = 41.894032;
+    float longitude = -87.634742;
     int maxItems = 6;
     float radius = 0.402336;
-    
- //   userLocation.location.coordinate.latitude;
     
     //David's Yelp API key
     //ylWkpXJFz6-ZI3PvDG519A
     
-    apiCall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=%f&limit=%d&ywsid=z8HZy2Hb2axZox05xfTW9w", search, latitude, longitude, radius, maxItems];
-               
-               
-               
-               
-               
-               //@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=1&limit=5&ywsid=z8HZy2Hb2axZox05xfTW9w",search, latitude, longitude];
-               
-               
-               //userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude];
-   
-               
-               //Restricting search to 5 results for now - 3.18.13
+    //'Ross''s Yelp API key
+    //z8HZy2Hb2axZox05xfTW9w
     
-    // SHOULD WE BE KICKING OFF THE SEARCHES HERE?
+    //Emily's Yelp Key
+    //xltTZDS7mgHV7wtu8MkZSg
+    
+    yelpAPICall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=%f&limit=%d&ywsid=ylWkpXJFz6-ZI3PvDG519A", search, latitude, longitude, radius, maxItems];
     return self;
 }
 
-//
-// Initialize Flickr APIManager w/ custom API call
-// Passes in custom search string and user's current location
-//
-
-//DEPRECATED 3/20
-//- (APIManager*)initWithFlickrSearch:(NSString*)search andVenue:(Venue*)venue
-//{
-//
-//
-//        apiCall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=bd02a7a94fbe1f4c40a1661af4cb7bbe&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.5&extras=geo", search, [NSString stringWithFormat:@"%f", venue.latitude], [NSString stringWithFormat:@"%f", venue.longitude]];
-////    
-//    NSLog(@"%@", apiCall);
-//    
-//    
-//    return self;
-//}
-
 #pragma mark - Yelp Methods
 
-- (void)searchYelpAndSendToDelegates
+- (void)searchYelpThenFlickrForDelegates
 {
-    YKURL *yelpURL = [YKURL URLString:apiCall];
+    YKURL *yelpURL = [YKURL URLString:yelpAPICall];
     [YKJSONRequest requestWithURL:yelpURL
                       finishBlock:^ void (id data)
                                  {
                                      NSDictionary *jsonDictionary = (NSDictionary *)data;
                                      NSArray *yelpBusinessesArray = [jsonDictionary valueForKey:@"businesses"];
-                                     [self createVenuesArray:yelpBusinessesArray];
+                                     NSMutableArray *venuesArray = [self createVenuesArray:yelpBusinessesArray];
                                      
-                                     [[self delegate] didReceiveYelpData:yelpVenuesArray];
-                                     //NSLog(@"%@", yelpBusinessesArray);
+                                     [[self delegate] didReceiveYelpData:venuesArray];
+                                     //
+                                     //this will only start a search of one venue,
+                                     //update to create method to loop through venues array...
+                                     //
+                                     NSString *search = @"color";
+                                     NSString* latitude = [[yelpBusinessesArray objectAtIndex:0] valueForKey:@"latitude"];
+                                     NSString *longitude = [[yelpBusinessesArray objectAtIndex:0] valueForKey:@"longitude"] ;
                                      
                                      
-                                     //this will only start a search of one venue, update to create method to loop through venues array...
-                                     [self initWithFlickrSearch:@"color" andVenue:[yelpVenuesArray objectAtIndex:0]];
+                                     flickrAPICall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=bd02a7a94fbe1f4c40a1661af4cb7bbe&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.5&extras=geo", search, latitude, longitude];
                                      
-                                     [self searchFlickrParseResults];
+                                     [self searchFlickrWithLatitude:latitude andLongitude:longitude];
+                                     
+                                     /*
+                                     NSMutableArray *photosArray = [self searchFlickrWithLatitude:latitude andLongitude:longitude];
+                                      */
 
 
                                  }
@@ -104,19 +79,11 @@
                                      }
                                  }
      ];
-    
-    //
-    //COMMENT FROM PAUL
-    //How does this return the array?
-    //
-    
-    // return array to view controller
-   // return yelpVenuesArray;
 }
 
 - (NSMutableArray*)createVenuesArray:(NSArray *)jsonArray
 {
-    yelpVenuesArray = [[NSMutableArray alloc] init];
+    NSMutableArray *yelpVenuesArray = [[NSMutableArray alloc] init];
     
     for (NSDictionary *business in jsonArray)
     {
@@ -127,7 +94,7 @@
         Venue *currentVenue = [[Venue alloc] init];
         currentVenue.name = [business valueForKey:@"name"];
         //currentVenue.location = loc;
-        currentVenue.yelpURL= [business valueForKey:@"url"];
+        currentVenue.urlString= [business valueForKey:@"url"];
         currentVenue.longitude =[[ business valueForKey:@"longitude"] floatValue];
         currentVenue.latitude = [[business valueForKey:@"latitude"] floatValue];
         
@@ -140,12 +107,9 @@
 
 #pragma mark - Flickr Methods
 
-- (NSMutableArray*)searchFlickrParseResults 
+- (void)searchFlickrWithLatitude:(NSString*)latitude andLongitude:(NSString*)longitude
 {
-    
-//    NSString *apiCall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=bd02a7a94fbe1f4c40a1661af4cb7bbe&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.5&extras=geo", search, [NSString stringWithFormat:@"%f", venue.latitude], [NSString stringWithFormat:@"%f", venue.longitude]];
-   
-    NSURLRequest *flickrRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:apiCall]];
+    NSURLRequest *flickrRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:flickrAPICall]];
     
     [NSURLConnection sendAsynchronousRequest:flickrRequest
                                        queue:[NSOperationQueue mainQueue]
@@ -161,42 +125,34 @@
                                                      NSDictionary *jsonDictionary = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:data
                                                                                                                                       options:NSJSONReadingAllowFragments
                                                                                                                                         error:&error];
-                                                     
-                                                     flickrPhotosArray = [[jsonDictionary valueForKey:@"photos"] valueForKey:@"photo"];
-                                                     
-                                                     [[self delegate] addPhotosToMap:flickrPhotosArray];
-                                                     //
-                                                     // IS THIS GOING TO BE A PROBLEM? (INSIDE BLOCK)
-                                                     //
-                                                     //[self createPhotosArray:flickrPhotosArray];
+                                                     NSArray *jsonFlickrArray = [[NSArray alloc]init];
+                                                     jsonFlickrArray = [[jsonDictionary valueForKey:@"photos"] valueForKey:@"photo"];
+                                                     NSMutableArray *flickrPhotosArray = [self createPhotosArray:jsonFlickrArray];
+                                                     [[self delegate] didReceiveFlickrData:flickrPhotosArray];
                                                  }
                                              }
      ];
-    return flickrPhotosArray;
 }
 
-//
-//
-// THIS NEEDS TO BE REVIEWED TO MAKE SURE IT WORKS/EXTEND FUNCTIONALITY
-//
-//
-- (NSMutableArray *)createPhotosArray:(NSArray *)jsonArray
+- (NSMutableArray *)createPhotosArray:(NSArray *)jsonFlickrArray
 {
-    flickrPhotosArray = [[NSMutableArray alloc] init];
-    
-    for (NSDictionary *photo in jsonArray)
+    NSMutableArray *flickrPhotosArray = [[NSMutableArray alloc]init];
+    for (NSDictionary *photo in jsonFlickrArray)
     {
         float latitude = [[photo valueForKey:@"latitude"] floatValue];
         float longitude = [[photo valueForKey:@"longitude"] floatValue];
-        CLLocation *loc = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+        //CLLocation *loc = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
         
         Venue *currentPhoto = [[Venue alloc] init];
         currentPhoto.name = [photo valueForKey:@"name"];
-        currentPhoto.location = loc;
-        currentPhoto.yelpURL= [photo valueForKey:@"url"];
+
+        currentPhoto.longitude = longitude;
+        currentPhoto.latitude = latitude;
+        currentPhoto.urlString= [photo valueForKey:@"url"];
         
         [flickrPhotosArray addObject:currentPhoto];
     }
     return flickrPhotosArray;
 }
+
 @end

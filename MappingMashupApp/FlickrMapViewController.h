@@ -11,6 +11,7 @@
 #import <CoreData/CoreData.h>
 #import "APIManager.h"
 #import <CoreLocation/CoreLocation.h>
+#import "Venue.h"
 
 
 @interface FlickrMapViewController : UIViewController <MKMapViewDelegate, APIManagerDelegate, CLLocationManagerDelegate>

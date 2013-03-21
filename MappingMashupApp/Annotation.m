@@ -9,7 +9,7 @@
 #import "Annotation.h"
 
 @implementation Annotation
-@synthesize coordinate,title,subtitle, yelpPageURL;
+@synthesize coordinate,title,subtitle, urlString;
 
 //- initWithPosition:(CLLocationCoordinate2D *)coordinates
 //{
@@ -22,14 +22,14 @@
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coord
                    title:(NSString*)titleString
                 subtitle:(NSString*)subtitleString
-                 yelpURL:(NSString *)yelpURLString
+                 urlString:(NSString *)urlString
 {
     if (self = [super init])
     {
         self.coordinate = coord;
         self.title = titleString;
         self.subtitle = subtitleString;
-        self.yelpPageURL = yelpURLString;
+        self.urlString = urlString;
     }
     
     return self;

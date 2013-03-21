@@ -24,8 +24,8 @@
 @property (assign, nonatomic) int reviewCount;
 @property (assign, nonatomic) BOOL isClosed;
 @property (strong, nonatomic) NSString *ratingURL;
-@property (strong, nonatomic) NSString *yelpImageURL;
-@property (strong, nonatomic) NSString *yelpURL;
+@property (strong, nonatomic) NSString *imageURL;
+@property (strong, nonatomic) NSString *urlString;
 //This property will store the url of nearby photos
 @property (strong, nonatomic) NSMutableArray *flickrPhotos;
 

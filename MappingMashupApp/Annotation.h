@@ -14,13 +14,13 @@
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *subtitle;
 @property (assign, nonatomic) CLLocationCoordinate2D coordinate;
-@property (strong, nonatomic) NSString *yelpPageURL;
+@property (strong, nonatomic) NSString *urlString;
 
 //- initWithPosition:(CLLocationCoordinate2D)coordinates;
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coord
                    title:(NSString*)titleString
                 subtitle:(NSString*)subtitleString
-                 yelpURL:(NSString*)yelpURLString;
+                 urlString:(NSString*)urlString;
 
 @end

@@ -60,7 +60,7 @@
     // Allocate objects
     // [possibly allocate the venuesArray later?]
     venuesArray = [[NSMutableArray alloc]init];
-    venuesArray = [yelpAPIManager searchYelpAndSendToDelegates];
+    [yelpAPIManager searchYelpThenFlickrForDelegates];
     
     [self addPinsToMap];
 }
@@ -102,12 +102,12 @@
     CLLocationCoordinate2D coord = [loc coordinate];
     
     //create an instances of annotation with the current data
-    Annotation *annotation = [[Annotation alloc]initWithCoordinate:coord
-                                                             title:@"title"
-                                                          subtitle:@"Somebody does not want poop"
-                                                           yelpURL:@"http://www.catstache.biz"];
+//    Annotation *annotation = [[Annotation alloc]initWithCoordinate:coord
+//                                                             title:@"title"
+//                                                          subtitle:@"Somebody does not want poop"
+//                                                           yelpURL:@"http://www.catstache.biz"];
     //add annotation to mapview
-    [mapView addAnnotation:annotation];
+//    [mapView addAnnotation:annotation];
     
     //zoom to region of location
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
@@ -227,7 +227,9 @@
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     YelpWebPageBrowser * ywpb = [segue destinationViewController];
-    ywpb.yelpURLString = selectedAnnotation.yelpPageURL;
+    //Future Ross, this might break
+    //ywpb.yelpURLString = selectedAnnotation.yelpPageURL;
+    
 }
 
 //

@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "DataSourceDelegate.h"
+#import "APIManager.h"
 
-@interface YelpMapViewController : UIViewController <DataSourceDelegate, MKMapViewDelegate>
+@interface YelpMapViewController : UIViewController <APIManagerDelegate, MKMapViewDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 

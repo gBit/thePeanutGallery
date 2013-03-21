@@ -252,7 +252,7 @@
             </objects>
             <point key="canvasLocation" x="768" y="734"/>
         </scene>
-        <!--Tab Bar Controller - Bookmarks-->
+        <!--Tab Bar Controller-->
         <scene sceneID="oO3-Hi-Sd7">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="jTz-JW-Bre" sceneMemberID="viewController">
