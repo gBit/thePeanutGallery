@@ -40,11 +40,12 @@
 @end
 
 @implementation YelpMapViewController
-@synthesize managedObjectContext, originPhotoLatitude, originPhotoLongitude, originPhotoTitle;
+@synthesize managedObjectContext, originPhotoLatitude, originPhotoLongitude, originPhotoTitle, originPhotoThumbnailString;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     
     // Core Data
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
@@ -93,9 +94,12 @@
     };
     
     MKCoordinateRegion originRegion = {originLocationCoordinate, originSpan};
-    Annotation *originAnnotation = [[Annotation alloc] initWithCoordinate:originLocationCoordinate title:originPhotoTitle subtitle:@"originPhoto" urlString:@""];
+    Annotation *originAnnotation = [[Annotation alloc] initWithCoordinate:originLocationCoordinate title:originPhotoTitle subtitle:@"Your Selected Photo" urlString:originPhotoThumbnailString];
     
-     [yelpMapView setRegion:originRegion animated:YES];
+    //This may break the view (trying to draw custom annotation for this origin Photo pin.
+    selectedAnnotation = originAnnotation;
+    
+    [yelpMapView setRegion:originRegion animated:YES];
      [yelpMapView addAnnotation:originAnnotation];
     
     
@@ -188,7 +192,7 @@
         myAnnotation.latitude = latitude;
         myAnnotation.name = [[venuesArray objectAtIndex:i] valueForKey:@"name"];
         myAnnotation.viewDate = [NSDate date];
-        myAnnotation.yelpURLString = urlString;
+        //myAnnotation.yelpURLString = urlString;
         
         
         //add to map
@@ -239,9 +243,16 @@
     }
     
     //Code for specifically dealing with the origin photo
-    if ([[annotation subtitle] isEqual: @"originPhoto"])
+    if ([[annotation subtitle] isEqual: @"Your Selected Photo"])
     {
-        return nil;
+        //Let's set that custom image
+        NSURL *flickrThumbnailURL = [NSURL URLWithString:selectedAnnotation.urlString];
+        //making the request online for the photo
+        NSData *photoData = [NSData dataWithContentsOfURL:flickrThumbnailURL];
+        UIImage *photoThumbnailImage = [UIImage imageWithData:photoData];
+        annotationView.image = photoThumbnailImage;
+        
+        return annotationView;
     }
     
     //    [detailButton addTarget:self
@@ -266,9 +277,9 @@
 //
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    //If statement for not having people tap on "you are here" thingy
-    //Note that as of 3.21.13, if you tap on the "you are here" annotation, app crashes
-    
+    //If statement to prevent crash if you tap Current Location pin.
+    if(![view.annotation isKindOfClass:[MKUserLocation class]])
+    {
     selectedAnnotation = view.annotation;
     
     Business *selectedBusiness = [NSEntityDescription insertNewObjectForEntityForName:@"Business" inManagedObjectContext:managedObjectContext];
@@ -286,7 +297,7 @@
             NSLog(@"failed to save: %@", [error userInfo]);
         }
     
-    
+    }
 //    @property (nonatomic, retain) NSNumber * latitude;
 //    @property (nonatomic, retain) NSNumber * longitude;
 //    @property (nonatomic, retain) NSString * name;
