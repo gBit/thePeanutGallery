@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSString *subtitle;
 @property (assign, nonatomic) CLLocationCoordinate2D coordinate;
 @property (strong, nonatomic) NSString *urlString;
+@property (strong, nonatomic) NSString *flickrThumbnailString;
 
 
 

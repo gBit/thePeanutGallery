@@ -183,10 +183,12 @@
 //        Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:@"Demo Subtite" urlString:urlString];
         
         Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:venueURL urlString:urlString];
-
+        myAnnotation.flickrThumbnailString = [[venuesArray objectAtIndex:i] imageURL];
+        selectedAnnotation = myAnnotation;
 
         //add to map
         [mapView addAnnotation:myAnnotation];
+        
     }
 
 }
@@ -215,6 +217,28 @@
     //if you place an invalid image name - the annotation will be blank
     //good for yelp results while testing
     annotationView.image = [UIImage imageNamed:@"wifiIcon.png"];
+    
+    //Let's set that custom image
+    NSURL *flickrThumbnailURL = [NSURL URLWithString:selectedAnnotation.flickrThumbnailString];
+    //making the request online for the photo
+    NSData *photoData = [NSData dataWithContentsOfURL:flickrThumbnailURL];
+    UIImage *photoThumbnailImage = [UIImage imageWithData:photoData];
+    //Now mask the image
+    //
+    //MASKING IS TOTALLY BROKEN, BUT IT RUNS WITHOUT IT.
+    //
+    UIImage * mask = [UIImage imageNamed:@"circleMask6464.png"];
+    //UIImage *maskedAnnotationImage = [self createMaskWith:mask onImage:photoThumbnailImage];
+    
+    //Set the imageView inside the 
+    UIImageView *photoContainer = [[UIImageView alloc] initWithImage:photoThumbnailImage];
+    
+    UIView *leftCAV = [[UIView alloc] initWithFrame:CGRectMake(0,0,64,64)];
+    [leftCAV addSubview : photoContainer];
+
+    annotationView.leftCalloutAccessoryView = leftCAV;
+    
+    annotationView.image = photoThumbnailImage;
     annotationView.rightCalloutAccessoryView = detailButton;
 
     if([annotation isKindOfClass: [MKUserLocation class]])
@@ -223,6 +247,23 @@
     }
     
     return annotationView;
+}
+
+- (UIImage*) createMaskWith: (UIImage *)maskImage onImage:(UIImage*) subjectImage
+{
+    CGImageRef maskRef = maskImage.CGImage;
+    CGImageRef mask = CGImageMaskCreate(CGImageGetWidth(maskRef),
+                                        CGImageGetHeight(maskRef),
+                                        CGImageGetBitsPerComponent(maskRef),
+                                        CGImageGetBitsPerPixel(maskRef),
+                                        CGImageGetBytesPerRow(maskRef),
+                                        CGImageGetDataProvider(maskRef),
+                                        NULL,
+                                        false);
+    
+    CGImageRef masked = CGImageCreateWithMask(subjectImage.CGImage, mask);
+    
+    UIImage *finalImage = [UIImage imageWithCGImage:masked];
 }
 
 # pragma mark - User Actions

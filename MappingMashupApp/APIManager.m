@@ -65,7 +65,7 @@
                                      NSString *longitude = [[yelpBusinessesArray objectAtIndex:i] valueForKey:@"longitude"] ;
 
                                      
-                                     flickrAPICall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=bd02a7a94fbe1f4c40a1661af4cb7bbe&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.5&extras=geo", search, latitude, longitude];
+                                     flickrAPICall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=bd02a7a94fbe1f4c40a1661af4cb7bbe&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.5&extras=url_sq%%2C+geo", search, latitude, longitude];
                                      
                                      [self searchFlickrWithLatitude:latitude andLongitude:longitude];
                                      }
@@ -181,6 +181,8 @@
         currentPhoto.longitude = longitude;
         currentPhoto.latitude = latitude;
         currentPhoto.urlString= [photo valueForKey:@"url"];
+        currentPhoto.imageURL = [photo valueForKey:@"url_sq"];
+        //Include new property and line to assign value for thumbnail URL
         
         [flickrPhotosArray addObject:currentPhoto];
     }
