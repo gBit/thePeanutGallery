@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="mW4-IJ-E2e">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="mW4-IJ-E2e">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -70,7 +70,6 @@
                             <webView contentMode="scaleToFill" id="tBs-TS-l6k">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="qVE-kj-ncM" id="c7l-wu-QlU"/>
@@ -82,7 +81,7 @@
                                 <rect key="frame" x="0.0" y="408" width="320" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" image="webViewPopOut@2x.png" id="07p-dX-8kh">
+                                    <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" image="webviewpopout_shelf@2x.png" id="07p-dX-8kh">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -94,7 +93,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -274,7 +273,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="webViewPopOut@2x.png" width="640" height="94"/>
+        <image name="webviewpopout_shelf@2x.png" width="640" height="94"/>
     </resources>
     <classes>
         <class className="BookmarksViewController" superclassName="UIViewController">
@@ -312,6 +311,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="n39-9o-eUd"/>
+        <segue reference="2lD-vN-oPh"/>
     </inferredMetricsTieBreakers>
 </document>

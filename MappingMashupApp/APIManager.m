@@ -59,6 +59,7 @@
                                      NSString *search = @"color";
                                      NSString* latitude = [[yelpBusinessesArray objectAtIndex:0] valueForKey:@"latitude"];
                                      NSString *longitude = [[yelpBusinessesArray objectAtIndex:0] valueForKey:@"longitude"] ;
+
                                      
                                      
                                      flickrAPICall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=bd02a7a94fbe1f4c40a1661af4cb7bbe&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.5&extras=geo", search, latitude, longitude];
