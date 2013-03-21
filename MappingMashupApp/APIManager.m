@@ -85,7 +85,7 @@
                                      NSArray *yelpBusinessesArray = [jsonDictionary valueForKey:@"businesses"];
                                      [self createVenuesArray:yelpBusinessesArray];
                                      
-                                     [[self delegate] didReceiveYelpData:yelpVenuesArray];
+                                     [self.delegate didReceiveYelpData:yelpVenuesArray];
                                      //NSLog(@"%@", yelpBusinessesArray);
                                      
                                      

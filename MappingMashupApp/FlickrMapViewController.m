@@ -36,6 +36,7 @@
 {
     [super viewDidLoad];
     
+    
     //God help us, please make the location services work! Puh_LEASE JESUS
     [self startLocationUpdates];
     

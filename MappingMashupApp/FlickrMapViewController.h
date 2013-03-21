@@ -17,8 +17,11 @@
 {
     CLLocationManager *missLocationManager;
 }
+-(void)didReceiveYelpData: (NSMutableArray*)venuesArray;
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
+
 
 - (void)locationManager:(CLLocationManager *)manager
 	didUpdateToLocation:(CLLocation *)newLocation
