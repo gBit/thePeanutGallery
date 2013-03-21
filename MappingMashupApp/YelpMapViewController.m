@@ -170,12 +170,8 @@
         CLLocationCoordinate2D venueCoordinate = {annotationLatitude, annotationLongitude};
         
         NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"urlString"];
-        //NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"urlString"];
-        
-        //        Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:@"Demo Subtite" urlString:urlString];
-        
+                
         Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:@"Demo Subtite" urlString:urlString];
-        
         
         //add to map
         [yelpMapView addAnnotation:myAnnotation];
@@ -229,6 +225,7 @@
     //           forControlEvents:UIControlEventTouchUpInside];
     annotationView.canShowCallout = YES;
     annotationView.image = [UIImage imageNamed:@"wifiIcon.png"];
+    //annotationView.image = selectedannotation.thumbnail;
     annotationView.rightCalloutAccessoryView = detailButton;
     
     if([annotation isKindOfClass: [MKUserLocation class]])

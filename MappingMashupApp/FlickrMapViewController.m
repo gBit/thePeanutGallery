@@ -167,7 +167,8 @@
     for (int i = 0; i < 4; i++)
     {
         //CLLocation *venueLocation = [[venuesArray objectAtIndex:i] location];
-        NSString *venueName = [[venuesArray objectAtIndex:i] photoTitle];
+        NSString *venueName = [[venuesArray objectAtIndex:i] name];
+        NSString * venueURL = [[venuesArray objectAtIndex:i] urlString];
         
         //coordinate make
         
@@ -181,7 +182,7 @@
         
 //        Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:@"Demo Subtite" urlString:urlString];
         
-        Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:@"PhotoTitle" subtitle:@"Demo Subtite" urlString:urlString];
+        Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:venueURL urlString:urlString];
 
 
         //add to map
@@ -215,7 +216,7 @@
     //good for yelp results while testing
     annotationView.image = [UIImage imageNamed:@"wifiIcon.png"];
     annotationView.rightCalloutAccessoryView = detailButton;
-    
+
     if([annotation isKindOfClass: [MKUserLocation class]])
     {
         return nil;

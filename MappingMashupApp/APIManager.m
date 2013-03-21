@@ -176,7 +176,7 @@
         //CLLocation *loc = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
         
         Venue *currentPhoto = [[Venue alloc] init];
-        currentPhoto.name = [photo valueForKey:@"name"];
+        currentPhoto.name = [photo valueForKey:@"title"];
 
         currentPhoto.longitude = longitude;
         currentPhoto.latitude = latitude;
