@@ -59,7 +59,11 @@
     // Allocate objects
     // [possibly allocate the venuesArray later?]
    
+<<<<<<< HEAD
     [mrAPIManager searchYelpThenFlickrForDelegates];
+=======
+    [mrAPIManager searchYelpAndSendToDelegates];
+>>>>>>> b1a59bb9060659a9f569af794696b28371ce01d5
     
     //NSLog(@"----- venues array --------%@", venuesArray);
     

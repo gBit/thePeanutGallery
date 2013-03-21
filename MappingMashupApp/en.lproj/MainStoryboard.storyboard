@@ -276,6 +276,36 @@
     <resources>
         <image name="webViewPopOut@2x.png" width="640" height="94"/>
     </resources>
+    <classes>
+        <class className="BookmarksViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BookmarksViewController.h"/>
+        </class>
+        <class className="FlickrMapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrMapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="HistoryViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HistoryViewController.h"/>
+        </class>
+        <class className="YelpMapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/YelpMapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="YelpWebPageBrowser" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/YelpWebPageBrowser.h"/>
+            <relationships>
+                <relationship kind="action" name="swipeLeftAction:"/>
+                <relationship kind="action" name="swipeRightAction:"/>
+                <relationship kind="outlet" name="popoutView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="popoutViewTextLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
