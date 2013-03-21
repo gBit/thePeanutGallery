@@ -28,6 +28,7 @@
 @property (strong, nonatomic) NSString *urlString;
 //This property will store the url of nearby photos
 @property (strong, nonatomic) NSMutableArray *flickrPhotos;
+@property (strong, nonatomic) NSString *photoTitle;
 
 /*
  NSString *yelpName;

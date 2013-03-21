@@ -41,8 +41,17 @@
     
     //Adds bookmark button to top right corner
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addBookmark)];
+    
     //Enable button just in case
     [self.navigationItem.rightBarButtonItem setEnabled:YES];
+    
+    //Check to see if this venue is already bookmarked
+//    if (venue.isBookmarked == YES)
+//    {
+//        NSLog(@"Page already bookmarked");
+//        [self.navigationItem.rightBarButtonItem setEnabled:NO];
+//    }
+
 
     //Load yelp page
     NSString *homePage = [NSString stringWithFormat:@"%@", yelpURLString];
@@ -94,9 +103,9 @@
     //Scroll on, pause for 1.5 seconds, scroll off
     [UIView animateWithDuration:0.5 animations:^(void)
      {popoutView.center = CGPointMake(popoutView.center.x, popoutView.center.y-201);
-         popoutView.alpha = 0.75;}
+         popoutView.alpha = 0.90;}
                      completion:^(BOOL finished){
-                         [UIView animateWithDuration:0.75 animations:^(void)
+                         [UIView animateWithDuration:1.25 animations:^(void)
                           {popoutView.center = CGPointMake(popoutView.center.x, popoutView.center.y);
                               popoutView.alpha = 1;}
                                           completion:^(BOOL finished){
@@ -115,6 +124,7 @@
 //Add to bookmarks.
 -(void)addBookmarkStatusTo: (Venue*)venue
 {
+
     //venue.isBookmarked = YES;
     NSError *error;
     //if (![self.myManagedObjectContext save:&error])

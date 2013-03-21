@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Venue.h"
+#import "YelpWebPageBrowser.h"
 
 @interface BookmarksViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 

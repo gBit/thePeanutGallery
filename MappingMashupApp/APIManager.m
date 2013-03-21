@@ -56,15 +56,19 @@
                                      //this will only start a search of one venue,
                                      //update to create method to loop through venues array...
                                      //
-                                     NSString *search = @"color";
-                                     NSString* latitude = [[yelpBusinessesArray objectAtIndex:0] valueForKey:@"latitude"];
-                                     NSString *longitude = [[yelpBusinessesArray objectAtIndex:0] valueForKey:@"longitude"] ;
-
+                                     int i = 0;
+                                     for (i=0; i < yelpBusinessesArray.count; i++)
+                                     {
                                      
+                                     NSString *search = @"color";
+                                     NSString* latitude = [[yelpBusinessesArray objectAtIndex:i] valueForKey:@"latitude"];
+                                     NSString *longitude = [[yelpBusinessesArray objectAtIndex:i] valueForKey:@"longitude"] ;
+
                                      
                                      flickrAPICall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=bd02a7a94fbe1f4c40a1661af4cb7bbe&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.5&extras=geo", search, latitude, longitude];
                                      
                                      [self searchFlickrWithLatitude:latitude andLongitude:longitude];
+                                     }
                                      
                                      /*
                                      NSMutableArray *photosArray = [self searchFlickrWithLatitude:latitude andLongitude:longitude];
@@ -98,6 +102,7 @@
         currentVenue.urlString= [business valueForKey:@"url"];
         currentVenue.longitude =[[ business valueForKey:@"longitude"] floatValue];
         currentVenue.latitude = [[business valueForKey:@"latitude"] floatValue];
+        currentVenue.photoTitle = [business valueForKey:@"title"];
         
         [yelpVenuesArray addObject:currentVenue];
         

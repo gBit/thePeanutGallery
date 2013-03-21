@@ -23,6 +23,8 @@
     LocationManager *locationManager;
     Annotation *selectedAnnotation;
     //NSMutableArray *venuesArray;
+    float latitudeToPass;
+    float longitudeToPass;
     
     __weak IBOutlet MKMapView *mapView;
 }
@@ -120,12 +122,12 @@
     CLLocationCoordinate2D coord = [loc coordinate];
     
     //create an instances of annotation with the current data
-    Annotation *annotation = [[Annotation alloc]initWithCoordinate:coord
-                                                             title:@"title"
-                                                          subtitle:@"Somebody does not want poop"
-                                                           urlString:@"http://www.catstache.biz"];
-    //add annotation to mapview
-    [mapView addAnnotation:annotation];
+//    Annotation *annotation = [[Annotation alloc]initWithCoordinate:coord
+//                                                             title:@"title"
+//                                                          subtitle:@"Somebody does not want poop"
+//                                                           urlString:@"http://www.catstache.biz"];
+//    //add annotation to mapview
+//    [mapView addAnnotation:annotation];
     
     //zoom to region of location
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
@@ -144,7 +146,7 @@
 -(void)didReceiveYelpData: (NSMutableArray*)venuesArray
 {
     
-    [self addPinsToMap:venuesArray];
+    //[self addPinsToMap:venuesArray];
 }
 
 
@@ -162,30 +164,30 @@
     //set region to mapview
     [mapView setRegion:region animated:YES];
     
-//    for (int i = 0; i < venuesArray.count; i++)
-//    {
+    for (int i = 0; i < 4; i++)
+    {
         //CLLocation *venueLocation = [[venuesArray objectAtIndex:i] location];
-        NSString *venueName = [[venuesArray objectAtIndex:0] name];
+        NSString *venueName = [[venuesArray objectAtIndex:i] photoTitle];
         
         //coordinate make
         
-
-        float annotationLatitude =[[[venuesArray objectAtIndex:0] valueForKey:@"latitude"] floatValue];
-        float annotationLongitude =[[[venuesArray objectAtIndex:0] valueForKey:@"longitude"] floatValue];
+        float annotationLatitude =[[[venuesArray objectAtIndex:i] valueForKey:@"latitude"] floatValue];
+        float annotationLongitude =[[[venuesArray objectAtIndex:i] valueForKey:@"longitude"] floatValue];
     
         CLLocationCoordinate2D venueCoordinate = {annotationLatitude, annotationLongitude};
 
         //NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"yelpURL"];
-        NSString *urlString = [[venuesArray objectAtIndex:0] valueForKey:@"urlString"];
+        NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"urlString"];
         
-        Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:@"Demo Subtite" urlString:urlString];
+//        Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:@"Demo Subtite" urlString:urlString];
+        
+        Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:@"PhotoTitle" subtitle:@"Demo Subtite" urlString:urlString];
 
-        
+
         //add to map
         [mapView addAnnotation:myAnnotation];
-        
-        
-//    }
+    }
+
 }
 
 
@@ -233,15 +235,15 @@
     //Note: This should break when we switch from Yelp annotations
     //to Flickr photos.
     //Once it doees work, delete this comment
-    Business *selectedBusiness = [NSEntityDescription insertNewObjectForEntityForName:@"Business" inManagedObjectContext:managedObjectContext];
-    
-    selectedBusiness.name = view.annotation.title;
-    
-    NSError *error;
-    if (![managedObjectContext save:&error])
-    {
-        NSLog(@"failed to save: %@", [error userInfo]);
-    }
+//    Business *selectedBusiness = [NSEntityDescription insertNewObjectForEntityForName:@"Business" inManagedObjectContext:managedObjectContext];
+//    
+//    selectedBusiness.name = view.annotation.title;
+//    
+//    NSError *error;
+//    if (![managedObjectContext save:&error])
+//    {
+//        NSLog(@"failed to save: %@", [error userInfo]);
+//    }
     
     //NSLog(@"Logging out the annotation %@", view.annotation.title);
 }
@@ -253,7 +255,13 @@
 {
     NSLog(@"This is the method we want!");
     // [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"m.yelp.com"]];
-    [self performSegueWithIdentifier:@"toYelpWebPage" sender:nil];
+    NSLog(@"%@", view.annotation);
+    //These instance variables will be passed in the segue
+    latitudeToPass = selectedAnnotation.coordinate.latitude;
+    longitudeToPass = selectedAnnotation.coordinate.longitude;
+    
+    [self performSegueWithIdentifier:@"toYelpMapView" sender:nil];
+    
     
 }
 
@@ -261,8 +269,12 @@
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if ([segue.identifier isEqualToString:@"toYelpMapView"])
+    {
     YelpMapViewController *ymvc = [segue destinationViewController];
-    // what's getting passed in
+    ymvc.originPhotoLongitude = longitudeToPass;
+    ymvc.originPhotoLatitude = latitudeToPass;
+    }
 }
 
 //

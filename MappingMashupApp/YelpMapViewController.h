@@ -13,5 +13,7 @@
 @interface YelpMapViewController : UIViewController <APIManagerDelegate, MKMapViewDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (assign, nonatomic) float originPhotoLatitude;
+@property (assign, nonatomic) float originPhotoLongitude;
 
 @end

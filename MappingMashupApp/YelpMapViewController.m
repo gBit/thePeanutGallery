@@ -40,7 +40,7 @@
 @end
 
 @implementation YelpMapViewController
-@synthesize managedObjectContext;
+@synthesize managedObjectContext, originPhotoLatitude, originPhotoLongitude;
 
 - (void)viewDidLoad
 {
@@ -60,6 +60,36 @@
     // Allocate objects
     // [possibly allocate the venuesArray later?]
     venuesArray = [[NSMutableArray alloc]init];
+    //
+    //This view controller SUCCESSFULLY imports the starting lat/long from the Flickr view controller.
+    //VenuesArray is nil here (empty pointer)
+    //Yelp API manager didn't kick us out of this class to APIManager.m
+    //Need to verify that this Yelp search (with no Flickr results) is using the passed lat/long.
+    //If you go to this VC by tapping a disclosure button from previous one, it will crash.
+    //Segue does work, data makes it over, THEN it crashes
+    //Crash appears to confirm on "didreceiveYelpData
+    //We end up at lat/long 0/0 when this runs, so look into location services problems
+    //
+    //Need to make the below a new, separate Yelp search that does NOT touch Flickr anything.
+    //
+    
+    //Set map region to the imported lat/long
+    CLLocationCoordinate2D originLocationCoordinate =
+    {
+        .latitude = originPhotoLatitude,
+        .longitude = originPhotoLongitude
+    };
+    
+    MKCoordinateSpan originSpan =
+    {
+        .latitudeDelta = 0.01810686f,
+        .longitudeDelta = 0.01810686f
+    };
+    
+    MKCoordinateRegion originRegion = {originLocationCoordinate, originSpan};
+    [mapView setRegion:originRegion animated:YES];
+    
+    
     [yelpAPIManager searchYelpThenFlickrForDelegates];
     
     [self addPinsToMap];
@@ -128,7 +158,7 @@
     
     MKCoordinateRegion region = {locationManager.coordinate, span};
     //set region to mapview
-    [mapView setRegion:region animated:YES];
+    //[mapView setRegion:region animated:YES];
     
     for (int i = 0; i < venuesArray.count; i++)
     {
