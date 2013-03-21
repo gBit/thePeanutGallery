@@ -19,6 +19,8 @@
 		83B0D00A16FA1A8900C9D8F8 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0D00916FA1A8900C9D8F8 /* HistoryViewController.m */; };
 		83BB6B6B16FA0A31003A4506 /* circleMask6464.png in Resources */ = {isa = PBXBuildFile; fileRef = 83BB6B6A16FA0A31003A4506 /* circleMask6464.png */; };
 		83BB6B6E16FA0A64003A4506 /* circleMask6464@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83BB6B6D16FA0A64003A4506 /* circleMask6464@2x.png */; };
+		83D97AF416FB859C00B525E2 /* circleMask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83D97AF316FB859C00B525E2 /* circleMask@2x.png */; };
+		83D97AF616FB872000B525E2 /* circleMaskShine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83D97AF516FB872000B525E2 /* circleMaskShine@2x.png */; };
 		83E3AE9016FA687A00A8F27E /* webviewpopout_shelf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83E3AE8F16FA687A00A8F27E /* webviewpopout_shelf@2x.png */; };
 		83FE37E216F76CD6000C9935 /* FlickrMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FE37E116F76CD6000C9935 /* FlickrMapViewController.m */; };
 		8F372B0416F244C800302B80 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F372B0316F244C800302B80 /* UIKit.framework */; };
@@ -87,6 +89,10 @@
 		83BB6B6A16FA0A31003A4506 /* circleMask6464.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circleMask6464.png; sourceTree = "<group>"; };
 		83BB6B6D16FA0A64003A4506 /* circleMask6464@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circleMask6464@2x.png"; sourceTree = "<group>"; };
 		83BB6B6F16FA0B1A003A4506 /* RossScratchpad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RossScratchpad.h; sourceTree = "<group>"; };
+		83D97AF316FB859C00B525E2 /* circleMask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circleMask@2x.png"; sourceTree = "<group>"; };
+		83D97AF516FB872000B525E2 /* circleMaskShine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "circleMaskShine@2x.png"; path = "MappingMashupApp/circleMaskShine@2x.png"; sourceTree = "<group>"; };
+		83D97AF716FB970600B525E2 /* CVCustomCalloutAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVCustomCalloutAnnotationView.h; sourceTree = "<group>"; };
+		83D97AF816FB970600B525E2 /* CVCustomCalloutAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CVCustomCalloutAnnotationView.m; sourceTree = "<group>"; };
 		83E3AE8F16FA687A00A8F27E /* webviewpopout_shelf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "webviewpopout_shelf@2x.png"; sourceTree = "<group>"; };
 		83FE37E016F76CD6000C9935 /* FlickrMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrMapViewController.h; sourceTree = "<group>"; };
 		83FE37E116F76CD6000C9935 /* FlickrMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrMapViewController.m; sourceTree = "<group>"; };
@@ -155,6 +161,15 @@
 			name = "Tab View Items";
 			sourceTree = "<group>";
 		};
+		83D97AF916FB970F00B525E2 /* CustomCalloutClasses */ = {
+			isa = PBXGroup;
+			children = (
+				83D97AF716FB970600B525E2 /* CVCustomCalloutAnnotationView.h */,
+				83D97AF816FB970600B525E2 /* CVCustomCalloutAnnotationView.m */,
+			);
+			name = CustomCalloutClasses;
+			sourceTree = "<group>";
+		};
 		8F372AF716F244C800302B80 = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +205,7 @@
 		8F372B0916F244C800302B80 /* MappingMashupApp */ = {
 			isa = PBXGroup;
 			children = (
+				83D97AF916FB970F00B525E2 /* CustomCalloutClasses */,
 				830729D216F766D6000F0037 /* Model.xcdatamodeld */,
 				8F372B1B16F244C800302B80 /* MainStoryboard.storyboard */,
 				B40B477616F69055006BD4CE /* Backups */,
@@ -278,6 +294,8 @@
 		8F3AD83816F90A0300BEEB3A /* Custom Images */ = {
 			isa = PBXGroup;
 			children = (
+				83D97AF516FB872000B525E2 /* circleMaskShine@2x.png */,
+				83D97AF316FB859C00B525E2 /* circleMask@2x.png */,
 				83E3AE8F16FA687A00A8F27E /* webviewpopout_shelf@2x.png */,
 				83235E2B16FA27F80066659B /* webViewPopOut@2x.png */,
 				83BB6B6D16FA0A64003A4506 /* circleMask6464@2x.png */,
@@ -396,6 +414,8 @@
 				83BB6B6E16FA0A64003A4506 /* circleMask6464@2x.png in Resources */,
 				83235E2C16FA27F80066659B /* webViewPopOut@2x.png in Resources */,
 				83E3AE9016FA687A00A8F27E /* webviewpopout_shelf@2x.png in Resources */,
+				83D97AF416FB859C00B525E2 /* circleMask@2x.png in Resources */,
+				83D97AF616FB872000B525E2 /* circleMaskShine@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

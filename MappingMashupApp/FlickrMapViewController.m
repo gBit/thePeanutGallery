@@ -224,11 +224,19 @@
     NSData *photoData = [NSData dataWithContentsOfURL:flickrThumbnailURL];
     UIImage *photoThumbnailImage = [UIImage imageWithData:photoData];
     //Now mask the image
-    //
-    //MASKING IS TOTALLY BROKEN, BUT IT RUNS WITHOUT IT.
-    //
-    UIImage * mask = [UIImage imageNamed:@"circleMask6464.png"];
-    //UIImage *maskedAnnotationImage = [self createMaskWith:mask onImage:photoThumbnailImage];
+
+    UIImage * mask = [UIImage imageNamed:@"circleMask.png"];
+    UIImage *maskedAnnotationImage = [self createMaskWith:mask onImage:photoThumbnailImage];
+    
+    //Add the shine - can do later
+//    UIImage *backgroundImage = maskedAnnotationImage;
+//    UIImage *watermarkImage = [UIImage imageNamed:@"circleMaskShine"];
+//    
+//    UIGraphicsBeginImageContext(backgroundImage.size);
+//    [backgroundImage drawInRect:CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height)];
+//    [watermarkImage drawInRect:CGRectMake(backgroundImage.size.width - watermarkImage.size.width, backgroundImage.size.height - watermarkImage.size.height, watermarkImage.size.width, watermarkImage.size.height)];
+//    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
     
     //Set the imageView inside the 
     UIImageView *photoContainer = [[UIImageView alloc] initWithImage:photoThumbnailImage];
@@ -238,7 +246,7 @@
 
     annotationView.leftCalloutAccessoryView = leftCAV;
     
-    annotationView.image = photoThumbnailImage;
+    annotationView.image = maskedAnnotationImage;
     annotationView.rightCalloutAccessoryView = detailButton;
 
     if([annotation isKindOfClass: [MKUserLocation class]])
@@ -264,6 +272,7 @@
     CGImageRef masked = CGImageCreateWithMask(subjectImage.CGImage, mask);
     
     UIImage *finalImage = [UIImage imageWithCGImage:masked];
+    return finalImage;
 }
 
 # pragma mark - User Actions
