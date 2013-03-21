@@ -17,7 +17,7 @@
 @property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * phone;
-@property (nonatomic, retain) NSNumber * isBookmarked;
+@property (nonatomic, assign) NSNumber * isBookmarked;
 @property (nonatomic, retain) NSDate * viewDate;
 @property (nonatomic, retain) NSString * yelpURLString;
 @property (nonatomic, retain) NSSet *photo;

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B2A007816FB984600F0C703 /* NSString+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2A007716FB984600F0C703 /* NSString+Extended.m */; };
 		6B2D7B2A16F8FE2B00E6D3A5 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D7B2916F8FE2B00E6D3A5 /* Photo.m */; };
 		6B2D7B2D16F8FE2B00E6D3A5 /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D7B2C16F8FE2B00E6D3A5 /* Business.m */; };
 		830729D416F766D6000F0037 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 830729D216F766D6000F0037 /* Model.xcdatamodeld */; };
@@ -71,6 +72,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B2A007616FB984600F0C703 /* NSString+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extended.h"; sourceTree = "<group>"; };
+		6B2A007716FB984600F0C703 /* NSString+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extended.m"; sourceTree = "<group>"; };
 		6B2D7B2816F8FE2B00E6D3A5 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = ../Photo.h; sourceTree = "<group>"; };
 		6B2D7B2916F8FE2B00E6D3A5 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photo.m; path = ../Photo.m; sourceTree = "<group>"; };
 		6B2D7B2B16F8FE2B00E6D3A5 /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Business.h; path = ../Business.h; sourceTree = "<group>"; };
@@ -256,6 +259,8 @@
 				B425500816F6B158005CCC9E /* Venue.m */,
 				8F372B5916F2678A00302B80 /* Annotation.h */,
 				8F372B5A16F2678A00302B80 /* Annotation.m */,
+				6B2A007616FB984600F0C703 /* NSString+Extended.h */,
+				6B2A007716FB984600F0C703 /* NSString+Extended.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -279,10 +284,10 @@
 				83B0D00716FA1A2000C9D8F8 /* Tab View Items */,
 				83FE37E016F76CD6000C9935 /* FlickrMapViewController.h */,
 				83FE37E116F76CD6000C9935 /* FlickrMapViewController.m */,
-				8335571416F6D27600DB17D5 /* YelpWebPageBrowser.h */,
-				8335571516F6D27600DB17D5 /* YelpWebPageBrowser.m */,
 				8F372B1E16F244C800302B80 /* YelpMapViewController.h */,
 				8F372B1F16F244C800302B80 /* YelpMapViewController.m */,
+				8335571416F6D27600DB17D5 /* YelpWebPageBrowser.h */,
+				8335571516F6D27600DB17D5 /* YelpWebPageBrowser.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -437,6 +442,7 @@
 				6B2D7B2D16F8FE2B00E6D3A5 /* Business.m in Sources */,
 				83B0D00516FA1A1900C9D8F8 /* BookmarksViewController.m in Sources */,
 				83B0D00A16FA1A8900C9D8F8 /* HistoryViewController.m in Sources */,
+				6B2A007816FB984600F0C703 /* NSString+Extended.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

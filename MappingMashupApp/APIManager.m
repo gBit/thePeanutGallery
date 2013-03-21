@@ -70,8 +70,8 @@
                                          //Ross Flickr API Key 4dcd4b336fc303a2d36023d3c4c1b214
                                          
                                      flickrAPICall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=4dcd4b336fc303a2d36023d3c4c1b214&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.5&extras=url_sq%%2C+geo", search, latitude, longitude];
-                                     
-                                     [self searchFlickrWithLatitude:latitude andLongitude:longitude];
+
+                                         [self searchFlickrWithLatitude:latitude andLongitude:longitude];
                                      }
                                      
                                      /*

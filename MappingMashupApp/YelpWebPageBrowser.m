@@ -7,6 +7,9 @@
 //
 
 #import "YelpWebPageBrowser.h"
+#import "Business.h"
+#import "AppDelegate.h"
+#import "NSString+Extended.h"
 
 @interface YelpWebPageBrowser ()
 {
@@ -14,6 +17,9 @@
     __weak IBOutlet UIView *popoutView;
     __weak IBOutlet UILabel *popoutViewTextLabel;
     __weak IBOutlet UIWebView *webView;
+    Business *currentBusiness;
+    
+    
 }
 - (IBAction)swipeRightAction:(id)sender;
 - (IBAction)swipeLeftAction:(id)sender;
@@ -22,7 +28,7 @@
 
 @implementation YelpWebPageBrowser
 
-@synthesize yelpURLString;
+@synthesize yelpURLString,managedObjectContext;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,6 +44,12 @@
 {
     [super viewDidLoad];
     //Custom formatting for navigation bar
+    
+    // Core Data
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    self.managedObjectContext = appDelegate.managedObjectContext;
+    
+    currentBusiness = [self fetchBusinessShownInWebpage];
     
     //Adds bookmark button to top right corner
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addBookmark)];
@@ -94,11 +106,22 @@
 -(void) addBookmark
 {
     
+    
+    
     //Include code here that will add the current Yelp business as a bookmark
     //Come back to this once Core Data implementation is complete.
     //Method call to add bookmark status to a provided venue
     //[self addBookmarkStatusTo:(Venue *)];
     //Tell user that bookmark has been added
+    currentBusiness.isBookmarked = [NSNumber numberWithBool:YES];
+    
+    NSError *error;
+    if (![managedObjectContext save:&error])
+    {
+        NSLog(@"failed to save: %@", [error userInfo]);
+    }
+    
+    
     popoutViewTextLabel.text = @"Bookmark added";
     //Scroll on, pause for 1.5 seconds, scroll off
     [UIView animateWithDuration:0.5 animations:^(void)
@@ -114,24 +137,74 @@
                                                    popoutView.alpha = 0;}
                                                ];
                                           }
-                          ];                     }
+                          ];
+                     }
      ];
+    
     //Disable button so they can't bookmark the same page again.
     [self.navigationItem.rightBarButtonItem setEnabled:NO];
-    
 }
 
 //Add to bookmarks.
--(void)addBookmarkStatusTo: (Venue*)venue
+-(void)addBookmarkStatusTo: (Business*)business
 {
 
     //venue.isBookmarked = YES;
     NSError *error;
-    //if (![self.myManagedObjectContext save:&error])
+    if (![self.managedObjectContext save:&error])
     {
         NSLog(@"Add bookmark status failed.");
     }
+    
+    
+    
+    
+    
+    
 }
+
+
+//fetch the managed object of the business we're looking at in this webView
+
+-(Business*) fetchBusinessShownInWebpage
+{
+    NSArray *businessesArray;
+    Business *business;
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Business" inManagedObjectContext:self.managedObjectContext];
+    NSFetchRequest * fetchRequest = [[NSFetchRequest alloc]init];
+    NSFetchedResultsController * fetchResultsController;
+    
+    NSString *predicateURLString = [yelpURLString urlencode];
+    //Now customize your search! We'd want to switch this to see if isBookmarked == true
+    NSArray * sortDescriptors = [[NSArray alloc] initWithObjects:nil];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"yelpURLString == '%@'", yelpURLString]];
+    NSError *searchError;
+
+    //Lock and load
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setEntity:entityDescription];
+    fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    
+    [fetchResultsController performFetch:&searchError];
+    //Something about making the arrays equal size or some shit. Gawd.
+    //This will update your display array with your fetch results
+    
+    
+    businessesArray = fetchResultsController.fetchedObjects;
+    
+    if (businessesArray != nil && businessesArray.count > 0) {
+        business = [businessesArray objectAtIndex:0];
+    }
+    
+    
+    return business;
+    
+}
+
+
+
+
 
 - (void)didReceiveMemoryWarning
 {

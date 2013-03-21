@@ -12,4 +12,7 @@
 
 @interface HistoryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
+
 @end
