@@ -167,14 +167,32 @@
         float annotationLatitude =[[[venuesArray objectAtIndex:i] valueForKey:@"latitude"] floatValue];
         float annotationLongitude =[[[venuesArray objectAtIndex:i] valueForKey:@"longitude"] floatValue];
         
+        NSNumber *latitude = [[venuesArray objectAtIndex:i] valueForKey:@"latitude"];
+        NSNumber *longitude = [[venuesArray objectAtIndex:i] valueForKey:@"longitude"];
+        
+        
         CLLocationCoordinate2D venueCoordinate = {annotationLatitude, annotationLongitude};
         
         NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"urlString"];
         //NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"urlString"];
-        
+//        
+//        @property (nonatomic, retain) NSNumber * latitude;
+//        @property (nonatomic, retain) NSNumber * longitude;
+//        @property (nonatomic, retain) NSString * name;
+//        @property (nonatomic, retain) NSString * phone;
+//        @property (nonatomic, retain) NSNumber * isBookmarked;
+//        @property (nonatomic, retain) NSDate * viewDate;
+//        @property (nonatomic, retain) NSString * yelpURLString;
+//        @property (nonatomic, retain) NSSet *photo;
         //        Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:@"Demo Subtite" urlString:urlString];
         
         Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:@"Demo Subtite" urlString:urlString];
+        myAnnotation.longitude = longitude;
+        myAnnotation.latitude = latitude;
+        myAnnotation.name = [[venuesArray objectAtIndex:i] valueForKey:@"name"];
+        myAnnotation.viewDate = [NSDate date];
+        myAnnotation.yelpURLString = urlString;
+        
         
         
         //add to map
@@ -246,6 +264,31 @@
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     selectedAnnotation = view.annotation;
+    
+    Business *selectedBusiness = [NSEntityDescription insertNewObjectForEntityForName:@"Business" inManagedObjectContext:managedObjectContext];
+    
+    selectedBusiness.latitude = selectedAnnotation.latitude;
+    selectedBusiness.longitude = selectedAnnotation.longitude;
+    selectedBusiness.name = selectedAnnotation.name;
+    selectedBusiness.yelpURLString = selectedAnnotation.yelpURLString;
+    selectedBusiness.viewDate = selectedAnnotation.viewDate;
+    
+    
+        NSError *error;
+        if (![managedObjectContext save:&error])
+        {
+            NSLog(@"failed to save: %@", [error userInfo]);
+        }
+    
+    
+//    @property (nonatomic, retain) NSNumber * latitude;
+//    @property (nonatomic, retain) NSNumber * longitude;
+//    @property (nonatomic, retain) NSString * name;
+//    @property (nonatomic, retain) NSString * phone;
+//    @property (nonatomic, retain) NSNumber * isBookmarked;
+//    @property (nonatomic, retain) NSDate * viewDate;
+//    @property (nonatomic, retain) NSString * yelpURLString;
+//    @property (nonatomic, retain) NSSet *photo;
     
     //Note: This should break when we switch from Yelp annotations
     //to Flickr photos.

@@ -9,7 +9,11 @@
 #import "Annotation.h"
 
 @implementation Annotation
-@synthesize coordinate,title,subtitle, urlString;
+@synthesize coordinate,title,subtitle, urlString, latitude, longitude, name, phone, isBookmarked, viewDate, yelpURLString, photo;
+
+
+
+
 
 //- initWithPosition:(CLLocationCoordinate2D *)coordinates
 //{

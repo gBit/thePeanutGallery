@@ -16,6 +16,22 @@
 @property (assign, nonatomic) CLLocationCoordinate2D coordinate;
 @property (strong, nonatomic) NSString *urlString;
 
+
+
+
+
+//these are properties we need  on a pinAnnotation to make an entity.  We may be duplicating info above.  Added by David 3/21/13
+    @property (nonatomic, retain) NSNumber * latitude;
+    @property (nonatomic, retain) NSNumber * longitude;
+    @property (nonatomic, retain) NSString * name;
+    @property (nonatomic, retain) NSString * phone;
+    @property (nonatomic, retain) NSNumber * isBookmarked;
+    @property (nonatomic, retain) NSDate * viewDate;
+    @property (nonatomic, retain) NSString * yelpURLString;
+    @property (nonatomic, retain) NSSet *photo;
+
+
+
 //- initWithPosition:(CLLocationCoordinate2D)coordinates;
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coord
