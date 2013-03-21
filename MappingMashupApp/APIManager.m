@@ -35,7 +35,7 @@
     //Emily's Yelp Key
     //xltTZDS7mgHV7wtu8MkZSg
     
-    yelpAPICall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=%f&limit=%d&ywsid=ylWkpXJFz6-ZI3PvDG519A", search, latitude, longitude, radius, maxItems];
+    yelpAPICall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=%f&limit=%d&ywsid=z8HZy2Hb2axZox05xfTW9w", search, latitude, longitude, radius, maxItems];
     return self;
 }
 
@@ -65,7 +65,7 @@
                                      NSString *longitude = [[yelpBusinessesArray objectAtIndex:i] valueForKey:@"longitude"] ;
 
                                      
-                                     flickrAPICall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=bd02a7a94fbe1f4c40a1661af4cb7bbe&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.5&extras=geo", search, latitude, longitude];
+                                     flickrAPICall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=4dcd4b336fc303a2d36023d3c4c1b214&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.5&extras=geo", search, latitude, longitude];
                                      
                                      [self searchFlickrWithLatitude:latitude andLongitude:longitude];
                                      }

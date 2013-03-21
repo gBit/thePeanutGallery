@@ -7,15 +7,21 @@
 //
 
 #import "HistoryViewController.h"
+#import "AppDelegate.h"
+#import "Business.h"
 
 @interface HistoryViewController ()
 {
     NSArray * testHistory;
+    NSArray *historyArray;
+    NSArray *bookmarkArray;
 }
 
 @end
 
 @implementation HistoryViewController
+
+@synthesize managedObjectContext;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,8 +34,17 @@
 
 - (void)viewDidLoad
 {
+    
+    // Core Data
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    self.managedObjectContext = appDelegate.managedObjectContext;
+    
+    
     [super viewDidLoad];
     self.title = @"History";
+    
+    historyArray = [self allEntitiesNamed:@"Business"];
+    
     
     testHistory = [[NSArray alloc] initWithObjects:@"History 1", @"History 2", @"History 3", nil];
 }
@@ -38,7 +53,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return testHistory.count;
+    return historyArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -59,8 +74,10 @@
 	}
 	//4. change the textLabel to reflect the data we are using.
     
-	currentCell.textLabel.text = [testHistory objectAtIndex:[indexPath row]];
-    currentCell.detailTextLabel.text = @"Subtitle";
+    Business *currentBusiness = [historyArray objectAtIndex:[indexPath row] ];
+    
+	currentCell.textLabel.text = currentBusiness.name;
+    currentCell.detailTextLabel.text = currentBusiness.yelpURLString;
 	return currentCell;
     
 }
@@ -97,6 +114,60 @@
     }
 }
 
+//core data fetch
+-(NSArray *)allEntitiesNamed:(NSString *)entityName
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext];
+    NSError *error;
+    
+    fetchRequest.entity = entity;
+    
+    return [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+}
+
+
+//core data fetch for bookmarked businesses
+-(NSArray*) fetchBookmarks
+{
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Business" inManagedObjectContext:self.managedObjectContext];
+    NSFetchRequest * fetchRequest = [[NSFetchRequest alloc]init];
+    NSFetchedResultsController * fetchResultsController;
+    
+    //Now customize your search! We'd want to switch this to see if isBookmarked == true
+    NSArray * sortDescriptors = [[NSArray alloc] initWithObjects:nil];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"isBookmarked == %@", [NSNumber numberWithBool:YES]];
+    NSError *searchError;
+    
+    //David's Predicate Format Notes: may be deleted with impunity......................................
+    //    NSPredicate *newPredicate = [NSPredicate predicateWithFormat:@"anAttribute == %@",[NSNumber numberWithBool:aBool]];
+    //    NSPredicate *testForTrue = [NSPredicate predicateWithFormat:@"anAttribute == YES"];
+    //.............................................................................................
+    
+    
+//    if ([mySearchText isEqualToString:@""])
+//    {
+//        predicate = nil;
+//    }
+    
+    //Lock and load
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setEntity:entityDescription];
+    fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    
+    [fetchResultsController performFetch:&searchError];
+    //Something about making the arrays equal size or some shit. Gawd.
+    //This will update your display array with your fetch results
+    bookmarkArray = fetchResultsController.fetchedObjects;
+    
+    
+    return fetchResultsController.fetchedObjects;
+    
+}
+
+
+
 //Delete an object from the History.
 -(void)deleteVenue: (Venue*)venue
 {
@@ -107,6 +178,9 @@
         NSLog(@"Delete History item method failed.");
     }
 }
+
+
+
 
 
 #pragma mark -- segue methods

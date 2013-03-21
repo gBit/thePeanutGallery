@@ -7,11 +7,16 @@
 //
 
 #import "BookmarksViewController.h"
+#import "AppDelegate.h"
+#import "Business.h"
 
 @interface BookmarksViewController ()
 {
     NSArray * testBookmarks;
+    NSArray *bookmarkArray;
 }
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 
 @end
 
@@ -30,8 +35,10 @@
 {
     [super viewDidLoad];
 //Add title field to navigation bar
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    self.managedObjectContext = appDelegate.managedObjectContext;
     
-
+    bookmarkArray = [self fetchBookmarks];
     //self.navigationItem.title = [[UIBarButtonItem alloc] init];
 
     self.navigationItem.title = @"Bookmarks";
@@ -48,25 +55,26 @@
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-     //   [self removeBookmarkStatusFrom:<#(Venue *)#>];
+        Business *business = [bookmarkArray objectAtIndex:indexPath.row];
+        business.isBookmarked = [NSNumber numberWithBool:NO];
+        
+        bookmarkArray = [self fetchBookmarks];
+        
+        [tableView reloadData];
+        //[self removeBookmarkStatusFrom:business]
     }
 }
 
 //Remove from bookmarks, but do not remove from history.
--(void)removeBookmarkStatusFrom: (Venue*)venue
+-(void)removeBookmarkStatusFrom: (Business*)business
 {
-    //venue.isBookmarked = NO;
-    NSError *error;
-    //if (![self.myManagedObjectContext save:&error])
-    {
-        NSLog(@"Add bookmark status failed.");
-    }
+    business.isBookmarked = [NSNumber numberWithBool:NO];
 }
 #pragma mark -- table methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return testBookmarks.count;
+    return bookmarkArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -86,12 +94,53 @@
         currentCell.accessoryType =     UITableViewCellAccessoryDisclosureIndicator;
 	}
 	//4. change the textLabel to reflect the data we are using.
+    Business *currentBusiness = [bookmarkArray objectAtIndex:[indexPath row]];
     
-	currentCell.textLabel.text = [testBookmarks objectAtIndex:[indexPath row]];
-    currentCell.detailTextLabel.text = @"Test Subtitle";
+	currentCell.textLabel.text = currentBusiness.name;
+    currentCell.detailTextLabel.text = currentBusiness.yelpURLString;
 	return currentCell;
     
 }
+
+//core data fetch for bookmarked businesses
+-(NSArray*) fetchBookmarks
+{
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Business" inManagedObjectContext:self.managedObjectContext];
+    NSFetchRequest * fetchRequest = [[NSFetchRequest alloc]init];
+    NSFetchedResultsController * fetchResultsController;
+    
+    //Now customize your search! We'd want to switch this to see if isBookmarked == true
+    NSArray * sortDescriptors = [[NSArray alloc] initWithObjects:nil];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"isBookmarked == %@", [NSNumber numberWithBool:YES]];
+    NSError *searchError;
+    
+    //David's Predicate Format Notes: may be deleted with impunity......................................
+    //    NSPredicate *newPredicate = [NSPredicate predicateWithFormat:@"anAttribute == %@",[NSNumber numberWithBool:aBool]];
+    //    NSPredicate *testForTrue = [NSPredicate predicateWithFormat:@"anAttribute == YES"];
+    //.............................................................................................
+    
+    
+    //    if ([mySearchText isEqualToString:@""])
+    //    {
+    //        predicate = nil;
+    //    }
+    
+    //Lock and load
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setEntity:entityDescription];
+    fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    
+    [fetchResultsController performFetch:&searchError];
+    //Something about making the arrays equal size or some shit. Gawd.
+    //This will update your display array with your fetch results
+    bookmarkArray = fetchResultsController.fetchedObjects;
+    
+    
+    return fetchResultsController.fetchedObjects;
+    
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

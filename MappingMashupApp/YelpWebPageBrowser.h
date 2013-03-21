@@ -12,5 +12,6 @@
 @interface YelpWebPageBrowser : UIViewController <UIWebViewDelegate>
 
 @property (strong, nonatomic) NSString *yelpURLString;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

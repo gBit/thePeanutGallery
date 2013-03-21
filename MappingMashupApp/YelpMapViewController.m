@@ -295,6 +295,12 @@
     //NSLog(@"Logging out the annotation %@", view.annotation.title);
 }
 
+
+
+
+
+
+
 //
 // User taps on disclosure button to see more Yelp data.
 //
@@ -312,7 +318,7 @@
 {
     YelpWebPageBrowser * ywpb = [segue destinationViewController];
     //Future Ross, this might break
-    ywpb.yelpURLString = selectedAnnotation.urlString;
+    ywpb.yelpURLString = selectedAnnotation.yelpURLString;
     
 }
 
