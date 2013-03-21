@@ -24,11 +24,12 @@
                     <connections>
                         <outlet property="yelpMapView" destination="fse-RH-zXz" id="HHQ-eP-hJK"/>
                         <segue destination="qVE-kj-ncM" kind="push" identifier="toYelpWebPage" id="grn-P3-leO"/>
+                        <segue destination="jTz-JW-Bre" kind="push" identifier="yelpPageToBookmarks" id="IAP-L1-hhl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="993" y="25"/>
+            <point key="canvasLocation" x="1017" y="25"/>
         </scene>
         <!--Flickr Map View Controller - explore-->
         <scene sceneID="5rQ-JE-I32">
@@ -78,7 +79,7 @@
                                 </connections>
                             </webView>
                             <view contentMode="scaleToFill" id="JIq-gF-FaR">
-                                <rect key="frame" x="0.0" y="462.5" width="320" height="47"/>
+                                <rect key="frame" x="0.0" y="462" width="320" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="webviewpopout_shelf@2x.png" id="07p-dX-8kh">
@@ -193,7 +194,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6mD-OI-6dg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="768" y="1388"/>
+            <point key="canvasLocation" x="888" y="1420"/>
         </scene>
         <!--Bookmarks View Controller-->
         <scene sceneID="edS-LO-xlZ">
@@ -249,7 +250,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OD9-Jb-0ih" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="768" y="734"/>
+            <point key="canvasLocation" x="888" y="758"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="oO3-Hi-Sd7">
@@ -275,46 +276,13 @@
     <resources>
         <image name="webviewpopout_shelf@2x.png" width="640" height="94"/>
     </resources>
-    <classes>
-        <class className="BookmarksViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BookmarksViewController.h"/>
-        </class>
-        <class className="FlickrMapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrMapViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="HistoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HistoryViewController.h"/>
-        </class>
-        <class className="UIStoryboardSegue" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
-        </class>
-        <class className="YelpMapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/YelpMapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backToYelpMapView:" candidateClass="UIStoryboardSegue"/>
-                <relationship kind="outlet" name="yelpMapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="YelpWebPageBrowser" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/YelpWebPageBrowser.h"/>
-            <relationships>
-                <relationship kind="action" name="swipeLeftAction:"/>
-                <relationship kind="action" name="swipeRightAction:"/>
-                <relationship kind="outlet" name="popoutView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="popoutViewTextLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="IAP-L1-hhl"/>
         <segue reference="grn-P3-leO"/>
     </inferredMetricsTieBreakers>
 </document>
