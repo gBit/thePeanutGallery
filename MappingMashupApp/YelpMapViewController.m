@@ -30,10 +30,10 @@
 {
     LocationManager *locationManager;
     Annotation *selectedAnnotation;
-    NSMutableArray *venuesArray;
+   // NSMutableArray *venuesArray;
     NSMutableArray *photosArray;
     
-    __weak IBOutlet MKMapView *mapView;
+    __weak IBOutlet MKMapView *yelpMapView;
 }
 
 -(void)addPinsToMap;
@@ -52,14 +52,15 @@
     
     // Location Services
     //locationManager = appDelegate.locationManager;
-    [mapView setShowsUserLocation:YES];
+    [yelpMapView setShowsUserLocation:YES];
     
     APIManager *yelpAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:locationManager];
     yelpAPIManager.delegate = self;
     
     // Allocate objects
     // [possibly allocate the venuesArray later?]
-    venuesArray = [[NSMutableArray alloc]init];
+        //Commented line 63 our 3.21.13
+    //venuesArray = [[NSMutableArray alloc]init];
     //
     //This view controller SUCCESSFULLY imports the starting lat/long from the Flickr view controller.
     //VenuesArray is nil here (empty pointer)
@@ -87,7 +88,7 @@
     };
     
     MKCoordinateRegion originRegion = {originLocationCoordinate, originSpan};
-    [mapView setRegion:originRegion animated:YES];
+    [yelpMapView setRegion:originRegion animated:YES];
     
     
     [yelpAPIManager searchYelpForDelegates];
@@ -126,7 +127,7 @@
 */
 -(void) didReceiveYelpData:(NSMutableArray *)venuesArray
 {
-     [self addPinsToMap:photosArray];
+     [self addPinsToMap:venuesArray];
 
 }
 
@@ -138,7 +139,7 @@
     //zoom to region of location
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
     
-    [mapView setRegion:region animated:YES];
+    [yelpMapView setRegion:region animated:YES];
     
     [locationManager stopUpdatingLocation];
 }
@@ -156,35 +157,60 @@
     //set region to mapview
     //[mapView setRegion:region animated:YES];
     
-    for (int i = 0; i < venuesArray.count; i++)
+    for (int i = 0; i < 4; i++)
     {
-        CLLocation *venueLocation = [[venuesArray objectAtIndex:i] location];
+        //CLLocation *venueLocation = [[venuesArray objectAtIndex:i] location];
         NSString *venueName = [[venuesArray objectAtIndex:i] name];
         
         //coordinate make
-        CLLocationCoordinate2D venueCoordinate;
-        venueCoordinate.longitude = venueLocation.coordinate.longitude;
-        venueCoordinate.latitude = venueLocation.coordinate.latitude;
         
-        //
-        // REVISE TO LEVERAGE NEW CUSTOM INITS //
-        //
-        // create annotation
-        // Annotation *myAnnotation = [[Annotation alloc] initWithPosition:placeCoordinate];
-        // myAnnotation.title = nameOfPlace;
-        // myAnnotation.subtitle = @"Demo subtitle";
+        float annotationLatitude =[[[venuesArray objectAtIndex:i] valueForKey:@"latitude"] floatValue];
+        float annotationLongitude =[[[venuesArray objectAtIndex:i] valueForKey:@"longitude"] floatValue];
         
-        //NSLog(@"%@", returnedArray);
-        //Add code here to capture yelp page URL
-        //NSString *yelpURLString = [[returnedArray objectAtIndex:i] valueForKey:@"yelpURL"];
-        //NSLog(@"%@", yelpURLString);
-        //myAnnotation.yelpPageURL = yelpURLString;
+        CLLocationCoordinate2D venueCoordinate = {annotationLatitude, annotationLongitude};
+        
+        NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"urlString"];
+        //NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"urlString"];
+        
+        //        Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:@"Demo Subtite" urlString:urlString];
+        
+        Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:@"Demo Subtite" urlString:urlString];
+        
         
         //add to map
-        //[myMapView addAnnotation:myAnnotation];
-        
-        
+        [yelpMapView addAnnotation:myAnnotation];
     }
+    
+    
+//    for (int i = 0; i < venuesArray.count; i++)
+//    {
+//        CLLocation *venueLocation = [[venuesArray objectAtIndex:i] location];
+//        NSString *venueName = [[venuesArray objectAtIndex:i] name];
+//        
+//        //coordinate make
+//        CLLocationCoordinate2D venueCoordinate;
+//        venueCoordinate.longitude = venueLocation.coordinate.longitude;
+//        venueCoordinate.latitude = venueLocation.coordinate.latitude;
+//        
+//        //
+//        // REVISE TO LEVERAGE NEW CUSTOM INITS //
+//        //
+//        // create annotation
+//        // Annotation *myAnnotation = [[Annotation alloc] initWithPosition:placeCoordinate];
+//        // myAnnotation.title = nameOfPlace;
+//        // myAnnotation.subtitle = @"Demo subtitle";
+//        
+//        //NSLog(@"%@", returnedArray);
+//        //Add code here to capture yelp page URL
+//        //NSString *yelpURLString = [[returnedArray objectAtIndex:i] valueForKey:@"yelpURL"];
+//        //NSLog(@"%@", yelpURLString);
+//        //myAnnotation.yelpPageURL = yelpURLString;
+//        
+//        //add to map
+//        //[myMapView addAnnotation:myAnnotation];
+//        
+//        
+//    }
     //NSLog(@"%@", [[myMapView.annotations objectAtIndex:0] title]);
 }
 
@@ -224,15 +250,15 @@
     //Note: This should break when we switch from Yelp annotations
     //to Flickr photos.
     //Once it doees work, delete this comment
-    Business *selectedBusiness = [NSEntityDescription insertNewObjectForEntityForName:@"Business" inManagedObjectContext:managedObjectContext];
-    
-    selectedBusiness.name = view.annotation.title;
-    
-    NSError *error;
-    if (![managedObjectContext save:&error])
-    {
-        NSLog(@"failed to save: %@", [error userInfo]);
-    }
+//    Business *selectedBusiness = [NSEntityDescription insertNewObjectForEntityForName:@"Business" inManagedObjectContext:managedObjectContext];
+//    
+//    selectedBusiness.name = view.annotation.title;
+//    
+//    NSError *error;
+//    if (![managedObjectContext save:&error])
+//    {
+//        NSLog(@"failed to save: %@", [error userInfo]);
+//    }
     
     //NSLog(@"Logging out the annotation %@", view.annotation.title);
 }
@@ -254,7 +280,7 @@
 {
     YelpWebPageBrowser * ywpb = [segue destinationViewController];
     //Future Ross, this might break
-    //ywpb.yelpURLString = selectedAnnotation.yelpPageURL;
+    ywpb.yelpURLString = selectedAnnotation.urlString;
     
 }
 
