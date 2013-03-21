@@ -91,8 +91,6 @@
 		83BB6B6F16FA0B1A003A4506 /* RossScratchpad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RossScratchpad.h; sourceTree = "<group>"; };
 		83D97AF316FB859C00B525E2 /* circleMask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circleMask@2x.png"; sourceTree = "<group>"; };
 		83D97AF516FB872000B525E2 /* circleMaskShine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "circleMaskShine@2x.png"; path = "MappingMashupApp/circleMaskShine@2x.png"; sourceTree = "<group>"; };
-		83D97AF716FB970600B525E2 /* CVCustomCalloutAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVCustomCalloutAnnotationView.h; sourceTree = "<group>"; };
-		83D97AF816FB970600B525E2 /* CVCustomCalloutAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CVCustomCalloutAnnotationView.m; sourceTree = "<group>"; };
 		83E3AE8F16FA687A00A8F27E /* webviewpopout_shelf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "webviewpopout_shelf@2x.png"; sourceTree = "<group>"; };
 		83FE37E016F76CD6000C9935 /* FlickrMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrMapViewController.h; sourceTree = "<group>"; };
 		83FE37E116F76CD6000C9935 /* FlickrMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrMapViewController.m; sourceTree = "<group>"; };
@@ -164,8 +162,6 @@
 		83D97AF916FB970F00B525E2 /* CustomCalloutClasses */ = {
 			isa = PBXGroup;
 			children = (
-				83D97AF716FB970600B525E2 /* CVCustomCalloutAnnotationView.h */,
-				83D97AF816FB970600B525E2 /* CVCustomCalloutAnnotationView.m */,
 			);
 			name = CustomCalloutClasses;
 			sourceTree = "<group>";

@@ -25,9 +25,11 @@
     //NSMutableArray *venuesArray;
     float latitudeToPass;
     float longitudeToPass;
+    NSString * photoTitleToPass;
     
     __weak IBOutlet MKMapView *mapView;
 }
+
 
 @end
 
@@ -37,7 +39,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     
     //God help us, please make the location services work! Puh_LEASE JESUS
     [self startLocationUpdates];
@@ -240,8 +241,10 @@
     
     //Set the imageView inside the 
     UIImageView *photoContainer = [[UIImageView alloc] initWithImage:photoThumbnailImage];
+    photoContainer.contentMode = UIViewContentModeScaleAspectFit;
     
-    UIView *leftCAV = [[UIView alloc] initWithFrame:CGRectMake(0,0,64,64)];
+    UIView *leftCAV = [[UIView alloc] initWithFrame:CGRectMake(0,0,32,32)];
+    leftCAV.clipsToBounds = YES;
     [leftCAV addSubview : photoContainer];
 
     annotationView.leftCalloutAccessoryView = leftCAV;
@@ -310,11 +313,12 @@
     //These instance variables will be passed in the segue
     latitudeToPass = selectedAnnotation.coordinate.latitude;
     longitudeToPass = selectedAnnotation.coordinate.longitude;
+    photoTitleToPass = selectedAnnotation.title;
     
     [self performSegueWithIdentifier:@"toYelpMapView" sender:nil];
     
-    
 }
+
 
 # pragma mark - Transitions
 
@@ -325,6 +329,7 @@
     YelpMapViewController *ymvc = [segue destinationViewController];
     ymvc.originPhotoLongitude = longitudeToPass;
     ymvc.originPhotoLatitude = latitudeToPass;
+        ymvc.originPhotoTitle = photoTitleToPass;
     }
 }
 

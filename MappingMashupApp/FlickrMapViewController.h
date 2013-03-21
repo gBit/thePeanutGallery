@@ -12,7 +12,7 @@
 #import "APIManager.h"
 #import <CoreLocation/CoreLocation.h>
 #import "Venue.h"
-#import "CVCustomCalloutAnnotationView.h"
+
 
 
 @interface FlickrMapViewController : UIViewController <MKMapViewDelegate, APIManagerDelegate, CLLocationManagerDelegate>

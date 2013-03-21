@@ -40,7 +40,7 @@
 @end
 
 @implementation YelpMapViewController
-@synthesize managedObjectContext, originPhotoLatitude, originPhotoLongitude;
+@synthesize managedObjectContext, originPhotoLatitude, originPhotoLongitude, originPhotoTitle;
 
 - (void)viewDidLoad
 {
@@ -88,7 +88,10 @@
     };
     
     MKCoordinateRegion originRegion = {originLocationCoordinate, originSpan};
-    [yelpMapView setRegion:originRegion animated:YES];
+    Annotation *originAnnotation = [[Annotation alloc] initWithCoordinate:originLocationCoordinate title:originPhotoTitle subtitle:@"originPhoto" urlString:@""];
+    
+     [yelpMapView setRegion:originRegion animated:YES];
+     [yelpMapView addAnnotation:originAnnotation];
     
     
     [yelpAPIManager searchYelpForDelegates];
@@ -228,6 +231,12 @@
     
     if (annotationView == nil) {
         annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
+    }
+    
+    //Code for specifically dealing with the origin photo
+    if ([[annotation subtitle] isEqual: @"originPhoto"])
+    {
+        return nil;
     }
     
     //    [detailButton addTarget:self
