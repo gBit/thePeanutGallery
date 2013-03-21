@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Yelp Map View Controller-->
+        <!--Yelp Map View Controller - WiFi Locations-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="YelpMapViewController" sceneMemberID="viewController">
@@ -21,6 +21,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="WiFi Locations" id="ONv-7V-dEl"/>
                     <connections>
                         <outlet property="yelpMapView" destination="fse-RH-zXz" id="HHQ-eP-hJK"/>
                         <segue destination="qVE-kj-ncM" kind="push" identifier="toYelpWebPage" id="grn-P3-leO"/>
@@ -31,7 +32,7 @@
             </objects>
             <point key="canvasLocation" x="1017" y="25"/>
         </scene>
-        <!--Flickr Map View Controller - explore-->
+        <!--Flickr Map View Controller - Wi-Where-->
         <scene sceneID="5rQ-JE-I32">
             <objects>
                 <viewController id="L5I-mE-d7D" customClass="FlickrMapViewController" sceneMemberID="viewController">
@@ -49,7 +50,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="explore" id="EnG-07-VoI"/>
+                    <navigationItem key="navigationItem" title="Wi-Where" id="UUg-sh-XIb"/>
                     <connections>
                         <outlet property="mapView" destination="7uf-B3-ybP" id="qbj-0f-eqs"/>
                         <segue destination="2" kind="push" identifier="toYelpMapView" id="yxN-ze-z9q"/>
@@ -252,11 +253,11 @@
             </objects>
             <point key="canvasLocation" x="888" y="758"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar Controller - Bookmarks-->
         <scene sceneID="oO3-Hi-Sd7">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="jTz-JW-Bre" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="tTS-da-KVz"/>
+                    <navigationItem key="navigationItem" title="Bookmarks" id="tTS-da-KVz"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="vFv-sq-U5G">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
@@ -276,6 +277,40 @@
     <resources>
         <image name="webviewpopout_shelf@2x.png" width="640" height="94"/>
     </resources>
+    <classes>
+        <class className="BookmarksViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BookmarksViewController.h"/>
+        </class>
+        <class className="FlickrMapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrMapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="HistoryViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HistoryViewController.h"/>
+        </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
+        <class className="YelpMapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/YelpMapViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backToYelpMapView:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="outlet" name="yelpMapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="YelpWebPageBrowser" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/YelpWebPageBrowser.h"/>
+            <relationships>
+                <relationship kind="action" name="swipeLeftAction:"/>
+                <relationship kind="action" name="swipeRightAction:"/>
+                <relationship kind="outlet" name="popoutView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="popoutViewTextLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -26,6 +26,7 @@
     float latitudeToPass;
     float longitudeToPass;
     NSString * photoTitleToPass;
+    NSString * photoThumbnailStringToPass;
     
     __weak IBOutlet MKMapView *mapView;
 }
@@ -43,8 +44,13 @@
     //God help us, please make the location services work! Puh_LEASE JESUS
     [self startLocationUpdates];
     
-    //Edit by ross: 3.19.13 - add navigation button to Bookmarks viewController (not implemented yet)
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(bookmarkButtonPressed)];
+    //Add refresh button to Bookmarks viewController --CURRENTLY GOES TO BOOKMARKS, NEED TO WRITE METHOD FOR THIS
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(bookmarkButtonPressed)];
+    //Add bookmarks button to viewController
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(bookmarkButtonPressed)];
+
+    
+    
     //Created method "bookmarkButtonPressed, currently has no action - End edit
     
     // Core Data
@@ -179,12 +185,14 @@
         CLLocationCoordinate2D venueCoordinate = {annotationLatitude, annotationLongitude};
 
         //NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"yelpURL"];
-        NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"urlString"];
+        NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"imageURL"];
         
 //        Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:@"Demo Subtite" urlString:urlString];
         
         Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:venueURL urlString:urlString];
         myAnnotation.flickrThumbnailString = [[venuesArray objectAtIndex:i] imageURL];
+        
+        //This line is what is used to populate the next segue's data
         selectedAnnotation = myAnnotation;
 
         //add to map
@@ -241,6 +249,7 @@
     
     //Set the imageView inside the 
     UIImageView *photoContainer = [[UIImageView alloc] initWithImage:photoThumbnailImage];
+
     photoContainer.contentMode = UIViewContentModeScaleAspectFit;
     
     UIView *leftCAV = [[UIView alloc] initWithFrame:CGRectMake(0,0,32,32)];
@@ -314,6 +323,7 @@
     latitudeToPass = selectedAnnotation.coordinate.latitude;
     longitudeToPass = selectedAnnotation.coordinate.longitude;
     photoTitleToPass = selectedAnnotation.title;
+    photoThumbnailStringToPass = selectedAnnotation.urlString;
     
     [self performSegueWithIdentifier:@"toYelpMapView" sender:nil];
     
@@ -330,6 +340,7 @@
     ymvc.originPhotoLongitude = longitudeToPass;
     ymvc.originPhotoLatitude = latitudeToPass;
         ymvc.originPhotoTitle = photoTitleToPass;
+        ymvc.originPhotoThumbnailString = photoThumbnailStringToPass;
     }
 }
 
