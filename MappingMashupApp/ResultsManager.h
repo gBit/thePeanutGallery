@@ -7,7 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AppDelegate.h"
 
 @interface ResultsManager : NSObject
+{
+    NSArray *allHistories;
+    NSArray *oldVenues;
+}
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
+-(ResultsManager*)initWithAllFetchedResults;
+-(void)removeVenuesOverLimit;
 
 @end

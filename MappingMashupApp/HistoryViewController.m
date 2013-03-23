@@ -46,7 +46,7 @@
     historyArray = [self allEntitiesNamed:@"Business"];
     
     
-    testHistory = [[NSArray alloc] initWithObjects:@"History 1", @"History 2", @"History 3", nil];
+    //testHistory = [[NSArray alloc] initWithObjects:@"History 1", @"History 2", @"History 3", nil];
 }
 
 #pragma mark -- table methods
