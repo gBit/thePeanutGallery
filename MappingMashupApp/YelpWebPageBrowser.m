@@ -10,6 +10,7 @@
 #import "Business.h"
 #import "AppDelegate.h"
 #import "NSString+Extended.h"
+#import "BookmarkedBusiness.h"
 
 @interface YelpWebPageBrowser ()
 {
@@ -28,7 +29,10 @@
 
 @implementation YelpWebPageBrowser
 
-@synthesize yelpURLString,managedObjectContext;
+@synthesize yelpURLString,managedObjectContext, name, latitude, longitude, phone, viewDate;
+
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -106,14 +110,21 @@
 -(void) addBookmark
 {
     
+    //this code will change the bookmark attribute on the currentbusiness "Business" class object
+    //AND create a new "BoomarkedBusiness" class object with the same attributes, so that it may persist even if removed from the history list
     
-    
-    //Include code here that will add the current Yelp business as a bookmark
-    //Come back to this once Core Data implementation is complete.
-    //Method call to add bookmark status to a provided venue
-    //[self addBookmarkStatusTo:(Venue *)];
-    //Tell user that bookmark has been added
     currentBusiness.isBookmarked = [NSNumber numberWithBool:YES];
+    
+    BookmarkedBusiness *businessToBookmark = [NSEntityDescription insertNewObjectForEntityForName:@"BookmarkedBusiness" inManagedObjectContext:managedObjectContext];
+    
+    
+    businessToBookmark.name = name;
+    businessToBookmark.phone = phone;
+    businessToBookmark.latitude = latitude;
+    businessToBookmark.longitude = longitude;
+    businessToBookmark.yelpURLString = yelpURLString;
+    businessToBookmark.viewDate = viewDate;
+    businessToBookmark.isBookmarked = [NSNumber numberWithBool:YES];
     
     NSError *error;
     if (![managedObjectContext save:&error])

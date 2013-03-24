@@ -189,6 +189,7 @@
         myAnnotation.name = [[venuesArray objectAtIndex:i] valueForKey:@"name"];
         myAnnotation.viewDate = [NSDate date];
         myAnnotation.yelpURLString = urlString;
+        myAnnotation.phone = [[venuesArray objectAtIndex:i] valueForKey:@"phone"];
         
         
         //add to map
@@ -278,6 +279,7 @@
     selectedBusiness.name = selectedAnnotation.name;
     selectedBusiness.yelpURLString = selectedAnnotation.yelpURLString;
     selectedBusiness.viewDate = selectedAnnotation.viewDate;
+    selectedBusiness.phone = selectedAnnotation.phone;
     
     
         NSError *error;
@@ -345,7 +347,21 @@
         
     YelpWebPageBrowser * ywpb = [segue destinationViewController];
     //Future Ross, this might break
+    
+    //carry properties over to webview so we can create a bookmarked managed object
     ywpb.yelpURLString = selectedAnnotation.yelpURLString;
+    ywpb.phone = selectedAnnotation.phone;
+    ywpb.latitude = selectedAnnotation.latitude;
+    ywpb.longitude = selectedAnnotation.longitude;
+    ywpb.name = selectedAnnotation.name;
+    ywpb.viewDate = [NSDate date];
+        
+        
+        
+
+        
+        
+        
     
     }
 }

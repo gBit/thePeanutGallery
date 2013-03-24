@@ -9,6 +9,7 @@
 #import "BookmarksViewController.h"
 #import "AppDelegate.h"
 #import "Business.h"
+#import "BookmarkedBusiness.h"
 
 @interface BookmarksViewController ()
 {
@@ -38,7 +39,7 @@
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
     
-    bookmarkArray = [self fetchBookmarks];
+    bookmarkArray = [self allEntitiesNamed:@"BookmarkedBusiness"];
     //self.navigationItem.title = [[UIBarButtonItem alloc] init];
 
     self.navigationItem.title = @"Bookmarks";
@@ -54,12 +55,16 @@
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    //............
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //The following occurs when you swipe to delete and hit delete.
+        //Put code here to delete the object from the managedObjectContext..............
         
+        BookmarkedBusiness *bookmarkedBusiness = [bookmarkArray objectAtIndex:indexPath.row];
+        //business.isBookmarked = [NSNumber numberWithBool:NO];
         
-        
-        Business *business = [bookmarkArray objectAtIndex:indexPath.row];
-        business.isBookmarked = [NSNumber numberWithBool:NO];
+        [self.managedObjectContext deleteObject:bookmarkedBusiness];
         
         NSError *error;
         if (![self.managedObjectContext save:&error])
@@ -67,9 +72,34 @@
             //NSLog(@"Add bookmark status failed.");
         }
         
-        bookmarkArray = [self fetchBookmarks];
+        bookmarkArray = [self allEntitiesNamed:@"BookmarkedBusiness"];
+        
+        
+        //bookmarkArray = [self fetchBookmarks];
         
         [tableView reloadData];
+        //[self removeBookmarkStatusFrom:business]
+    
+    
+        
+    //old delete bookmark code......
+    
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        
+//        
+//        
+//        Business *business = [bookmarkArray objectAtIndex:indexPath.row];
+//        business.isBookmarked = [NSNumber numberWithBool:NO];
+//        
+//        NSError *error;
+//        if (![self.managedObjectContext save:&error])
+//        {
+//            //NSLog(@"Add bookmark status failed.");
+//        }
+//        
+//        bookmarkArray = [self allEntitiesNamed:@"BookmarkedBusiness"];
+//        
+//        [tableView reloadData];
         //[self removeBookmarkStatusFrom:business]
     }
 }
@@ -106,40 +136,40 @@
     Business *currentBusiness = [bookmarkArray objectAtIndex:[indexPath row]];
     
 	currentCell.textLabel.text = currentBusiness.name;
-    currentCell.detailTextLabel.text = currentBusiness.yelpURLString;
+    currentCell.detailTextLabel.text = currentBusiness.phone;
 	return currentCell;
     
 }
 
-//core data fetch for bookmarked businesses
--(NSArray*) fetchBookmarks
-{
-    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Business" inManagedObjectContext:self.managedObjectContext];
-    NSFetchRequest * fetchRequest = [[NSFetchRequest alloc]init];
-    NSFetchedResultsController * fetchResultsController;
-    
-    //Now customize your search! We'd want to switch this to see if isBookmarked == true
-    NSArray * sortDescriptors = [[NSArray alloc] initWithObjects:nil];
-    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"isBookmarked == %@", [NSNumber numberWithBool:YES]];
-    NSError *searchError;
-    
-
-    
-    //Lock and load
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    [fetchRequest setPredicate:predicate];
-    [fetchRequest setEntity:entityDescription];
-    fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    
-    [fetchResultsController performFetch:&searchError];
-    //Something about making the arrays equal size or some shit. Gawd.
-    //This will update your display array with your fetch results
-    bookmarkArray = fetchResultsController.fetchedObjects;
-    
-    
-    return fetchResultsController.fetchedObjects;
-    
-}
+//core data fetch for bookmarked businesses SWITCHED OFF AT THE MOMENT
+//-(NSArray*) fetchBookmarks
+//{
+//    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Business" inManagedObjectContext:self.managedObjectContext];
+//    NSFetchRequest * fetchRequest = [[NSFetchRequest alloc]init];
+//    NSFetchedResultsController * fetchResultsController;
+//    
+//    //Now customize your search! We'd want to switch this to see if isBookmarked == true
+//    NSArray * sortDescriptors = [[NSArray alloc] initWithObjects:nil];
+//    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"isBookmarked == %@", [NSNumber numberWithBool:YES]];
+//    NSError *searchError;
+//    
+//
+//    
+//    //Lock and load
+//    [fetchRequest setSortDescriptors:sortDescriptors];
+//    [fetchRequest setPredicate:predicate];
+//    [fetchRequest setEntity:entityDescription];
+//    fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+//    
+//    [fetchResultsController performFetch:&searchError];
+//    //Something about making the arrays equal size or some shit. Gawd.
+//    //This will update your display array with your fetch results
+//    bookmarkArray = fetchResultsController.fetchedObjects;
+//    
+//    
+//    return fetchResultsController.fetchedObjects;
+//    
+//}
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -158,6 +188,21 @@
     ywpb.yelpURLString = @"http://m.yelp.com";
     //Also, here, pass the Business (managed object) that is saved here to the webPageBrowser.
 }
+
+-(NSArray *)allEntitiesNamed:(NSString *)entityName
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext];
+    NSError *error;
+    
+    fetchRequest.entity = entity;
+    
+    return [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+}
+
+
+
+
 
 #pragma mark -- end of document
 - (void)didReceiveMemoryWarning

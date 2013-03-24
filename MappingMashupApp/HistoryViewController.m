@@ -77,7 +77,7 @@
     Business *currentBusiness = [historyArray objectAtIndex:[indexPath row] ];
     
 	currentCell.textLabel.text = currentBusiness.name;
-    currentCell.detailTextLabel.text = currentBusiness.yelpURLString;
+    currentCell.detailTextLabel.text = currentBusiness.phone;
 	return currentCell;
     
 }
@@ -97,12 +97,10 @@
 }
 
 // Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //The following occurs when you swipe to delete and hit delete.
-        //[self deleteVenue:(Venue*)];
-        
-        
         //Put code here to delete the object from the managedObjectContext..............
         
         Business *business = [historyArray objectAtIndex:indexPath.row];
@@ -124,19 +122,7 @@
         [tableView reloadData];
         //[self removeBookmarkStatusFrom:business]
         
-        
-        
-        
-        
-        //From vokal spies project, to delete on swipe...
-//        Person * person = [displaySpies objectAtIndex:indexPath.row];
-//        [self deletePerson:person];
-//        
-//        displaySpies = [self getCurrentSpies];
-//        
-//        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//        
-//        [tableView reloadData];
+
     }
 }
 
