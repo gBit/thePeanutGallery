@@ -40,12 +40,16 @@
 @implementation FlickrMapViewController
 @synthesize managedObjectContext;
 
+dispatch_queue_t myQueue;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     //God help us, please make the location services work! Puh_LEASE JESUS
     [self startLocationUpdates];
+    
+    myQueue = dispatch_queue_create("com.thePeanutGallery.flickrGCDTest", NULL);
     
     //Add refresh button to Bookmarks viewController --CURRENTLY GOES TO BOOKMARKS, NEED TO WRITE METHOD FOR THIS
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(bookmarkButtonPressed)];
@@ -73,26 +77,9 @@
     // [possibly allocate the venuesArray later?]
    
     [mrAPIManager searchYelpThenFlickrForDelegates];
-
-    
-    
-    
-    
     
     ResultsManager *mrResultsManager = [[ResultsManager alloc]initWithAllFetchedResults];
     [mrResultsManager removeVenuesOverLimit];
-    
-    NSLog(@"-------------------%@----------------------", mrResultsManager);
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
 # pragma mark - User Location Methods
@@ -186,6 +173,11 @@
     //set region to mapview
     [mapView setRegion:region animated:YES];
     
+    
+    dispatch_async(myQueue, ^void(void)
+                   {
+                       
+                   
     for (int i = 0; i < 4; i++)
     {
         //CLLocation *venueLocation = [[venuesArray objectAtIndex:i] location];
@@ -214,6 +206,7 @@
         [mapView addAnnotation:myAnnotation];
         
     }
+                       });
 
 }
 
