@@ -28,6 +28,7 @@
     
     //David's Yelp API key
     //ylWkpXJFz6-ZI3PvDG519A
+    //
     
     //'Ross''s Yelp API key
     //z8HZy2Hb2axZox05xfTW9w
@@ -36,7 +37,11 @@
     //xltTZDS7mgHV7wtu8MkZSg
     
     yelpAPICall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=%f&limit=%d&ywsid=xltTZDS7mgHV7wtu8MkZSg", search, latitude, longitude, radius, maxItems];
+    NSLog(@"%@", yelpAPICall);
+    
+    
     return self;
+    
 }
 
 #pragma mark - Yelp Methods
@@ -133,6 +138,8 @@
         currentVenue.longitude =[[ business valueForKey:@"longitude"] floatValue];
         currentVenue.latitude = [[business valueForKey:@"latitude"] floatValue];
         currentVenue.photoTitle = [business valueForKey:@"title"];
+        currentVenue.phone = [business valueForKey:@"phone"];
+        
         
         [yelpVenuesArray addObject:currentVenue];
         

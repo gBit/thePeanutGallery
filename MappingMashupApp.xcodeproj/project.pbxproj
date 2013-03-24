@@ -10,6 +10,7 @@
 		6B2A007816FB984600F0C703 /* NSString+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2A007716FB984600F0C703 /* NSString+Extended.m */; };
 		6B2D7B2A16F8FE2B00E6D3A5 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D7B2916F8FE2B00E6D3A5 /* Photo.m */; };
 		6B2D7B2D16F8FE2B00E6D3A5 /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D7B2C16F8FE2B00E6D3A5 /* Business.m */; };
+		6B2F834B16FF51C4004551F9 /* BookmarkedBusiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2F834A16FF51C4004551F9 /* BookmarkedBusiness.m */; };
 		830729D416F766D6000F0037 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 830729D216F766D6000F0037 /* Model.xcdatamodeld */; };
 		83235E2C16FA27F80066659B /* webViewPopOut@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83235E2B16FA27F80066659B /* webViewPopOut@2x.png */; };
 		83332D2316F90F460085BDB6 /* wifiIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83332D2216F90F460085BDB6 /* wifiIcon@2x.png */; };
@@ -78,6 +79,8 @@
 		6B2D7B2916F8FE2B00E6D3A5 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photo.m; path = ../Photo.m; sourceTree = "<group>"; };
 		6B2D7B2B16F8FE2B00E6D3A5 /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Business.h; path = ../Business.h; sourceTree = "<group>"; };
 		6B2D7B2C16F8FE2B00E6D3A5 /* Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Business.m; path = ../Business.m; sourceTree = "<group>"; };
+		6B2F834916FF51C4004551F9 /* BookmarkedBusiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkedBusiness.h; sourceTree = "<group>"; };
+		6B2F834A16FF51C4004551F9 /* BookmarkedBusiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkedBusiness.m; sourceTree = "<group>"; };
 		830729D316F766D6000F0037 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		83235E2B16FA27F80066659B /* webViewPopOut@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "webViewPopOut@2x.png"; sourceTree = "<group>"; };
 		83332D2216F90F460085BDB6 /* wifiIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wifiIcon@2x.png"; sourceTree = "<group>"; };
@@ -324,6 +327,8 @@
 				6B2D7B2C16F8FE2B00E6D3A5 /* Business.m */,
 				6B2D7B2816F8FE2B00E6D3A5 /* Photo.h */,
 				6B2D7B2916F8FE2B00E6D3A5 /* Photo.m */,
+				6B2F834916FF51C4004551F9 /* BookmarkedBusiness.h */,
+				6B2F834A16FF51C4004551F9 /* BookmarkedBusiness.m */,
 			);
 			name = Managed;
 			sourceTree = "<group>";
@@ -443,6 +448,7 @@
 				83B0D00516FA1A1900C9D8F8 /* BookmarksViewController.m in Sources */,
 				83B0D00A16FA1A8900C9D8F8 /* HistoryViewController.m in Sources */,
 				6B2A007816FB984600F0C703 /* NSString+Extended.m in Sources */,
+				6B2F834B16FF51C4004551F9 /* BookmarkedBusiness.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

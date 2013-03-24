@@ -18,6 +18,9 @@
 #import "Photo.h"
 #import "Business.h"
 
+//Paul Testing - delete if this comment is still here on 3/24
+#import "ResultsManager.h"
+
 @interface FlickrMapViewController ()
 {
     LocationManager *locationManager;
@@ -72,13 +75,25 @@
     [mrAPIManager searchYelpThenFlickrForDelegates];
 
     
-    //NSLog(@"----- venues array --------%@", venuesArray);
     
-    //[self addPinsToMap];
     
-   }
+    
+    
+    ResultsManager *mrResultsManager = [[ResultsManager alloc]initWithAllFetchedResults];
+    [mrResultsManager removeVenuesOverLimit];
+    
+    NSLog(@"-------------------%@----------------------", mrResultsManager);
 
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
 
 # pragma mark - User Location Methods
 // deprecated: fix later
