@@ -56,8 +56,8 @@
     }
     missLocationManager.delegate = self;
     [missLocationManager startUpdatingLocation];
-    NSDate *future = [NSDate dateWithTimeIntervalSinceNow: 3];
-    [NSThread sleepUntilDate:future];
+//    NSDate *future = [NSDate dateWithTimeIntervalSinceNow: 3];
+//    [NSThread sleepUntilDate:future];
     
     
     //Add refresh button to Bookmarks viewController --CURRENTLY GOES TO BOOKMARKS, NEED TO WRITE METHOD FOR THIS
