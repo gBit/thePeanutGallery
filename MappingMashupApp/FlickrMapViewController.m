@@ -67,7 +67,8 @@
     //Add bookmarks button to viewController
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(bookmarkButtonPressed)];
 
-    
+    NSDate *future = [NSDate dateWithTimeIntervalSinceNow: 2 ];
+    [NSThread sleepUntilDate:future];
     //Created method "bookmarkButtonPressed, currently has no action - End edit
     
     // Core Data
