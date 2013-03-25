@@ -33,6 +33,7 @@
    // NSMutableArray *venuesArray;
     NSMutableArray *photosArray;
     
+    __weak IBOutlet UIImageView *photoViewerUIImageView;
     __weak IBOutlet MKMapView *yelpMapView;
 }
 
@@ -79,22 +80,12 @@
     //Note bookmarkButtonPressed method needs to be copied in
     
     
-    // Allocate objects
-    // [possibly allocate the venuesArray later?]
-        //Commented line 63 our 3.21.13
-    //venuesArray = [[NSMutableArray alloc]init];
-    //
-    //This view controller SUCCESSFULLY imports the starting lat/long from the Flickr view controller.
-    //VenuesArray is nil here (empty pointer)
-    //Yelp API manager didn't kick us out of this class to APIManager.m
-    //Need to verify that this Yelp search (with no Flickr results) is using the passed lat/long.
-    //If you go to this VC by tapping a disclosure button from previous one, it will crash.
-    //Segue does work, data makes it over, THEN it crashes
-    //Crash appears to confirm on "didreceiveYelpData
-    //We end up at lat/long 0/0 when this runs, so look into location services problems
-    //
-    //Need to make the below a new, separate Yelp search that does NOT touch Flickr anything.
-    //
+    NSString *photoFullSizeURLString = [originPhotoThumbnailString stringByReplacingOccurrencesOfString:@"s.jpg" withString:@"n.jpg"];
+    NSURL *photoFullSizeURL = [NSURL URLWithString:photoFullSizeURLString];
+    
+    NSData *photoData = [NSData dataWithContentsOfURL:photoFullSizeURL];
+    UIImage *photoFullSize = [UIImage imageWithData:photoData];
+    photoViewerUIImageView.image = photoFullSize;
     
 
     Annotation *originAnnotation = [[Annotation alloc] initWithCoordinate:originLocationCoordinate title:originPhotoTitle subtitle:@"Your Selected Photo" urlString:originPhotoThumbnailString];
