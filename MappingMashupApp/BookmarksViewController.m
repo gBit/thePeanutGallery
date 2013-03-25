@@ -132,7 +132,15 @@
 {
     YelpWebPageBrowser * ywpb = [segue destinationViewController];
     NSIndexPath *path = tableViewOutlet.indexPathForSelectedRow;
+    BookmarkedBusiness *businessForSegue = [bookmarkArray objectAtIndex:path.row];
     ywpb.yelpURLString = [[bookmarkArray objectAtIndex:path.row] yelpURLString];
+    ywpb.name = businessForSegue.name;
+    ywpb.longitude = businessForSegue.longitude;
+    ywpb.latitude = businessForSegue.latitude;
+    ywpb.phone = businessForSegue.phone;
+    ywpb.viewDate = businessForSegue.viewDate;
+    
+    
 
 }
 
@@ -168,35 +176,14 @@
         NSError *error;
         if (![self.managedObjectContext save:&error])
         {
-            //NSLog(@"Add bookmark status failed.");
+            NSLog(@"Add bookmark status failed.");
         }
         
         bookmarkArray = [self allEntitiesNamed:@"BookmarkedBusiness"];
         
         [tableView reloadData];
        
-        
-        
-        
-        //old delete bookmark code......
-        
-        //    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //
-        //
-        //
-        //        Business *business = [bookmarkArray objectAtIndex:indexPath.row];
-        //        business.isBookmarked = [NSNumber numberWithBool:NO];
-        //
-        //        NSError *error;
-        //        if (![self.managedObjectContext save:&error])
-        //        {
-        //            //NSLog(@"Add bookmark status failed.");
-        //        }
-        //
-        //        bookmarkArray = [self allEntitiesNamed:@"BookmarkedBusiness"];
-        //        
-        //        [tableView reloadData];
-        //[self removeBookmarkStatusFrom:business]
+
     }
 }
 

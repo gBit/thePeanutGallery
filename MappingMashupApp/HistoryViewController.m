@@ -203,7 +203,16 @@
     YelpWebPageBrowser * ywpb = [segue destinationViewController];
 
     NSIndexPath *path = historyTableViewOutlet.indexPathForSelectedRow;
+    //ywpb.yelpURLString = [[historyArray objectAtIndex:path.row] yelpURLString];
+    Business *businessForSegue = [historyArray objectAtIndex:path.row];
     ywpb.yelpURLString = [[historyArray objectAtIndex:path.row] yelpURLString];
+    ywpb.name = businessForSegue.name;
+    ywpb.longitude = businessForSegue.longitude;
+    ywpb.latitude = businessForSegue.latitude;
+    ywpb.phone = businessForSegue.phone;
+    ywpb.viewDate = businessForSegue.viewDate;
+    
+    
 
 }
 
