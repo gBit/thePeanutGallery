@@ -196,7 +196,7 @@
         
         NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"urlString"];
 
-        Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:@"Demo Subtite" urlString:urlString];
+        Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:nil urlString:urlString];
         myAnnotation.longitude = longitude;
         myAnnotation.latitude = latitude;
         myAnnotation.name = [[venuesArray objectAtIndex:i] valueForKey:@"name"];
