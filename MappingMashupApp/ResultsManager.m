@@ -10,7 +10,7 @@
 #import "Business.h"
 @implementation ResultsManager
 
-//I hope emily isnt woking on this
+
 -(ResultsManager*)initWithAllFetchedResults
 {
     self = [super init];

@@ -14,6 +14,7 @@
 {
     NSArray * testHistory;
     NSArray *historyArray;
+    NSMutableArray *reverseHistoryArray;
     NSArray *bookmarkArray;
 }
 
