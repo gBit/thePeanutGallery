@@ -18,7 +18,7 @@
 // Initialize Yelp APIManager w/ custom API call
 // Passes in custom search string and user's current location
 //
-- (APIManager*)initWithYelpSearch:(NSString*)search andLocation:(CLLocationCoordinate2D)userLocation
+- (APIManager*)initWithYelpSearch:(NSString*)search andLocation:(CLLocationCoordinate2D)userLocation withMaxResults: (int) maxItems
 {
 //    
 //    float latitude = 41.894032;
@@ -28,7 +28,7 @@
     float longitude = userLocation.longitude;
     NSLog(@"%f", longitude);
     
-    int maxItems = 6;
+//     maxItems = 6;
     float radius = 0.402336;
     
 

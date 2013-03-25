@@ -71,7 +71,7 @@
     
     MKCoordinateRegion originRegion = {originLocationCoordinate, originSpan};
     
-    APIManager *yelpAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:originLocationCoordinate];
+    APIManager *yelpAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:originLocationCoordinate withMaxResults:15];
     yelpAPIManager.delegate = self;
     
     //Add Bookmarks button
