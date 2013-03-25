@@ -68,7 +68,7 @@
                                      for (i=0; i < yelpBusinessesArray.count; i++)
                                      {
                                      
-                                     NSString *search = @"color";
+                                     NSString *search = @"color,+colorful,+shadow,+macro,+graffiti,+architecture,+street";
                                      NSString* latitude = [[yelpBusinessesArray objectAtIndex:i] valueForKey:@"latitude"];
                                      NSString *longitude = [[yelpBusinessesArray objectAtIndex:i] valueForKey:@"longitude"] ;
 
@@ -77,7 +77,7 @@
                                          //Em's Flickr API Key 90087da25a0e607ed65734c6bbd4bc01dec7b05e
                                          //Ross Flickr API Key 4dcd4b336fc303a2d36023d3c4c1b214
                                          
-                                     flickrAPICall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=4dcd4b336fc303a2d36023d3c4c1b214&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.5&extras=url_sq%%2C+geo", search, latitude, longitude];
+                                     flickrAPICall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=4dcd4b336fc303a2d36023d3c4c1b214&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.5&per_page=3&extras=url_sq%%2C+geo", search, latitude, longitude];
                                          NSLog(@"%@", flickrAPICall);
                                          
                                          [self searchFlickrWithLatitude:latitude andLongitude:longitude];
