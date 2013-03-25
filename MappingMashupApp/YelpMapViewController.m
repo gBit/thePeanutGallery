@@ -63,8 +63,10 @@
     
     MKCoordinateSpan originSpan =
     {
-        .latitudeDelta = 0.01810686f,
-        .longitudeDelta = 0.01810686f
+//        .latitudeDelta = 0.01810686f,
+//        .longitudeDelta = 0.01810686f
+        .latitudeDelta = 0.01450686f,
+        .longitudeDelta = 0.01450686f
     };
     
     MKCoordinateRegion originRegion = {originLocationCoordinate, originSpan};
@@ -103,7 +105,7 @@
     //Darkening overlay on map, if we want one
     MKCircle *overlay = [MKCircle circleWithCenterCoordinate:originLocationCoordinate radius:100000];
     overlay.title = @"Current region";
-    //[yelpMapView addOverlay:overlay];
+    [yelpMapView addOverlay:overlay];
     
     
     [yelpMapView setRegion:originRegion animated:YES];
@@ -314,8 +316,8 @@
     {
         MKCircleView*    aView = [[MKCircleView alloc] initWithCircle:(MKCircle *)overlay];
         
-        aView.fillColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-        aView.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+        aView.fillColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
+        aView.strokeColor = [[UIColor whiteColor] colorWithAlphaComponent:0.2];
         aView.lineWidth = 1;
         
         return aView;

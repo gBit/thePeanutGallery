@@ -146,9 +146,19 @@
 -(void)mapView:(MKMapView *)userMapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     CLLocationCoordinate2D loc = userLocation.coordinate;
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
+//    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
     
-    [userMapView setRegion:region animated:YES];
+    MKCoordinateSpan span =
+    {
+        //        .latitudeDelta = 0.01810686f,
+        //        .longitudeDelta = 0.01810686f
+        .latitudeDelta = 0.00950686f,
+        .longitudeDelta = 0.00950686f
+    };
+    
+    MKCoordinateRegion testRegion = MKCoordinateRegionMake(loc, span);
+    
+//    [userMapView setRegion:testRegion animated:YES];
 }
 
 # pragma mark - Annotation Methods
@@ -192,8 +202,10 @@
     // make region our area
     MKCoordinateSpan span =
     {
-        .latitudeDelta = 0.01810686f,
-        .longitudeDelta = 0.01810686f
+//        .latitudeDelta = 0.01810686f,
+//        .longitudeDelta = 0.01810686f
+        .latitudeDelta = 0.00950686f,
+        .longitudeDelta = 0.00950686f
     };
     
     MKCoordinateRegion region = {missLocationManager.location.coordinate, span};

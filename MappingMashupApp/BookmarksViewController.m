@@ -175,6 +175,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 //    [self performSegueWithIdentifier:@"bookmarkToWebView" sender:self];
+    
     [tableView deselectRowAtIndexPath: indexPath animated:YES];
     
 }
