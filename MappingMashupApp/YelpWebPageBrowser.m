@@ -60,7 +60,7 @@
     
     //Enable button just in case
     [self.navigationItem.rightBarButtonItem setEnabled:YES];
-    
+    [self fetchToSeeIfCurrentBusinessIsBookmarkedAndSetButtonDisabled];
     //Check to see if this venue is already bookmarked
 //    if (venue.isBookmarked == YES)
 //    {
@@ -104,6 +104,36 @@
     
     //End of method bracket
 }
+
+
+-(void)fetchToSeeIfCurrentBusinessIsBookmarkedAndSetButtonDisabled
+{
+
+        NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"BookmarkedBusiness" inManagedObjectContext:self.managedObjectContext];
+        NSFetchRequest * fetchRequest = [[NSFetchRequest alloc]init];
+        NSFetchedResultsController * fetchResultsController;
+    
+        //Now customize your search! We'd want to switch this to see if isBookmarked == true
+        NSArray * sortDescriptors = [[NSArray alloc] initWithObjects:nil];
+        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"yelpURLString == %@", yelpURLString];
+        NSError *searchError;
+
+        //Lock and load
+        [fetchRequest setSortDescriptors:sortDescriptors];
+        [fetchRequest setPredicate:predicate];
+        [fetchRequest setEntity:entityDescription];
+        fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+
+        [fetchResultsController performFetch:&searchError];
+    
+    NSLog(@"------ fetchresults Array: %@", fetchResultsController.fetchedObjects);
+    
+    if ([fetchResultsController.fetchedObjects count] > 0) {
+        [self.navigationItem.rightBarButtonItem setEnabled: NO];
+    }
+
+}
+
 
 
 

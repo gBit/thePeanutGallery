@@ -91,7 +91,7 @@
     Business *currentBusiness = [bookmarkArray objectAtIndex:[indexPath row]];
     
 	currentCell.textLabel.text = currentBusiness.name;
-    currentCell.detailTextLabel.text = currentBusiness.yelpURLString;
+    currentCell.detailTextLabel.text = currentBusiness.phone;
 	return currentCell;
     
 }

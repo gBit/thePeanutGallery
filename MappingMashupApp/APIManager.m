@@ -142,7 +142,7 @@
         currentVenue.longitude =[[ business valueForKey:@"longitude"] floatValue];
         currentVenue.latitude = [[business valueForKey:@"latitude"] floatValue];
         currentVenue.photoTitle = [business valueForKey:@"title"];
-        currentVenue.phone = [business valueForKey:@"phone"];
+        currentVenue.phone = [business valueForKey:@"address1"];
         
         
         [yelpVenuesArray addObject:currentVenue];
