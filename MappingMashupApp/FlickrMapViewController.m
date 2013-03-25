@@ -41,7 +41,7 @@
 @implementation FlickrMapViewController
 @synthesize managedObjectContext;
 
-dispatch_queue_t myQueue;
+
 
 - (void)viewDidLoad
 {
@@ -50,7 +50,6 @@ dispatch_queue_t myQueue;
     //God help us, please make the location services work! Puh_LEASE JESUS
     [self startLocationUpdates];
     
-    myQueue = dispatch_queue_create("com.thePeanutGallery.flickrGCDTest", NULL);
     
     //Add refresh button to Bookmarks viewController --CURRENTLY GOES TO BOOKMARKS, NEED TO WRITE METHOD FOR THIS
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshButtonPressed)];
@@ -188,10 +187,7 @@ dispatch_queue_t myQueue;
     MKCoordinateRegion region = {missLocationManager.location.coordinate, span};
     //set region to mapview
     [mapView setRegion:region animated:YES];
-    
-    
-    dispatch_async(myQueue, ^void(void)
-                   {
+
                        
                    
     for (int i = 0; i < 4; i++)
@@ -222,7 +218,6 @@ dispatch_queue_t myQueue;
         [mapView addAnnotation:myAnnotation];
         
     }
-                       });
 
 }
 
