@@ -16,8 +16,10 @@
     NSArray * testBookmarks;
     NSArray *bookmarkArray;
     NSString *segueURL;
+    __weak IBOutlet UITableView *tableViewOutlet;
 }
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 
 
 @end
@@ -121,10 +123,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    BookmarkedBusiness *segueBusiness = [bookmarkArray objectAtIndex:[indexPath row]];
+    //BookmarkedBusiness *segueBusiness = [bookmarkArray objectAtIndex:[indexPath row]];
  
-    segueURL = segueBusiness.yelpURLString;
-    NSLog(@"%@", segueBusiness.yelpURLString);
+    //segueURL = [[NSString alloc] initWithFormat:@"%@", segueBusiness.yelpURLString];
+    //NSLog(@"%@", segueBusiness.yelpURLString);
     //    [self performSegueWithIdentifier:@"bookmarkToWebView" sender:self];
     [tableView deselectRowAtIndexPath: indexPath animated:YES];
     
@@ -134,11 +136,9 @@
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     YelpWebPageBrowser * ywpb = [segue destinationViewController];
-    //Future Ross, this might break
-    //ywpb.yelpURLString = selectedAnnotation.yelpPageURL;
-    ywpb.yelpURLString = [NSString stringWithFormat: @"%@", segueURL];
-    NSLog(@"%@", segueURL);
-    //Also, here, pass the Business (managed object) that is saved here to the webPageBrowser.
+    NSIndexPath *path = tableViewOutlet.indexPathForSelectedRow;
+    ywpb.yelpURLString = [[bookmarkArray objectAtIndex:path.row] yelpURLString];
+
 }
 
 -(NSArray *)allEntitiesNamed:(NSString *)entityName

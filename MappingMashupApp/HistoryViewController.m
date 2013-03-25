@@ -16,6 +16,7 @@
     NSArray *historyArray;
     NSMutableArray *reverseHistoryArray;
     NSArray *bookmarkArray;
+    __weak IBOutlet UITableView *historyTableViewOutlet;
 }
 
 @end
@@ -200,10 +201,10 @@
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     YelpWebPageBrowser * ywpb = [segue destinationViewController];
-    //Future Ross, this might break
-    //ywpb.yelpURLString = selectedAnnotation.yelpPageURL;
-    ywpb.yelpURLString = @"http://m.yelp.com";
-    //Also, here pass the Business (managed object) herein to the Yelp WebPage browser.
+
+    NSIndexPath *path = historyTableViewOutlet.indexPathForSelectedRow;
+    ywpb.yelpURLString = [[historyArray objectAtIndex:path.row] yelpURLString];
+
 }
 
 

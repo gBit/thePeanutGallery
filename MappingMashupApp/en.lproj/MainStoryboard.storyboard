@@ -215,6 +215,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="history" id="gwB-Ja-1q7"/>
+                    <connections>
+                        <outlet property="historyTableViewOutlet" destination="SzJ-YW-bkK" id="fwh-LY-eeE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6mD-OI-6dg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -271,6 +274,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="bookmarks" id="KKv-N5-9JK"/>
+                    <connections>
+                        <outlet property="tableViewOutlet" destination="kUL-Yc-ROo" id="ZBo-c3-ETc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OD9-Jb-0ih" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -304,6 +310,9 @@
     <classes>
         <class className="BookmarksViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BookmarksViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableViewOutlet" candidateClass="UITableView"/>
+            </relationships>
         </class>
         <class className="FlickrMapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrMapViewController.h"/>
@@ -314,6 +323,9 @@
         </class>
         <class className="HistoryViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HistoryViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="historyTableViewOutlet" candidateClass="UITableView"/>
+            </relationships>
         </class>
         <class className="YelpMapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/YelpMapViewController.h"/>
@@ -339,6 +351,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Th0-2G-EcE"/>
-        <segue reference="n39-9o-eUd"/>
+        <segue reference="2lD-vN-oPh"/>
     </inferredMetricsTieBreakers>
 </document>
