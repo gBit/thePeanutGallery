@@ -17,7 +17,7 @@
 #import "Annotation.h"
 #import "Photo.h"
 #import "Business.h"
-
+#import "UIView+AnimationTools.h"
 //Paul Testing - delete if this comment is still here on 3/24
 #import "ResultsManager.h"
 
@@ -335,7 +335,11 @@
 //
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
+    
+    [view squishImage];
     selectedAnnotation = view.annotation;
+    
+    
     
     //Note: This should break when we switch from Yelp annotations
     //to Flickr photos.

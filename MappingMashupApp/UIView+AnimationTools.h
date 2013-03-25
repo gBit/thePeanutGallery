@@ -10,4 +10,9 @@
 
 @interface UIView (AnimationTools)
 
+-(void)squishImage;
+-(void)fanLeft;
+-(void)fanUp;
+-(void)fanRight;
+
 @end

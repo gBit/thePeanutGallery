@@ -26,9 +26,7 @@
     int maxItems = 6;
     float radius = 0.402336;
     
-    //David's Yelp API key
-    //ylWkpXJFz6-ZI3PvDG519A
-    //
+
     
     //'Ross''s Yelp API key
     //z8HZy2Hb2axZox05xfTW9w
@@ -36,7 +34,7 @@
     //Emily's Yelp Key
     //xltTZDS7mgHV7wtu8MkZSg
     
-    yelpAPICall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=%f&limit=%d&ywsid=xltTZDS7mgHV7wtu8MkZSg", search, latitude, longitude, radius, maxItems];
+    yelpAPICall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=%f&limit=%d&ywsid=z8HZy2Hb2axZox05xfTW9w", search, latitude, longitude, radius, maxItems];
     NSLog(@"%@", yelpAPICall);
     
     
