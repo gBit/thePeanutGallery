@@ -43,7 +43,7 @@
 @implementation FlickrMapViewController
 @synthesize managedObjectContext;
 
-
+dispatch_queue_t newQueue;
 
 - (void)viewDidLoad
 {
@@ -261,6 +261,7 @@
 
 -(MKAnnotationView*)mapView:(MKMapView*)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
+    newQueue = dispatch_queue_create("com.thePeanutGallery.maskGCDTest", NULL);
     
     UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"myAnnotation"];
@@ -281,9 +282,18 @@
     NSData *photoData = [NSData dataWithContentsOfURL:flickrThumbnailURL];
     UIImage *photoThumbnailImage = [UIImage imageWithData:photoData];
     //Now mask the image
-
-    UIImage * mask = [UIImage imageNamed:@"circleMask.png"];
-    UIImage *maskedAnnotationImage = [self createMaskWith:mask onImage:photoThumbnailImage];
+    
+    dispatch_async(newQueue,^void(void)
+                   {
+                       UIImage * mask = [UIImage imageNamed:@"circleMask.png"];
+                       UIImage *maskedAnnotationImage = [self createMaskWith:mask onImage:photoThumbnailImage];
+                       dispatch_async(dispatch_get_main_queue(),^void (void)
+                                      {
+                                          annotationView.image = maskedAnnotationImage;
+                                      });
+                       
+                   });
+    
     
     //Add the shine - can do later
 //    UIImage *backgroundImage = maskedAnnotationImage;
@@ -306,7 +316,7 @@
 
     annotationView.leftCalloutAccessoryView = leftCAV;
     
-    annotationView.image = maskedAnnotationImage;
+    //annotationView.image = maskedAnnotationImage;
     annotationView.rightCalloutAccessoryView = detailButton;
 
     
