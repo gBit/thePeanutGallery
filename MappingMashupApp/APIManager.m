@@ -36,7 +36,7 @@
     //Emily's Yelp Key
     //xltTZDS7mgHV7wtu8MkZSg
     
-    yelpAPICall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=%f&limit=%d&ywsid=xltTZDS7mgHV7wtu8MkZSg", search, latitude, longitude, radius, maxItems];
+    yelpAPICall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=%f&limit=%d&ywsid=z8HZy2Hb2axZox05xfTW9w", search, latitude, longitude, radius, maxItems];
     NSLog(@"%@", yelpAPICall);
     
     

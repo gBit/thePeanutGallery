@@ -379,6 +379,7 @@ dispatch_queue_t myQueue;
 -(void)refreshButtonPressed
 {
     [mapView removeAnnotations : mapView.annotations ];
+    [mapView removeOverlays:mapView.overlays];
     [UIView animateWithDuration:0.5 animations:^(void) {
         loadingOverlay.alpha = 1;}];
     [self viewDidLoad];
