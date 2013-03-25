@@ -42,7 +42,7 @@
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
     
-    bookmarkArray = [self allEntitiesNamed:@"BookmarkedBusiness"];
+//    bookmarkArray = [self allEntitiesNamed:@"BookmarkedBusiness"];
     //self.navigationItem.title = [[UIBarButtonItem alloc] init];
 
     self.navigationItem.title = @"Bookmarks";
@@ -51,6 +51,13 @@
     //testBookmarks = [[NSArray alloc] initWithObjects:@"First Bookmark", @"Second Bookmark", @"Third Bookmark", nil];
 }
 
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    bookmarkArray = [self allEntitiesNamed:@"BookmarkedBusiness"];
+
+    [tableViewOutlet reloadData];
+}
 
 //Remove from bookmarks, but do not remove from history.
 -(void)removeBookmarkStatusFrom: (Business*)business

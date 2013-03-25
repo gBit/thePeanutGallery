@@ -51,6 +51,12 @@
     //testHistory = [[NSArray alloc] initWithObjects:@"History 1", @"History 2", @"History 3", nil];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+    [historyTableViewOutlet reloadData];
+}
+
 #pragma mark -- table methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
