@@ -28,7 +28,7 @@
 
 @interface YelpMapViewController ()
 {
-    LocationManager *locationManager;
+    CLLocationManager *locationManager;
     Annotation *selectedAnnotation;
    // NSMutableArray *venuesArray;
     NSMutableArray *photosArray;
@@ -54,8 +54,22 @@
     // Location Services
     //locationManager = appDelegate.locationManager;
     [yelpMapView setShowsUserLocation:YES];
+    //Set map region to the imported lat/long
+    CLLocationCoordinate2D originLocationCoordinate =
+    {
+        .latitude = originPhotoLatitude,
+        .longitude = originPhotoLongitude
+    };
     
-    APIManager *yelpAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:locationManager];
+    MKCoordinateSpan originSpan =
+    {
+        .latitudeDelta = 0.01810686f,
+        .longitudeDelta = 0.01810686f
+    };
+    
+    MKCoordinateRegion originRegion = {originLocationCoordinate, originSpan};
+    
+    APIManager *yelpAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:originLocationCoordinate];
     yelpAPIManager.delegate = self;
     
     //Add Bookmarks button
@@ -80,20 +94,7 @@
     //Need to make the below a new, separate Yelp search that does NOT touch Flickr anything.
     //
     
-    //Set map region to the imported lat/long
-    CLLocationCoordinate2D originLocationCoordinate =
-    {
-        .latitude = originPhotoLatitude,
-        .longitude = originPhotoLongitude
-    };
-    
-    MKCoordinateSpan originSpan =
-    {
-        .latitudeDelta = 0.01810686f,
-        .longitudeDelta = 0.01810686f
-    };
-    
-    MKCoordinateRegion originRegion = {originLocationCoordinate, originSpan};
+
     Annotation *originAnnotation = [[Annotation alloc] initWithCoordinate:originLocationCoordinate title:originPhotoTitle subtitle:@"Your Selected Photo" urlString:originPhotoThumbnailString];
     
     //This may break the view (trying to draw custom annotation for this origin Photo pin.
@@ -175,7 +176,7 @@
     //set region to mapview
     //[mapView setRegion:region animated:YES];
     
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < venuesArray.count; i++)
     {
         //CLLocation *venueLocation = [[venuesArray objectAtIndex:i] location];
         NSString *venueName = [[venuesArray objectAtIndex:i] name];

@@ -48,7 +48,16 @@
     [super viewDidLoad];
     
     //God help us, please make the location services work! Puh_LEASE JESUS
-    [self startLocationUpdates];
+    //[self startLocationUpdates];
+    //Moved this here (ross 3.25.13)
+    if(missLocationManager == nil)
+    {
+        missLocationManager = [[CLLocationManager alloc]init];
+    }
+    missLocationManager.delegate = self;
+    [missLocationManager startUpdatingLocation];
+    NSDate *future = [NSDate dateWithTimeIntervalSinceNow: 3];
+    [NSThread sleepUntilDate:future];
     
     
     //Add refresh button to Bookmarks viewController --CURRENTLY GOES TO BOOKMARKS, NEED TO WRITE METHOD FOR THIS
@@ -57,24 +66,26 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(bookmarkButtonPressed)];
 
     
-    
     //Created method "bookmarkButtonPressed, currently has no action - End edit
     
     // Core Data
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
-    
-    // Location Services
-    locationManager = appDelegate.locationManager;
+
     [mapView setShowsUserLocation:YES];
     
     //Overlay activate
     // Define an overlay that covers Colorado.
 //    MKCircle *overlay = [MKCircle circleWithCenterCoordinate:mapView.centerCoordinate radius:1000];
     CLLocationCoordinate2D mobileMakers = {
-        .latitude = 41.894032,
-        .longitude = -87.63472
+//        .latitude = 41.894032,
+//        .longitude = -87.63472
+        //Non-hard coded location here
+        .latitude = missLocationManager.location.coordinate.latitude,
+        .longitude = missLocationManager.location.coordinate.longitude
+        
     };
+    NSLog(@"%f %f", mobileMakers.latitude, mobileMakers.longitude);
     MKCircle *overlay = [MKCircle circleWithCenterCoordinate:mobileMakers radius:100000];
 
     
@@ -83,7 +94,7 @@
     [mapView addOverlay:overlay];
     
     
-    APIManager *mrAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:missLocationManager];
+    APIManager *mrAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:mobileMakers];
     
     //deleagtion begins
     mrAPIManager.delegate = self;
@@ -163,6 +174,7 @@
 
 -(void)didReceiveFlickrData:(NSMutableArray*)photosArray
 {
+    
     [self addPinsToMap:photosArray];
 }
 
@@ -190,7 +202,7 @@
 
                        
                    
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < venuesArray.count; i++)
     {
         //CLLocation *venueLocation = [[venuesArray objectAtIndex:i] location];
         NSString *venueName = [[venuesArray objectAtIndex:i] name];
@@ -242,13 +254,11 @@
     //                     action:@selector(goToYelpPage)
     //           forControlEvents:UIControlEventTouchUpInside];
     annotationView.canShowCallout = YES;
-    //if you place an invalid image name - the annotation will be blank
-    //good for yelp results while testing
+
     annotationView.image = [UIImage imageNamed:@"wifiIcon.png"];
     
     //Let's set that custom image
     NSURL *flickrThumbnailURL = [NSURL URLWithString:selectedAnnotation.flickrThumbnailString];
-    //making the request online for the photo
     NSData *photoData = [NSData dataWithContentsOfURL:flickrThumbnailURL];
     UIImage *photoThumbnailImage = [UIImage imageWithData:photoData];
     //Now mask the image
@@ -280,14 +290,15 @@
     annotationView.image = maskedAnnotationImage;
     annotationView.rightCalloutAccessoryView = detailButton;
 
-    if([annotation isKindOfClass: [MKUserLocation class]])
-    {
-        return nil;
-    }
     
     //Maybe stop loading scren here?
     [UIView animateWithDuration:2 animations:^(void) {
         loadingOverlay.alpha = 0;}];
+    
+    if([annotation isKindOfClass: [MKUserLocation class]])
+    {
+        return nil;
+    }
     
     
     return annotationView;

@@ -18,11 +18,16 @@
 // Initialize Yelp APIManager w/ custom API call
 // Passes in custom search string and user's current location
 //
-- (APIManager*)initWithYelpSearch:(NSString*)search andLocation:(CLLocationManager*)userLocation
+- (APIManager*)initWithYelpSearch:(NSString*)search andLocation:(CLLocationCoordinate2D)userLocation
 {
+//    
+//    float latitude = 41.894032;
+//    float longitude = -87.634742;
+    float latitude = userLocation.latitude;
+    NSLog(@"%f", latitude);
+    float longitude = userLocation.longitude;
+    NSLog(@"%f", longitude);
     
-    float latitude = 41.894032;
-    float longitude = -87.634742;
     int maxItems = 6;
     float radius = 0.402336;
     
@@ -34,7 +39,7 @@
     //Emily's Yelp Key
     //xltTZDS7mgHV7wtu8MkZSg
     
-    yelpAPICall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=%f&limit=%d&ywsid=z8HZy2Hb2axZox05xfTW9w", search, latitude, longitude, radius, maxItems];
+    yelpAPICall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=%f&limit=%d&ywsid=xltTZDS7mgHV7wtu8MkZSg", search, latitude, longitude, radius, maxItems];
     NSLog(@"%@", yelpAPICall);
     
     
@@ -73,7 +78,8 @@
                                          //Ross Flickr API Key 4dcd4b336fc303a2d36023d3c4c1b214
                                          
                                      flickrAPICall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=4dcd4b336fc303a2d36023d3c4c1b214&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.5&extras=url_sq%%2C+geo", search, latitude, longitude];
-
+                                         NSLog(@"%@", flickrAPICall);
+                                         
                                          [self searchFlickrWithLatitude:latitude andLongitude:longitude];
                                      }
                                      
