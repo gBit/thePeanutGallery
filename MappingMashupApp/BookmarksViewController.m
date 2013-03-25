@@ -15,6 +15,7 @@
 {
     NSArray * testBookmarks;
     NSArray *bookmarkArray;
+    NSString *segueURL;
 }
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
@@ -48,61 +49,6 @@
     //testBookmarks = [[NSArray alloc] initWithObjects:@"First Bookmark", @"Second Bookmark", @"Third Bookmark", nil];
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return YES if you want the specified item to be editable.
-    return YES;
-}
-
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    //............
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //The following occurs when you swipe to delete and hit delete.
-        //Put code here to delete the object from the managedObjectContext..............
-        
-        BookmarkedBusiness *bookmarkedBusiness = [bookmarkArray objectAtIndex:indexPath.row];
-        //business.isBookmarked = [NSNumber numberWithBool:NO];
-        
-        [self.managedObjectContext deleteObject:bookmarkedBusiness];
-        
-        NSError *error;
-        if (![self.managedObjectContext save:&error])
-        {
-            //NSLog(@"Add bookmark status failed.");
-        }
-        
-        bookmarkArray = [self allEntitiesNamed:@"BookmarkedBusiness"];
-        
-        
-        //bookmarkArray = [self fetchBookmarks];
-        
-        [tableView reloadData];
-        //[self removeBookmarkStatusFrom:business]
-    
-    
-        
-    //old delete bookmark code......
-    
-//    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        
-//        
-//        
-//        Business *business = [bookmarkArray objectAtIndex:indexPath.row];
-//        business.isBookmarked = [NSNumber numberWithBool:NO];
-//        
-//        NSError *error;
-//        if (![self.managedObjectContext save:&error])
-//        {
-//            //NSLog(@"Add bookmark status failed.");
-//        }
-//        
-//        bookmarkArray = [self allEntitiesNamed:@"BookmarkedBusiness"];
-//        
-//        [tableView reloadData];
-        //[self removeBookmarkStatusFrom:business]
-    }
-}
 
 //Remove from bookmarks, but do not remove from history.
 -(void)removeBookmarkStatusFrom: (Business*)business
@@ -136,7 +82,7 @@
     Business *currentBusiness = [bookmarkArray objectAtIndex:[indexPath row]];
     
 	currentCell.textLabel.text = currentBusiness.name;
-    currentCell.detailTextLabel.text = currentBusiness.phone;
+    currentCell.detailTextLabel.text = currentBusiness.yelpURLString;
 	return currentCell;
     
 }
@@ -174,7 +120,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    [self performSegueWithIdentifier:@"bookmarkToWebView" sender:self];
+    
+    BookmarkedBusiness *segueBusiness = [bookmarkArray objectAtIndex:[indexPath row]];
+ 
+    segueURL = segueBusiness.yelpURLString;
+    NSLog(@"%@", segueBusiness.yelpURLString);
+    //    [self performSegueWithIdentifier:@"bookmarkToWebView" sender:self];
     [tableView deselectRowAtIndexPath: indexPath animated:YES];
     
 }
@@ -185,7 +136,8 @@
     YelpWebPageBrowser * ywpb = [segue destinationViewController];
     //Future Ross, this might break
     //ywpb.yelpURLString = selectedAnnotation.yelpPageURL;
-    ywpb.yelpURLString = @"http://m.yelp.com";
+    ywpb.yelpURLString = [NSString stringWithFormat: @"%@", segueURL];
+    NSLog(@"%@", segueURL);
     //Also, here, pass the Business (managed object) that is saved here to the webPageBrowser.
 }
 
@@ -201,6 +153,57 @@
 }
 
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    //............
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //The following occurs when you swipe to delete and hit delete.
+        //Put code here to delete the object from the managedObjectContext..............
+        
+        BookmarkedBusiness *bookmarkedBusiness = [bookmarkArray objectAtIndex:indexPath.row];
+       
+        [self.managedObjectContext deleteObject:bookmarkedBusiness];
+        
+        NSError *error;
+        if (![self.managedObjectContext save:&error])
+        {
+            //NSLog(@"Add bookmark status failed.");
+        }
+        
+        bookmarkArray = [self allEntitiesNamed:@"BookmarkedBusiness"];
+        
+        [tableView reloadData];
+       
+        
+        
+        
+        //old delete bookmark code......
+        
+        //    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //
+        //
+        //
+        //        Business *business = [bookmarkArray objectAtIndex:indexPath.row];
+        //        business.isBookmarked = [NSNumber numberWithBool:NO];
+        //
+        //        NSError *error;
+        //        if (![self.managedObjectContext save:&error])
+        //        {
+        //            //NSLog(@"Add bookmark status failed.");
+        //        }
+        //
+        //        bookmarkArray = [self allEntitiesNamed:@"BookmarkedBusiness"];
+        //        
+        //        [tableView reloadData];
+        //[self removeBookmarkStatusFrom:business]
+    }
+}
 
 
 

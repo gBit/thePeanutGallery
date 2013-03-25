@@ -78,7 +78,7 @@
     Business *currentBusiness = [historyArray objectAtIndex:[indexPath row] ];
     
 	currentCell.textLabel.text = currentBusiness.name;
-    currentCell.detailTextLabel.text = currentBusiness.phone;
+    currentCell.detailTextLabel.text = currentBusiness.yelpURLString;
 	return currentCell;
     
 }
