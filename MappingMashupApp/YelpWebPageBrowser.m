@@ -89,7 +89,7 @@
 //    ];
     
     [UIView animateWithDuration:0.75
-                          delay:1.0
+                          delay:3.0
                         options: UIViewAnimationCurveEaseIn
                      animations:^{
                          popoutView.center = CGPointMake(popoutView.center.x, popoutView.center.y+200);
