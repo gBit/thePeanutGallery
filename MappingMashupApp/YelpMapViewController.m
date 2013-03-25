@@ -99,6 +99,12 @@
     //This may break the view (trying to draw custom annotation for this origin Photo pin.
     selectedAnnotation = originAnnotation;
     
+    //Darkening overlay on map, if we want one
+    MKCircle *overlay = [MKCircle circleWithCenterCoordinate:originLocationCoordinate radius:100000];
+    overlay.title = @"Current region";
+    //[yelpMapView addOverlay:overlay];
+    
+    
     [yelpMapView setRegion:originRegion animated:YES];
      [yelpMapView addAnnotation:originAnnotation];
     
@@ -253,6 +259,34 @@
         UIImage *photoThumbnailImage = [UIImage imageWithData:photoData];
         annotationView.image = photoThumbnailImage;
         
+        UIImage * mask = [UIImage imageNamed:@"circleMask.png"];
+        UIImage *maskedAnnotationImage = [self createMaskWith:mask onImage:photoThumbnailImage];
+        
+        //Add the shine - can do later
+        //    UIImage *backgroundImage = maskedAnnotationImage;
+        //    UIImage *watermarkImage = [UIImage imageNamed:@"circleMaskShine"];
+        //
+        //    UIGraphicsBeginImageContext(backgroundImage.size);
+        //    [backgroundImage drawInRect:CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height)];
+        //    [watermarkImage drawInRect:CGRectMake(backgroundImage.size.width - watermarkImage.size.width, backgroundImage.size.height - watermarkImage.size.height, watermarkImage.size.width, watermarkImage.size.height)];
+        //    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
+        //    UIGraphicsEndImageContext();
+        
+        //Set the imageView inside the
+        UIImageView *photoContainer = [[UIImageView alloc] initWithImage:photoThumbnailImage];
+        
+        photoContainer.contentMode = UIViewContentModeScaleAspectFit;
+        
+        UIView *leftCAV = [[UIView alloc] initWithFrame:CGRectMake(0,0,32,32)];
+        leftCAV.clipsToBounds = YES;
+        [leftCAV addSubview : photoContainer];
+        
+        annotationView.leftCalloutAccessoryView = leftCAV;
+        
+        annotationView.image = maskedAnnotationImage;
+        annotationView.rightCalloutAccessoryView = detailButton;
+        annotationView.alpha = 0.33;
+        
         return annotationView;
     }
     
@@ -270,6 +304,23 @@
     }
     
     return annotationView;
+}
+
+//Method for creating a map overlay
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay
+{
+    if ([overlay isKindOfClass:[MKCircle class]])
+    {
+        MKCircleView*    aView = [[MKCircleView alloc] initWithCircle:(MKCircle *)overlay];
+        
+        aView.fillColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+        aView.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+        aView.lineWidth = 1;
+        
+        return aView;
+    }
+    
+    return nil;
 }
 
 # pragma mark - User Actions
@@ -326,7 +377,24 @@
 }
 
 
-
+//Masking method
+- (UIImage*) createMaskWith: (UIImage *)maskImage onImage:(UIImage*) subjectImage
+{
+    CGImageRef maskRef = maskImage.CGImage;
+    CGImageRef mask = CGImageMaskCreate(CGImageGetWidth(maskRef),
+                                        CGImageGetHeight(maskRef),
+                                        CGImageGetBitsPerComponent(maskRef),
+                                        CGImageGetBitsPerPixel(maskRef),
+                                        CGImageGetBytesPerRow(maskRef),
+                                        CGImageGetDataProvider(maskRef),
+                                        NULL,
+                                        false);
+    
+    CGImageRef masked = CGImageCreateWithMask(subjectImage.CGImage, mask);
+    
+    UIImage *finalImage = [UIImage imageWithCGImage:masked];
+    return finalImage;
+}
 
 
 

@@ -32,6 +32,7 @@
     NSString * photoThumbnailStringToPass;
     
     __weak IBOutlet MKMapView *mapView;
+    __weak IBOutlet UIView *loadingOverlay;
 }
 
 
@@ -48,7 +49,7 @@
     [self startLocationUpdates];
     
     //Add refresh button to Bookmarks viewController --CURRENTLY GOES TO BOOKMARKS, NEED TO WRITE METHOD FOR THIS
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(bookmarkButtonPressed)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshButtonPressed)];
     //Add bookmarks button to viewController
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(bookmarkButtonPressed)];
 
@@ -63,6 +64,21 @@
     // Location Services
     locationManager = appDelegate.locationManager;
     [mapView setShowsUserLocation:YES];
+    
+    //Overlay activate
+    // Define an overlay that covers Colorado.
+//    MKCircle *overlay = [MKCircle circleWithCenterCoordinate:mapView.centerCoordinate radius:1000];
+    CLLocationCoordinate2D mobileMakers = {
+        .latitude = 41.894032,
+        .longitude = -87.63472
+    };
+    MKCircle *overlay = [MKCircle circleWithCenterCoordinate:mobileMakers radius:100000];
+
+    
+    overlay.title = @"Current region";
+    
+    [mapView addOverlay:overlay];
+    
     
     APIManager *mrAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:missLocationManager];
     
@@ -281,6 +297,11 @@
         return nil;
     }
     
+    //Maybe stop loading scren here?
+    [UIView animateWithDuration:2 animations:^(void) {
+        loadingOverlay.alpha = 0;}];
+    
+    
     return annotationView;
 }
 
@@ -301,6 +322,24 @@
     UIImage *finalImage = [UIImage imageWithCGImage:masked];
     return finalImage;
 }
+
+//Method for creating a map overlay
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay
+{
+    if ([overlay isKindOfClass:[MKCircle class]])
+    {
+        MKCircleView*    aView = [[MKCircleView alloc] initWithCircle:(MKCircle *)overlay];
+        
+        aView.fillColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+        aView.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+        aView.lineWidth = 1;
+        
+        return aView;
+    }
+    
+    return nil;
+}
+
 
 # pragma mark - User Actions
 //
@@ -342,6 +381,14 @@
     
     [self performSegueWithIdentifier:@"toYelpMapView" sender:nil];
     
+}
+
+-(void)refreshButtonPressed
+{
+    [mapView removeAnnotations : mapView.annotations ];
+    [UIView animateWithDuration:0.5 animations:^(void) {
+        loadingOverlay.alpha = 1;}];
+    [self viewDidLoad];
 }
 
 
