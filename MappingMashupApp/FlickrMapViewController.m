@@ -33,6 +33,8 @@
     
     __weak IBOutlet MKMapView *mapView;
     __weak IBOutlet UIView *loadingOverlay;
+    //Just to deal with map zoom issue
+    BOOL isZoomedInYet;
 }
 
 
@@ -46,7 +48,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    isZoomedInYet = NO;
     //God help us, please make the location services work! Puh_LEASE JESUS
     //[self startLocationUpdates];
     //Moved this here (ross 3.25.13)
@@ -61,9 +63,9 @@
     
     
     //Add refresh button to Bookmarks viewController --CURRENTLY GOES TO BOOKMARKS, NEED TO WRITE METHOD FOR THIS
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshButtonPressed)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshButtonPressed)];
     //Add bookmarks button to viewController
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(bookmarkButtonPressed)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(bookmarkButtonPressed)];
 
     
     //Created method "bookmarkButtonPressed, currently has no action - End edit
@@ -93,8 +95,9 @@
     
     [mapView addOverlay:overlay];
     
-    
-    APIManager *mrAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:mobileMakers];
+    //- (APIManager*)initWithYelpSearch:(NSString*)search andLocation:(CLLocationCoordinate2D)userLocation withMaxResults: (int) maxItems
+
+    APIManager *mrAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:mobileMakers withMaxResults:6];
     
     //deleagtion begins
     mrAPIManager.delegate = self;
@@ -210,8 +213,12 @@
     
     MKCoordinateRegion region = {missLocationManager.location.coordinate, span};
     //set region to mapview
+    if (isZoomedInYet == NO)
+    {
+        
     [mapView setRegion:region animated:YES];
-
+        isZoomedInYet = YES;
+}
                        
                    
     for (int i = 0; i < venuesArray.count; i++)
@@ -304,8 +311,9 @@
 
     
     //Maybe stop loading scren here?
-    [UIView animateWithDuration:2 animations:^(void) {
-        loadingOverlay.alpha = 0;}];
+    [UIView animateWithDuration:3.5 delay:2.0 options:nil animations:^(void) { loadingOverlay.alpha = 0;} completion:^(BOOL finished){}];
+//    [UIView animateWithDuration:3.5 animations:^(void) {
+//        loadingOverlay.alpha = 0;}];
     
     if([annotation isKindOfClass: [MKUserLocation class]])
     {

@@ -30,7 +30,7 @@
 @property (strong, nonatomic) id <APIManagerDelegate> delegate;
 
 - (APIManager*)initWithFlickrSearch:(NSString*)search andVenue:(Venue*)venue;
-- (APIManager*)initWithYelpSearch:(NSString*)search andLocation:(CLLocationCoordinate2D)userLocation;
+- (APIManager*)initWithYelpSearch:(NSString*)search andLocation:(CLLocationCoordinate2D)userLocation withMaxResults: (int) maxItems;
 
 - (void)searchYelpThenFlickrForDelegates;
 - (void)searchYelpForDelegates;
