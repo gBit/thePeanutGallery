@@ -102,7 +102,7 @@ dispatch_queue_t newQueue;
     
     //- (APIManager*)initWithYelpSearch:(NSString*)search andLocation:(CLLocationCoordinate2D)userLocation withMaxResults: (int) maxItems
 
-    APIManager *mrAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:mobileMakers withMaxResults:6];
+    APIManager *mrAPIManager = [[APIManager alloc] initWithYelpSearch:@"'free%20wifi'" andLocation:mobileMakers withMaxResults:6];
     
     //deleagtion begins
     mrAPIManager.delegate = self;
@@ -418,6 +418,7 @@ dispatch_queue_t newQueue;
 {
     
     [view squishImage];
+    [photoViewerUIImageView raiseImageView];
     selectedAnnotation = view.annotation;
     
     //Code to make the selected image show up in the photo viewer

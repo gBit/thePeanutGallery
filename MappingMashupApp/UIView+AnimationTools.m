@@ -23,19 +23,24 @@
                      }];
 }
 
--(void)fanLeft
+-(void)raiseImageView
 {
-    
+    [UIView animateWithDuration:0.5
+                     animations:^void(void)
+     {
+         self.center = CGPointMake(self.center.x, self.center.y+400);
+         self.alpha = 0.90;
+     }];
 }
 
--(void)fanUp
+-(void)lowerImageView
 {
-    
-}
-
--(void)fanRight
-{
-    
+    [UIView animateWithDuration:0.5
+                     animations:^void(void)
+     {
+         self.center = CGPointMake(self.center.x, self.center.y-400);
+         self.alpha = 0.90;
+     }];
 }
 
 @end

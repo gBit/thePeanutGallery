@@ -247,42 +247,9 @@
     //Code for specifically dealing with the origin photo
     if ([[annotation subtitle] isEqual: @"Your Selected Photo"])
     {
-        //Let's set that custom image
-        NSURL *flickrThumbnailURL = [NSURL URLWithString:selectedAnnotation.urlString];
-        //making the request online for the photo
-        NSData *photoData = [NSData dataWithContentsOfURL:flickrThumbnailURL];
-        UIImage *photoThumbnailImage = [UIImage imageWithData:photoData];
-        annotationView.image = photoThumbnailImage;
-        
-        UIImage * mask = [UIImage imageNamed:@"circleMask.png"];
-        UIImage *maskedAnnotationImage = [self createMaskWith:mask onImage:photoThumbnailImage];
-        
-        //Add the shine - can do later
-        //    UIImage *backgroundImage = maskedAnnotationImage;
-        //    UIImage *watermarkImage = [UIImage imageNamed:@"circleMaskShine"];
-        //
-        //    UIGraphicsBeginImageContext(backgroundImage.size);
-        //    [backgroundImage drawInRect:CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height)];
-        //    [watermarkImage drawInRect:CGRectMake(backgroundImage.size.width - watermarkImage.size.width, backgroundImage.size.height - watermarkImage.size.height, watermarkImage.size.width, watermarkImage.size.height)];
-        //    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
-        //    UIGraphicsEndImageContext();
-        
-        //Set the imageView inside the
-        UIImageView *photoContainer = [[UIImageView alloc] initWithImage:photoThumbnailImage];
-        
-        photoContainer.contentMode = UIViewContentModeScaleAspectFit;
-        
-        UIView *leftCAV = [[UIView alloc] initWithFrame:CGRectMake(0,0,32,32)];
-        leftCAV.clipsToBounds = YES;
-        [leftCAV addSubview : photoContainer];
-        
-        annotationView.leftCalloutAccessoryView = leftCAV;
-        
-        annotationView.image = maskedAnnotationImage;
-        annotationView.rightCalloutAccessoryView = detailButton;
-        annotationView.alpha = 0.33;
-        
-        return annotationView;
+        annotationView = (MKPinAnnotationView*)annotationView;
+        NSLog(@"%@", annotationView);
+        return nil;
     }
     
     //    [detailButton addTarget:self
@@ -300,6 +267,7 @@
     
     return annotationView;
 }
+
 
 //Method for creating a map overlay
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay

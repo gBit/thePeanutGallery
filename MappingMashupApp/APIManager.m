@@ -128,7 +128,7 @@
                                                  break;
                                          }
                                          
-                                     flickrAPICall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.5&per_page=1&extras=url_sq%%2C+geo", flickrKeyToUse, search, latitude, longitude];
+                                         flickrAPICall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.1&per_page=2&sort=interestingness-desc&content_type=1&extras=url_sq%%2C+geo%%2C+o_dims", flickrKeyToUse, search, latitude, longitude];
                                          NSLog(@"%@", flickrAPICall);
                                          
                                          [self searchFlickrWithLatitude:latitude andLongitude:longitude];
