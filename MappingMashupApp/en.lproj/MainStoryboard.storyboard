@@ -83,11 +83,11 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" id="BDR-6h-3HL">
-                                        <rect key="frame" x="144" y="320" width="37" height="37"/>
+                                        <rect key="frame" x="144" y="331" width="37" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </activityIndicatorView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Experience your surroundings. Tap something interesting and we'll show you where you can get online for free." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GWX-UP-W0P">
-                                        <rect key="frame" x="20" y="365" width="285" height="91"/>
+                                        <rect key="frame" x="20" y="232" width="285" height="91"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -97,8 +97,8 @@
                                         <rect key="frame" x="-6" y="535" width="331" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="appIcon@2x.png" id="veT-vc-0vB">
-                                        <rect key="frame" x="62" y="94" width="200" height="200"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" image="appIcon@2x.png" id="veT-vc-0vB">
+                                        <rect key="frame" x="103" y="113" width="119" height="131"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
@@ -144,7 +144,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Swipe to go forward or back" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="emB-3U-nsG">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Placeholder text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="emB-3U-nsG">
                                         <rect key="frame" x="20" y="12" width="280" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -154,11 +154,44 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LZ0-Of-gfS">
+                                <rect key="frame" x="239" y="467" width="28" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="backArrow@2x.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonPress:" destination="qVE-kj-ncM" eventType="touchUpInside" id="cvL-gM-Jfe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xJY-2W-kR6">
+                                <rect key="frame" x="280" y="467" width="29" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <size key="titleShadowOffset" width="1" height="0.0"/>
+                                <state key="normal" image="forwardArrow@2x.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="forwardButtonPress:" destination="qVE-kj-ncM" eventType="touchUpInside" id="9SB-rw-1hg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="yelp!" id="JLn-lF-25V"/>
                     <connections>
+                        <outlet property="backButton" destination="LZ0-Of-gfS" id="X68-Jo-Dhz"/>
+                        <outlet property="forwardButton" destination="xJY-2W-kR6" id="z33-W7-FQG"/>
                         <outlet property="popoutView" destination="JIq-gF-FaR" id="lQi-S7-0QM"/>
                         <outlet property="popoutViewTextLabel" destination="emB-3U-nsG" id="8I0-rY-eUi"/>
                         <outlet property="webView" destination="tBs-TS-l6k" id="kQ5-DS-WTP"/>
@@ -326,7 +359,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="appIcon@2x.png" width="1024" height="1024"/>
+        <image name="appIcon@2x.png" width="114" height="114"/>
+        <image name="backArrow@2x.png" width="38" height="41"/>
+        <image name="forwardArrow@2x.png" width="38" height="41"/>
         <image name="mapShadow@2x.png" width="640" height="100"/>
         <image name="mapShadowTop@2x.png" width="640" height="100"/>
         <image name="silverBG@2x.png" width="640" height="1136"/>
@@ -364,6 +399,10 @@
         <class className="YelpWebPageBrowser" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/YelpWebPageBrowser.h"/>
             <relationships>
+                <relationship kind="action" name="backButtonPress:"/>
+                <relationship kind="action" name="forwardButtonPress:"/>
+                <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="forwardButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="popoutView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="popoutViewTextLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
