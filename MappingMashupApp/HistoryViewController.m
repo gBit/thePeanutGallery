@@ -46,6 +46,7 @@
     self.title = @"History";
     
     historyArray = [self allEntitiesNamed:@"Business"];
+
     
     
     //testHistory = [[NSArray alloc] initWithObjects:@"History 1", @"History 2", @"History 3", nil];
@@ -122,10 +123,10 @@
             //NSLog(@"Add bookmark status failed.");
         }
         
-        historyArray = [self allEntitiesNamed:@"Business"];
+       // historyArray = [self allEntitiesNamed:@"Business"];
         
         
-        //bookmarkArray = [self fetchBookmarks];
+        historyArray = [self fetchBookmarks];
         
         [tableView reloadData];
         //[self removeBookmarkStatusFrom:business]
@@ -140,8 +141,11 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext];
     NSError *error;
-    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"viewDate" ascending:NO];
+    NSArray * sortDescriptorArray = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     fetchRequest.entity = entity;
+    [fetchRequest setSortDescriptors:sortDescriptorArray];
+
     
     return [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
 }
@@ -155,7 +159,9 @@
     NSFetchedResultsController * fetchResultsController;
     
     //Now customize your search! We'd want to switch this to see if isBookmarked == true
-    NSArray * sortDescriptors = [[NSArray alloc] initWithObjects:nil];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"viewDate" ascending:YES];
+    NSArray * sortDescriptorArray = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+
     NSPredicate * predicate = [NSPredicate predicateWithFormat:@"isBookmarked == %@", [NSNumber numberWithBool:YES]];
     NSError *searchError;
     
@@ -171,7 +177,7 @@
 //    }
     
     //Lock and load
-    [fetchRequest setSortDescriptors:sortDescriptors];
+    [fetchRequest setSortDescriptors:sortDescriptorArray];
     [fetchRequest setPredicate:predicate];
     [fetchRequest setEntity:entityDescription];
     fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];

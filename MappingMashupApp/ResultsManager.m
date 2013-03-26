@@ -38,7 +38,7 @@
 -(void)removeVenuesOverLimit
 {
 
-    for (int i = 4; i < allHistories.count; i++) {
+    for (int i = 50; i < allHistories.count; i++) {
         Business *business = [allHistories objectAtIndex:i];
         
         [self.managedObjectContext deleteObject:business];

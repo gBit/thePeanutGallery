@@ -43,10 +43,33 @@
     //0mtAebqxwAxzHVOPI_OIyQ
     
     //David's Yelp Key
-    //TROLOLOLOLOLOLO
+    //ylWkpXJFz6-ZI3PvDG519A
     
     //ARC4Random goes in here.
-    yelpAPICall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=%f&limit=%d&ywsid=xltTZDS7mgHV7wtu8MkZSg", search, latitude, longitude, radius, maxItems];
+    NSString *keyToUse = @"";
+    
+    switch (arc4random()%4) {
+        case 0:
+            keyToUse = @"z8HZy2Hb2axZox05xfTW9w";
+            break;
+        case 1:
+            keyToUse = @"xltTZDS7mgHV7wtu8MkZSg";
+            break;
+        case 2:
+            keyToUse = @"xltTZDS7mgHV7wtu8MkZSg"; //Currently disabled, was Paul's key, now a dupe of case 1
+            break;
+        case 3:
+            keyToUse = @"ylWkpXJFz6-ZI3PvDG519A";
+            break;          
+        default:
+            keyToUse = @"z8HZy2Hb2axZox05xfTW9w"; // Emily's Yelp Key
+            NSLog(@"Did not return a proper Yelp key, returned default on random test");
+            break;
+    }
+    
+    //Eventually, add if statement here if we need it, to cycle through limited-use keys
+    
+    yelpAPICall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=%f&limit=%d&ywsid=%@", search, latitude, longitude, radius, maxItems, keyToUse];
     NSLog(@"%@", yelpAPICall);
     
     
@@ -83,8 +106,29 @@
                                          //Paul's Flickr API Key 8ee0fab323e06c0f242ddc5e43e5ef2d
                                          //Em's Flickr API Key 90087da25a0e607ed65734c6bbd4bc01dec7b05e
                                          //Ross Flickr API Key 4dcd4b336fc303a2d36023d3c4c1b214
+                                         //David FLickr API Key b4a287d18b3f7398ffb4ab9f1b961e22
                                          
-                                     flickrAPICall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=4dcd4b336fc303a2d36023d3c4c1b214&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.5&per_page=1&extras=url_sq%%2C+geo", search, latitude, longitude];
+                                         NSString *flickrKeyToUse = @"";
+                                         
+                                         switch (arc4random()%4) {
+                                             case 0:
+                                                 flickrKeyToUse = @"90087da25a0e607ed65734c6bbd4bc01dec7b05e";
+                                                 break;
+                                             case 1:
+                                                 flickrKeyToUse = @"4dcd4b336fc303a2d36023d3c4c1b214";
+                                                 break;
+                                             case 2:
+                                                 flickrKeyToUse = @"8ee0fab323e06c0f242ddc5e43e5ef2d";                                                  break;
+                                             case 3:
+                                                 flickrKeyToUse = @"b4a287d18b3f7398ffb4ab9f1b961e22";
+                                                 break;          
+                                             default:
+                                                 flickrKeyToUse = @"4dcd4b336fc303a2d36023d3c4c1b214"; // Ross' Flickr Key
+                                                 NSLog(@"Did not return a proper Yelp key, returned default on random test");
+                                                 break;
+                                         }
+                                         
+                                     flickrAPICall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.5&per_page=1&extras=url_sq%%2C+geo", flickrKeyToUse, search, latitude, longitude];
                                          NSLog(@"%@", flickrAPICall);
                                          
                                          [self searchFlickrWithLatitude:latitude andLongitude:longitude];

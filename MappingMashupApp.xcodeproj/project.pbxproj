@@ -118,7 +118,7 @@
 		83E3AE8F16FA687A00A8F27E /* webviewpopout_shelf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "webviewpopout_shelf@2x.png"; sourceTree = "<group>"; };
 		83FE37E016F76CD6000C9935 /* FlickrMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrMapViewController.h; sourceTree = "<group>"; };
 		83FE37E116F76CD6000C9935 /* FlickrMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrMapViewController.m; sourceTree = "<group>"; };
-		8F372B0016F244C800302B80 /* MappingMashupApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MappingMashupApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F372B0016F244C800302B80 /* MappingMashupApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MappingMashupApp.app; path = "Wi-Where.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F372B0316F244C800302B80 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F372B0516F244C800302B80 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8F372B0716F244C800302B80 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };

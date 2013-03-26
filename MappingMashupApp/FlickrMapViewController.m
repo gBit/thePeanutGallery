@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "LocationManager.h"
 #import "APIManager.h"
+#import <QuartzCore/QuartzCore.h>
 
 #import "Annotation.h"
 #import "Photo.h"
@@ -35,6 +36,7 @@
     __weak IBOutlet UIView *loadingOverlay;
     //Just to deal with map zoom issue
     BOOL isZoomedInYet;
+    __weak IBOutlet UIImageView *photoViewerUIImageView;
 }
 
 
@@ -64,6 +66,8 @@ dispatch_queue_t newQueue;
     
     //Add refresh button to Bookmarks viewController --CURRENTLY GOES TO BOOKMARKS, NEED TO WRITE METHOD FOR THIS
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshButtonPressed)];
+    [self.navigationItem.leftBarButtonItem setEnabled:NO];
+
     //Add bookmarks button to viewController
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(bookmarkButtonPressed)];
 
@@ -281,35 +285,47 @@ dispatch_queue_t newQueue;
     //Let's set that custom image
     NSURL *flickrThumbnailURL = [NSURL URLWithString:selectedAnnotation.flickrThumbnailString];
     NSData *photoData = [NSData dataWithContentsOfURL:flickrThumbnailURL];
-    UIImage *photoThumbnailImagePreShine = [UIImage imageWithData:photoData];
-    UIImage * photoThumbnailImage = [self addImage:photoThumbnailImagePreShine toImage:[UIImage imageNamed:@"CircleShine.png"]];
-    //UIImage * photoThumbnailImage = [self addImage:[UIImage imageNamed:@"CircleShine.png"] toImage:photoThumbnailImagePreShine];
-    //Now mask the image
-    
-    dispatch_async(newQueue,^void(void)
-                   {
-                       UIImage * mask = [UIImage imageNamed:@"circleMask.png"];
-                       UIImage *maskedAnnotationImage = [self createMaskWith:mask onImage:photoThumbnailImage];
-                       dispatch_async(dispatch_get_main_queue(),^void (void)
-                                      {
-                                          annotationView.image = maskedAnnotationImage;
-                                      });
-                       
-                   });
-    
-    
-    //Add the shine - can do later
-//    UIImage *backgroundImage = maskedAnnotationImage;
-//    UIImage *watermarkImage = [UIImage imageNamed:@"circleMaskShine"];
+    UIImage *photoThumbnailImage = [UIImage imageWithData:photoData];
+    UIImageView *imageWithFrame = [[UIImageView alloc] initWithImage:photoThumbnailImage];
+    [imageWithFrame.layer setBorderColor: [[UIColor whiteColor] CGColor]];
+    [imageWithFrame.layer setBorderWidth: 4.0];
+    [annotationView addSubview:imageWithFrame];
+
+    //Add frame to annotation
+//    annotationView.image = [UIImage imageNamed:[NSString stringWithFormat:@"F.png"]];
 //    
-//    UIGraphicsBeginImageContext(backgroundImage.size);
-//    [backgroundImage drawInRect:CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height)];
-//    [watermarkImage drawInRect:CGRectMake(backgroundImage.size.width - watermarkImage.size.width, backgroundImage.size.height - watermarkImage.size.height, watermarkImage.size.width, watermarkImage.size.height)];
-//    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
+//    UIImage *frame = [UIImage imageNamed:[NSString stringWithFormat:@"F.png"];
+//                      UIImage *image = photoThumbnailImage;
+//                      
+//                      UIGraphicsBeginImageContext(CGSizeMake(pin.size.width, pin.size.height));
+//                      
+//                      [frame drawInRect:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+//                      [image drawInRect:CGRectMake(4, 4, 60, 60)]; // the frame your inner image
+//                      //maybe you should draw the left bottom icon here,
+//                      
+//                      
+//                      //then set back the new image, done
+//                      annotationView.image = UIGraphicsGetImageFromCurrentImageContext();
+//                      
+//                      UIGraphicsEndImageContext();
     
+    
+    
+    annotationView.image = photoThumbnailImage;
+
+//    dispatch_async(newQueue,^void(void)
+//                   {
+//                       UIImage * mask = [UIImage imageNamed:@"circleMask.png"];
+//                       UIImage *maskedAnnotationImage = [self createMaskWith:mask onImage:photoThumbnailImage];
+//                       dispatch_async(dispatch_get_main_queue(),^void (void)
+//                                      {
+//                                          annotationView.image = photoThumbnailImage;
+//                                      });
+//                       
+//                   });
+
     //Set the imageView inside the 
-    UIImageView *photoContainer = [[UIImageView alloc] initWithImage:photoThumbnailImagePreShine];
+    UIImageView *photoContainer = [[UIImageView alloc] initWithImage:photoThumbnailImage];
 
     photoContainer.contentMode = UIViewContentModeScaleAspectFit;
     
@@ -324,7 +340,10 @@ dispatch_queue_t newQueue;
 
     
     //Move "add bookmark" notification off-screen
-    [UIView animateWithDuration:3.5 delay:2.0 options:nil animations:^(void) { loadingOverlay.alpha = 0;} completion:^(BOOL finished){}];
+    //Re-enable refresh button
+    [UIView animateWithDuration:3.5 delay:2.0 options:nil animations:^(void) { loadingOverlay.alpha = 0; } completion:^(BOOL finished){    [self.navigationItem.leftBarButtonItem setEnabled:YES];
+}];
+
 //    [UIView animateWithDuration:3.5 animations:^(void) {
 //        loadingOverlay.alpha = 0;}];
     
@@ -401,6 +420,14 @@ dispatch_queue_t newQueue;
     [view squishImage];
     selectedAnnotation = view.annotation;
     
+    //Code to make the selected image show up in the photo viewer
+    NSString *photoFullSizeURLString = [selectedAnnotation.flickrThumbnailString stringByReplacingOccurrencesOfString:@"s.jpg" withString:@"n.jpg"];
+    NSURL *photoFullSizeURL = [NSURL URLWithString:photoFullSizeURLString];
+    
+    NSData *photoData = [NSData dataWithContentsOfURL:photoFullSizeURL];
+    UIImage *photoFullSize = [UIImage imageWithData:photoData];
+    photoViewerUIImageView.image = photoFullSize;
+    
     
     
     //Note: This should break when we switch from Yelp annotations
@@ -441,6 +468,9 @@ dispatch_queue_t newQueue;
 {
     [mapView removeAnnotations : mapView.annotations ];
     [mapView removeOverlays:mapView.overlays];
+    
+    [self.navigationItem.leftBarButtonItem setEnabled:NO];
+
     [UIView animateWithDuration:0.5 animations:^(void) {
         loadingOverlay.alpha = 1;}];
     [self viewDidLoad];

@@ -87,6 +87,7 @@
     UIImage *photoFullSize = [UIImage imageWithData:photoData];
     photoViewerUIImageView.image = photoFullSize;
     
+    
 
     Annotation *originAnnotation = [[Annotation alloc] initWithCoordinate:originLocationCoordinate title:originPhotoTitle subtitle:@"Your Selected Photo" urlString:originPhotoThumbnailString];
     
@@ -335,6 +336,7 @@
     selectedBusiness.name = selectedAnnotation.name;
     selectedBusiness.yelpURLString = selectedAnnotation.yelpURLString;
     selectedBusiness.viewDate = selectedAnnotation.viewDate;
+        NSLog(@"Selected business view date:%@", selectedAnnotation.viewDate);
     selectedBusiness.phone = selectedAnnotation.phone;
     
     

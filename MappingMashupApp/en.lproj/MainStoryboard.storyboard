@@ -22,9 +22,10 @@
                                 <rect key="frame" x="0.0" y="281" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="RGB-yg-ZJ4">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" id="RGB-yg-ZJ4">
                                 <rect key="frame" x="0.0" y="309" width="320" height="195"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="yelpMapViewShader@2x.png" id="Vpb-I3-WRC">
                                 <rect key="frame" x="0.0" y="309" width="320" height="195"/>
@@ -58,12 +59,29 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" id="7uf-B3-ybP">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="323"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="L5I-mE-d7D" id="xGQ-az-UrA"/>
                                 </connections>
                             </mapView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadow@2x.png" id="1lX-uH-d4e">
+                                <rect key="frame" x="0.0" y="281" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadowTop@2x.png" id="sq9-B6-zeb">
+                                <rect key="frame" x="0.0" y="-25" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="O4r-WJ-Sly">
+                                <rect key="frame" x="0.0" y="318" width="320" height="195"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="yelpMapViewShader@2x.png" id="4ln-8p-2FA">
+                                <rect key="frame" x="0.0" y="318" width="320" height="195"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <view contentMode="scaleToFill" id="QIi-SX-ZAA">
                                 <rect key="frame" x="0.0" y="-64" width="325" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -94,10 +112,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadowTop@2x.png" id="sq9-B6-zeb">
-                                <rect key="frame" x="0.0" y="-25" width="320" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -105,6 +119,7 @@
                     <connections>
                         <outlet property="loadingOverlay" destination="QIi-SX-ZAA" id="TsT-yj-EFc"/>
                         <outlet property="mapView" destination="7uf-B3-ybP" id="qbj-0f-eqs"/>
+                        <outlet property="photoViewerUIImageView" destination="O4r-WJ-Sly" id="tZu-Yk-TTA"/>
                         <segue destination="2" kind="push" identifier="toYelpMapView" id="yxN-ze-z9q"/>
                         <segue destination="jTz-JW-Bre" kind="push" identifier="toBookmarksAndHistory" id="Th0-2G-EcE"/>
                     </connections>
@@ -338,6 +353,7 @@
             <relationships>
                 <relationship kind="outlet" name="loadingOverlay" candidateClass="UIView"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="photoViewerUIImageView" candidateClass="UIImageView"/>
             </relationships>
         </class>
         <class className="HistoryViewController" superclassName="UIViewController">
@@ -356,8 +372,6 @@
         <class className="YelpWebPageBrowser" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/YelpWebPageBrowser.h"/>
             <relationships>
-                <relationship kind="action" name="swipeLeftAction:"/>
-                <relationship kind="action" name="swipeRightAction:"/>
                 <relationship kind="outlet" name="popoutView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="popoutViewTextLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
@@ -370,7 +384,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Th0-2G-EcE"/>
         <segue reference="grn-P3-leO"/>
+        <segue reference="IAP-L1-hhl"/>
     </inferredMetricsTieBreakers>
 </document>
