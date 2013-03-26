@@ -18,11 +18,14 @@
     __weak IBOutlet UIView *popoutView;
     __weak IBOutlet UILabel *popoutViewTextLabel;
     __weak IBOutlet UIWebView *webView;
-    Business *currentBusiness;
+    Business *currentBusiness;    
     
-    
+    __weak IBOutlet UIButton *backButton;
+    __weak IBOutlet UIButton *forwardButton;
 }
 //Add buttons for left/right here
+- (IBAction)backButtonPress:(id)sender;
+- (IBAction)forwardButtonPress:(id)sender;
 
 @end
 
@@ -55,7 +58,8 @@
     currentBusiness = [self fetchBusinessShownInWebpage];
     
     //Adds bookmark button to top right corner
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addBookmark)];
+    //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addBookmark)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"addBookmarkC"] style:UIBarButtonItemStyleBordered target:self action:@selector(addBookmark)];
     
     //Enable button just in case
     [self.navigationItem.rightBarButtonItem setEnabled:YES];
@@ -98,12 +102,35 @@
                          NSLog(@"Done!");
                      }];
 
-    
-    
+    backButton.enabled = NO;
+    forwardButton.enabled = NO;
+
+
     
     //End of method bracket
 }
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    //Code to manage back/forward buttons
+    if ([webView canGoBack] == NO)
+    {
+        backButton.enabled = NO;
+    }
+    else
+    {
+        backButton.enabled = YES;
+    }
+    
+    if ([webView canGoForward] == NO)
+    {
+        forwardButton.enabled = NO;
+    }
+    else
+    {
+        forwardButton.enabled = YES;
+    }
+}
 
 -(void)fetchToSeeIfCurrentBusinessIsBookmarkedAndSetButtonDisabled
 {
@@ -252,15 +279,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-//Swipe gestures to go forwards, back
-- (IBAction)swipeLeftAction:(id)sender {
-    [webView goForward];
-}
+//Button presses to go back and forward
 
-- (IBAction)swipeRightAction:(id)sender {
+- (IBAction)backButtonPress:(id)sender {
     [webView goBack];
 
 }
 
+- (IBAction)forwardButtonPress:(id)sender {
+    [webView goForward];
 
+}
 @end
