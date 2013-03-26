@@ -140,7 +140,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Swipe to go forward or back" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="emB-3U-nsG">
-                                        <rect key="frame" x="20" y="38" width="280" height="21"/>
+                                        <rect key="frame" x="20" y="12" width="280" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -350,6 +350,7 @@
         <class className="FlickrMapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrMapViewController.h"/>
             <relationships>
+                <relationship kind="action" name="backToFlickrMapView:" candidateClass="UIStoryboardSegue"/>
                 <relationship kind="outlet" name="loadingOverlay" candidateClass="UIView"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
             </relationships>
@@ -359,6 +360,9 @@
             <relationships>
                 <relationship kind="outlet" name="historyTableViewOutlet" candidateClass="UITableView"/>
             </relationships>
+        </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
         </class>
         <class className="YelpMapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/YelpMapViewController.h"/>

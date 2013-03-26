@@ -281,7 +281,8 @@ dispatch_queue_t newQueue;
     //Let's set that custom image
     NSURL *flickrThumbnailURL = [NSURL URLWithString:selectedAnnotation.flickrThumbnailString];
     NSData *photoData = [NSData dataWithContentsOfURL:flickrThumbnailURL];
-    UIImage *photoThumbnailImage = [UIImage imageWithData:photoData];
+    UIImage *photoThumbnailImagePreShine = [UIImage imageWithData:photoData];
+    UIImage * photoThumbnailImage = [self addImage:photoThumbnailImagePreShine toImage:[UIImage imageNamed:@"CircleShine.png"]];
     //Now mask the image
     
     dispatch_async(newQueue,^void(void)
@@ -307,7 +308,7 @@ dispatch_queue_t newQueue;
 //    UIGraphicsEndImageContext();
     
     //Set the imageView inside the 
-    UIImageView *photoContainer = [[UIImageView alloc] initWithImage:photoThumbnailImage];
+    UIImageView *photoContainer = [[UIImageView alloc] initWithImage:photoThumbnailImagePreShine];
 
     photoContainer.contentMode = UIViewContentModeScaleAspectFit;
     
@@ -334,6 +335,24 @@ dispatch_queue_t newQueue;
     
     return annotationView;
 }
+
+//Annotation overlay method
+- (UIImage *)addImage:(UIImage *)image1 toImage:(UIImage *)image2 {
+    UIGraphicsBeginImageContext(image1.size);
+    
+    // Draw image1
+    [image1 drawInRect:CGRectMake(0, 0, image1.size.width, image1.size.height)];
+    
+    // Draw image2
+    [image2 drawInRect:CGRectMake(0, 0, image2.size.width, image2.size.height)];
+    
+    UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return resultingImage;
+}
+
 
 - (UIImage*) createMaskWith: (UIImage *)maskImage onImage:(UIImage*) subjectImage
 {
