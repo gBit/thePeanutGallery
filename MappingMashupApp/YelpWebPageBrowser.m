@@ -22,8 +22,7 @@
     
     
 }
-- (IBAction)swipeRightAction:(id)sender;
-- (IBAction)swipeLeftAction:(id)sender;
+//Add buttons for left/right here
 
 @end
 
@@ -88,8 +87,8 @@
 //                                                }
 //    ];
     
-    [UIView animateWithDuration:0.75
-                          delay:3.0
+    [UIView animateWithDuration:0.0
+                          delay:0.0
                         options: UIViewAnimationCurveEaseIn
                      animations:^{
                          popoutView.center = CGPointMake(popoutView.center.x, popoutView.center.y+200);

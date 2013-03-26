@@ -23,6 +23,7 @@
 		8335571916F754C800DB17D5 /* xmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8335571816F754C800DB17D5 /* xmark.png */; };
 		8335571D16F7579600DB17D5 /* wifiIcon2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8335571C16F7579600DB17D5 /* wifiIcon2@2x.png */; };
 		835876D817014080000A74A7 /* circleShine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 835876D717014080000A74A7 /* circleShine@2x.png */; };
+		837D9F1F1701F56700565291 /* appIcon114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 837D9F1E1701F56700565291 /* appIcon114x114.png */; };
 		83B0D00516FA1A1900C9D8F8 /* BookmarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0D00416FA1A1900C9D8F8 /* BookmarksViewController.m */; };
 		83B0D00A16FA1A8900C9D8F8 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0D00916FA1A8900C9D8F8 /* HistoryViewController.m */; };
 		83BB6B6B16FA0A31003A4506 /* circleMask6464.png in Resources */ = {isa = PBXBuildFile; fileRef = 83BB6B6A16FA0A31003A4506 /* circleMask6464.png */; };
@@ -41,7 +42,6 @@
 		8F372B1416F244C800302B80 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B1316F244C800302B80 /* AppDelegate.m */; };
 		8F372B1616F244C800302B80 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F372B1516F244C800302B80 /* Default.png */; };
 		8F372B1816F244C800302B80 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F372B1716F244C800302B80 /* Default@2x.png */; };
-		8F372B1A16F244C800302B80 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F372B1916F244C800302B80 /* Default-568h@2x.png */; };
 		8F372B1D16F244C800302B80 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F372B1B16F244C800302B80 /* MainStoryboard.storyboard */; };
 		8F372B2016F244C800302B80 /* YelpMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B1F16F244C800302B80 /* YelpMapViewController.m */; };
 		8F372B3216F24B3900302B80 /* libYelpKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F372B2D16F24AC200302B80 /* libYelpKit.a */; };
@@ -103,6 +103,7 @@
 		8335571816F754C800DB17D5 /* xmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xmark.png; sourceTree = "<group>"; };
 		8335571C16F7579600DB17D5 /* wifiIcon2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wifiIcon2@2x.png"; sourceTree = "<group>"; };
 		835876D717014080000A74A7 /* circleShine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circleShine@2x.png"; sourceTree = "<group>"; };
+		837D9F1E1701F56700565291 /* appIcon114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon114x114.png; sourceTree = "<group>"; };
 		83B0D00316FA1A1900C9D8F8 /* BookmarksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarksViewController.h; sourceTree = "<group>"; };
 		83B0D00416FA1A1900C9D8F8 /* BookmarksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarksViewController.m; sourceTree = "<group>"; };
 		83B0D00816FA1A8900C9D8F8 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
@@ -110,7 +111,7 @@
 		83BB6B6A16FA0A31003A4506 /* circleMask6464.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circleMask6464.png; sourceTree = "<group>"; };
 		83BB6B6D16FA0A64003A4506 /* circleMask6464@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circleMask6464@2x.png"; sourceTree = "<group>"; };
 		83BB6B6F16FA0B1A003A4506 /* RossScratchpad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RossScratchpad.h; sourceTree = "<group>"; };
-		83C36E3D1700B8B400C1A147 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		83C36E3D1700B8B400C1A147 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		83D7203616FF964A0012A0B0 /* loadingPage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingPage.png; sourceTree = "<group>"; };
 		83D97AF316FB859C00B525E2 /* circleMask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circleMask@2x.png"; sourceTree = "<group>"; };
 		83D97AF516FB872000B525E2 /* circleMaskShine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "circleMaskShine@2x.png"; path = "MappingMashupApp/circleMaskShine@2x.png"; sourceTree = "<group>"; };
@@ -129,7 +130,6 @@
 		8F372B1316F244C800302B80 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8F372B1516F244C800302B80 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8F372B1716F244C800302B80 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		8F372B1916F244C800302B80 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8F372B1C16F244C800302B80 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		8F372B1E16F244C800302B80 /* YelpMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YelpMapViewController.h; sourceTree = "<group>"; };
 		8F372B1F16F244C800302B80 /* YelpMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YelpMapViewController.m; sourceTree = "<group>"; };
@@ -194,7 +194,6 @@
 		8F372AF716F244C800302B80 = {
 			isa = PBXGroup;
 			children = (
-				83C36E3D1700B8B400C1A147 /* Default-568h@2x.png */,
 				8F372B0916F244C800302B80 /* MappingMashupApp */,
 				8F372B0216F244C800302B80 /* Frameworks */,
 				8F372B0116F244C800302B80 /* Products */,
@@ -249,9 +248,10 @@
 				8F372B0C16F244C800302B80 /* InfoPlist.strings */,
 				8F372B0F16F244C800302B80 /* main.m */,
 				8F372B1116F244C800302B80 /* MappingMashupApp-Prefix.pch */,
+				837D9F1E1701F56700565291 /* appIcon114x114.png */,
 				8F372B1516F244C800302B80 /* Default.png */,
+				83C36E3D1700B8B400C1A147 /* Default-568h@2x.png */,
 				8F372B1716F244C800302B80 /* Default@2x.png */,
-				8F372B1916F244C800302B80 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -373,9 +373,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8F372AFF16F244C800302B80 /* MappingMashupApp */ = {
+		8F372AFF16F244C800302B80 /* Wi-Where */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8F372B2316F244C800302B80 /* Build configuration list for PBXNativeTarget "MappingMashupApp" */;
+			buildConfigurationList = 8F372B2316F244C800302B80 /* Build configuration list for PBXNativeTarget "Wi-Where" */;
 			buildPhases = (
 				8F372AFC16F244C800302B80 /* Sources */,
 				8F372AFD16F244C800302B80 /* Frameworks */,
@@ -386,7 +386,7 @@
 			dependencies = (
 				8F372B3116F24B1F00302B80 /* PBXTargetDependency */,
 			);
-			name = MappingMashupApp;
+			name = "Wi-Where";
 			productName = MappingMashupApp;
 			productReference = 8F372B0016F244C800302B80 /* MappingMashupApp.app */;
 			productType = "com.apple.product-type.application";
@@ -418,7 +418,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				8F372AFF16F244C800302B80 /* MappingMashupApp */,
+				8F372AFF16F244C800302B80 /* Wi-Where */,
 			);
 		};
 /* End PBXProject section */
@@ -448,7 +448,6 @@
 				8F372B0E16F244C800302B80 /* InfoPlist.strings in Resources */,
 				8F372B1616F244C800302B80 /* Default.png in Resources */,
 				8F372B1816F244C800302B80 /* Default@2x.png in Resources */,
-				8F372B1A16F244C800302B80 /* Default-568h@2x.png in Resources */,
 				8F372B1D16F244C800302B80 /* MainStoryboard.storyboard in Resources */,
 				8335571916F754C800DB17D5 /* xmark.png in Resources */,
 				8335571D16F7579600DB17D5 /* wifiIcon2@2x.png in Resources */,
@@ -467,6 +466,7 @@
 				830E6BBA170135AE009FBD5B /* appIcon@2x.png in Resources */,
 				830E6BBB170135AE009FBD5B /* silverBG@2x.png in Resources */,
 				835876D817014080000A74A7 /* circleShine@2x.png in Resources */,
+				837D9F1F1701F56700565291 /* appIcon114x114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,7 +628,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8F372B2316F244C800302B80 /* Build configuration list for PBXNativeTarget "MappingMashupApp" */ = {
+		8F372B2316F244C800302B80 /* Build configuration list for PBXNativeTarget "Wi-Where" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8F372B2416F244C800302B80 /* Debug */,

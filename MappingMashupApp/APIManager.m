@@ -39,7 +39,14 @@
     //Emily's Yelp Key
     //xltTZDS7mgHV7wtu8MkZSg
     
-    yelpAPICall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=%f&limit=%d&ywsid=0mtAebqxwAxzHVOPI_OIyQ", search, latitude, longitude, radius, maxItems];
+    //Paul's Yelp Key
+    //0mtAebqxwAxzHVOPI_OIyQ
+    
+    //David's Yelp Key
+    //TROLOLOLOLOLOLO
+    
+    //ARC4Random goes in here.
+    yelpAPICall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=%f&limit=%d&ywsid=xltTZDS7mgHV7wtu8MkZSg", search, latitude, longitude, radius, maxItems];
     NSLog(@"%@", yelpAPICall);
     
     
@@ -77,7 +84,7 @@
                                          //Em's Flickr API Key 90087da25a0e607ed65734c6bbd4bc01dec7b05e
                                          //Ross Flickr API Key 4dcd4b336fc303a2d36023d3c4c1b214
                                          
-                                     flickrAPICall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=4dcd4b336fc303a2d36023d3c4c1b214&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.5&per_page=3&extras=url_sq%%2C+geo", search, latitude, longitude];
+                                     flickrAPICall = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=4dcd4b336fc303a2d36023d3c4c1b214&tags=%@&format=json&nojsoncallback=1&lat=%@&lon=%@&radius=0.5&per_page=1&extras=url_sq%%2C+geo", search, latitude, longitude];
                                          NSLog(@"%@", flickrAPICall);
                                          
                                          [self searchFlickrWithLatitude:latitude andLongitude:longitude];

@@ -283,6 +283,7 @@ dispatch_queue_t newQueue;
     NSData *photoData = [NSData dataWithContentsOfURL:flickrThumbnailURL];
     UIImage *photoThumbnailImagePreShine = [UIImage imageWithData:photoData];
     UIImage * photoThumbnailImage = [self addImage:photoThumbnailImagePreShine toImage:[UIImage imageNamed:@"CircleShine.png"]];
+    //UIImage * photoThumbnailImage = [self addImage:[UIImage imageNamed:@"CircleShine.png"] toImage:photoThumbnailImagePreShine];
     //Now mask the image
     
     dispatch_async(newQueue,^void(void)
@@ -322,7 +323,7 @@ dispatch_queue_t newQueue;
     annotationView.rightCalloutAccessoryView = detailButton;
 
     
-    //Maybe stop loading scren here?
+    //Move "add bookmark" notification off-screen
     [UIView animateWithDuration:3.5 delay:2.0 options:nil animations:^(void) { loadingOverlay.alpha = 0;} completion:^(BOOL finished){}];
 //    [UIView animateWithDuration:3.5 animations:^(void) {
 //        loadingOverlay.alpha = 0;}];

@@ -195,7 +195,7 @@
     NSError *error;
 //    if (![self.myManagedObjectContext save:&error])
     {
-        NSLog(@"Delete History item method failed.");
+        NSLog(@"Delete History item method failed: %@", error);
     }
 }
 
