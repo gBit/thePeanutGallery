@@ -18,8 +18,20 @@
                                     <outlet property="delegate" destination="2" id="43E-w0-dI6"/>
                                 </connections>
                             </mapView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="RGB-yg-ZJ4">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadow@2x.png" id="k24-NU-feF">
+                                <rect key="frame" x="0.0" y="281" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="RGB-yg-ZJ4">
                                 <rect key="frame" x="0.0" y="309" width="320" height="195"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="yelpMapViewShader@2x.png" id="Vpb-I3-WRC">
+                                <rect key="frame" x="0.0" y="309" width="320" height="195"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadowTop@2x.png" id="2CT-2T-Ig3">
+                                <rect key="frame" x="0.0" y="-23" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -56,24 +68,36 @@
                                 <rect key="frame" x="0.0" y="-64" width="325" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="loadingPage.png" id="D5k-eU-WtS">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="silverBG@2x.png" id="D5k-eU-WtS">
                                         <rect key="frame" x="0.0" y="52" width="320" height="568"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" id="BDR-6h-3HL">
-                                        <rect key="frame" x="144" y="362" width="37" height="37"/>
+                                        <rect key="frame" x="144" y="320" width="37" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </activityIndicatorView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Experience your surroundings. Tap something interesting and we'll show you where you can get online" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GWX-UP-W0P">
-                                        <rect key="frame" x="20" y="407" width="285" height="91"/>
+                                        <rect key="frame" x="20" y="365" width="285" height="91"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadow@2x.png" id="uCm-qi-JQe">
+                                        <rect key="frame" x="-6" y="535" width="331" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="appIcon@2x.png" id="veT-vc-0vB">
+                                        <rect key="frame" x="62" y="94" width="200" height="200"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadowTop@2x.png" id="sq9-B6-zeb">
+                                <rect key="frame" x="0.0" y="-25" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -309,8 +333,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="loadingPage.png" width="640" height="1136"/>
+        <image name="appIcon@2x.png" width="1024" height="1024"/>
+        <image name="mapShadow@2x.png" width="640" height="100"/>
+        <image name="mapShadowTop@2x.png" width="640" height="100"/>
+        <image name="silverBG@2x.png" width="640" height="1136"/>
         <image name="webviewpopout_shelf@2x.png" width="640" height="94"/>
+        <image name="yelpMapViewShader@2x.png" width="640" height="390"/>
     </resources>
     <classes>
         <class className="BookmarksViewController" superclassName="UIViewController">
@@ -356,7 +384,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="Th0-2G-EcE"/>
         <segue reference="grn-P3-leO"/>
-        <segue reference="IAP-L1-hhl"/>
     </inferredMetricsTieBreakers>
 </document>

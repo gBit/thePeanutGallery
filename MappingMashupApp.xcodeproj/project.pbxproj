@@ -12,6 +12,11 @@
 		6B2D7B2D16F8FE2B00E6D3A5 /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D7B2C16F8FE2B00E6D3A5 /* Business.m */; };
 		6B2F834B16FF51C4004551F9 /* BookmarkedBusiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2F834A16FF51C4004551F9 /* BookmarkedBusiness.m */; };
 		830729D416F766D6000F0037 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 830729D216F766D6000F0037 /* Model.xcdatamodeld */; };
+		830E6BB117011CDE009FBD5B /* yelpMapViewShader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 830E6BB017011CDE009FBD5B /* yelpMapViewShader@2x.png */; };
+		830E6BB517011DB1009FBD5B /* mapShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 830E6BB417011DB1009FBD5B /* mapShadow@2x.png */; };
+		830E6BB717011E8B009FBD5B /* mapShadowTop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 830E6BB617011E8B009FBD5B /* mapShadowTop@2x.png */; };
+		830E6BBA170135AE009FBD5B /* appIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 830E6BB8170135AE009FBD5B /* appIcon@2x.png */; };
+		830E6BBB170135AE009FBD5B /* silverBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 830E6BB9170135AE009FBD5B /* silverBG@2x.png */; };
 		83235E2C16FA27F80066659B /* webViewPopOut@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83235E2B16FA27F80066659B /* webViewPopOut@2x.png */; };
 		83332D2316F90F460085BDB6 /* wifiIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83332D2216F90F460085BDB6 /* wifiIcon@2x.png */; };
 		8335571616F6D27600DB17D5 /* YelpWebPageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8335571516F6D27600DB17D5 /* YelpWebPageBrowser.m */; };
@@ -85,6 +90,11 @@
 		6B2F834916FF51C4004551F9 /* BookmarkedBusiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkedBusiness.h; sourceTree = "<group>"; };
 		6B2F834A16FF51C4004551F9 /* BookmarkedBusiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkedBusiness.m; sourceTree = "<group>"; };
 		830729D316F766D6000F0037 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		830E6BB017011CDE009FBD5B /* yelpMapViewShader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yelpMapViewShader@2x.png"; sourceTree = "<group>"; };
+		830E6BB417011DB1009FBD5B /* mapShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapShadow@2x.png"; sourceTree = "<group>"; };
+		830E6BB617011E8B009FBD5B /* mapShadowTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapShadowTop@2x.png"; sourceTree = "<group>"; };
+		830E6BB8170135AE009FBD5B /* appIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appIcon@2x.png"; sourceTree = "<group>"; };
+		830E6BB9170135AE009FBD5B /* silverBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "silverBG@2x.png"; sourceTree = "<group>"; };
 		83235E2B16FA27F80066659B /* webViewPopOut@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "webViewPopOut@2x.png"; sourceTree = "<group>"; };
 		83332D2216F90F460085BDB6 /* wifiIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wifiIcon@2x.png"; sourceTree = "<group>"; };
 		8335571416F6D27600DB17D5 /* YelpWebPageBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YelpWebPageBrowser.h; sourceTree = "<group>"; };
@@ -307,6 +317,11 @@
 		8F3AD83816F90A0300BEEB3A /* Custom Images */ = {
 			isa = PBXGroup;
 			children = (
+				830E6BB8170135AE009FBD5B /* appIcon@2x.png */,
+				830E6BB9170135AE009FBD5B /* silverBG@2x.png */,
+				830E6BB617011E8B009FBD5B /* mapShadowTop@2x.png */,
+				830E6BB417011DB1009FBD5B /* mapShadow@2x.png */,
+				830E6BB017011CDE009FBD5B /* yelpMapViewShader@2x.png */,
 				83D7203616FF964A0012A0B0 /* loadingPage.png */,
 				83D97AF516FB872000B525E2 /* circleMaskShine@2x.png */,
 				83D97AF316FB859C00B525E2 /* circleMask@2x.png */,
@@ -443,6 +458,11 @@
 				83D97AF616FB872000B525E2 /* circleMaskShine@2x.png in Resources */,
 				83D7203716FF964A0012A0B0 /* loadingPage.png in Resources */,
 				83C36E3E1700B8B400C1A147 /* Default-568h@2x.png in Resources */,
+				830E6BB117011CDE009FBD5B /* yelpMapViewShader@2x.png in Resources */,
+				830E6BB517011DB1009FBD5B /* mapShadow@2x.png in Resources */,
+				830E6BB717011E8B009FBD5B /* mapShadowTop@2x.png in Resources */,
+				830E6BBA170135AE009FBD5B /* appIcon@2x.png in Resources */,
+				830E6BBB170135AE009FBD5B /* silverBG@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
