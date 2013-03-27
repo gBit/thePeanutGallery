@@ -162,7 +162,7 @@
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"viewDate" ascending:YES];
     NSArray * sortDescriptorArray = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
 
-    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"isBookmarked == %@", [NSNumber numberWithBool:YES]];
+    //NSPredicate * predicate = [NSPredicate predicateWithFormat:@"isBookmarked == %@", [NSNumber numberWithBool:YES]];
     NSError *searchError;
     
     //David's Predicate Format Notes: may be deleted with impunity......................................
@@ -178,7 +178,7 @@
     
     //Lock and load
     [fetchRequest setSortDescriptors:sortDescriptorArray];
-    [fetchRequest setPredicate:predicate];
+    //[fetchRequest setPredicate:predicate];
     [fetchRequest setEntity:entityDescription];
     fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     

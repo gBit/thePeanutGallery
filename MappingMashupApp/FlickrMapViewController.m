@@ -279,11 +279,15 @@ dispatch_queue_t newQueue;
     
     UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"myAnnotation"];
-    
+    if([annotation isKindOfClass: [MKUserLocation class]])
+    {
+        return nil;
+    }
     if (annotationView == nil) {
         annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
     }
     
+
     //    [detailButton addTarget:self
     //                     action:@selector(goToYelpPage)
     //           forControlEvents:UIControlEventTouchUpInside];
@@ -356,11 +360,6 @@ dispatch_queue_t newQueue;
 //    [UIView animateWithDuration:3.5 animations:^(void) {
 //        loadingOverlay.alpha = 0;}];
     
-    if([annotation isKindOfClass: [MKUserLocation class]])
-    {
-        return nil;
-    }
-    
     
     return annotationView;
 }
@@ -425,6 +424,12 @@ dispatch_queue_t newQueue;
 //
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
+    
+    if([view.annotation isKindOfClass: [MKUserLocation class]])
+        
+    {
+        return;
+    }
     if (didSelectThumbnail == NO)
     {
 
