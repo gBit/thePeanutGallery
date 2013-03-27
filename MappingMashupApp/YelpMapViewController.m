@@ -30,12 +30,14 @@
 {
     CLLocationManager *locationManager;
     Annotation *selectedAnnotation;
+    Annotation *originAnnotation;
    // NSMutableArray *venuesArray;
     NSMutableArray *photosArray;
     
     __weak IBOutlet UIImageView *photoViewerUIImageView;
     __weak IBOutlet MKMapView *yelpMapView;
 }
+- (IBAction)largePhotoTapped:(id)sender;
 
 -(void)addPinsToMap;
 @end
@@ -92,7 +94,7 @@
     
     
 
-    Annotation *originAnnotation = [[Annotation alloc] initWithCoordinate:originLocationCoordinate title:originPhotoTitle subtitle:@"Your Selected Photo" urlString:originPhotoThumbnailString];
+    originAnnotation = [[Annotation alloc] initWithCoordinate:originLocationCoordinate title:originPhotoTitle subtitle:@"Your Selected Photo" urlString:originPhotoThumbnailString];
     
     //This may break the view (trying to draw custom annotation for this origin Photo pin.
     selectedAnnotation = originAnnotation;
@@ -428,4 +430,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)largePhotoTapped:(id)sender {
+    [yelpMapView selectAnnotation:originAnnotation animated:YES];
+}
 @end

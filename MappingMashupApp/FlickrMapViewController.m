@@ -350,6 +350,8 @@ dispatch_queue_t newQueue;
     photoContainer.contentMode = UIViewContentModeScaleAspectFit;
     
     UIView *leftCAV = [[UIView alloc] initWithFrame:CGRectMake(0,0,32,32)];
+
+    
     leftCAV.clipsToBounds = YES;
     [leftCAV addSubview : photoContainer];
 
@@ -460,21 +462,18 @@ dispatch_queue_t newQueue;
     
     }
     
-    
-    //Note: This should break when we switch from Yelp annotations
-    //to Flickr photos.
-    //Once it doees work, delete this comment
-//    Business *selectedBusiness = [NSEntityDescription insertNewObjectForEntityForName:@"Business" inManagedObjectContext:managedObjectContext];
-//    
-//    selectedBusiness.name = view.annotation.title;
-//    
-//    NSError *error;
-//    if (![managedObjectContext save:&error])
-//    {
-//        NSLog(@"failed to save: %@", [error userInfo]);
-//    }
-    
-    //NSLog(@"Logging out the annotation %@", view.annotation.title);
+    else{
+        selectedAnnotation = view.annotation;
+        
+        //Code to make the selected image show up in the photo viewer
+        NSString *photoFullSizeURLString = [selectedAnnotation.flickrThumbnailString stringByReplacingOccurrencesOfString:@"s.jpg" withString:@"n.jpg"];
+        NSURL *photoFullSizeURL = [NSURL URLWithString:photoFullSizeURLString];
+        
+        NSData *photoData = [NSData dataWithContentsOfURL:photoFullSizeURL];
+        UIImage *photoFullSize = [UIImage imageWithData:photoData];
+        photoViewerUIImageView.image = photoFullSize;
+        
+    }
 }
 
 

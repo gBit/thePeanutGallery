@@ -13,28 +13,54 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="fse-RH-zXz">
-                                <rect key="frame" x="0.0" y="-62" width="320" height="374"/>
+                                <rect key="frame" x="0.0" y="193" width="320" height="311"/>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="43E-w0-dI6"/>
                                 </connections>
                             </mapView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadow@2x.png" id="k24-NU-feF">
-                                <rect key="frame" x="0.0" y="281" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="475" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" id="RGB-yg-ZJ4">
-                                <rect key="frame" x="0.0" y="309" width="320" height="195"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="yelpMapViewShader@2x.png" id="Vpb-I3-WRC">
-                                <rect key="frame" x="0.0" y="309" width="320" height="195"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadowTop@2x.png" id="P1J-cx-1od">
+                                <rect key="frame" x="0.0" y="174" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadowTop@2x.png" id="2CT-2T-Ig3">
-                                <rect key="frame" x="0.0" y="-23" width="320" height="50"/>
+                            <view contentMode="scaleToFill" id="hsR-e8-4fb">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="195"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" id="RGB-yg-ZJ4">
+                                        <rect key="frame" x="4" y="4" width="312" height="187"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" alpha="0.33000000000000002" contentMode="scaleAspectFill" image="yelpMapViewShader@2x.png" id="Vpb-I3-WRC">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="195"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadowTop@2x.png" id="2CT-2T-Ig3">
+                                        <rect key="frame" x="0.0" y="-15" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rZB-mu-OXy">
+                                        <rect key="frame" x="0.0" y="4" width="320" height="198"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="largePhotoTapped:" destination="2" eventType="touchUpInside" id="Tkv-Nf-THV"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -449,9 +475,14 @@
                 <relationship kind="outlet" name="historyTableViewOutlet" candidateClass="UITableView"/>
             </relationships>
         </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
         <class className="YelpMapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/YelpMapViewController.h"/>
             <relationships>
+                <relationship kind="action" name="backToYelpMapView:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="action" name="largePhotoTapped:"/>
                 <relationship kind="outlet" name="photoViewerUIImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="yelpMapView" candidateClass="MKMapView"/>
             </relationships>
@@ -475,7 +506,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="IAP-L1-hhl"/>
         <segue reference="grn-P3-leO"/>
-        <segue reference="Th0-2G-EcE"/>
     </inferredMetricsTieBreakers>
 </document>
