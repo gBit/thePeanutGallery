@@ -32,13 +32,16 @@
     NSString * photoTitleToPass;
     NSString * photoThumbnailStringToPass;
     
+    __weak IBOutlet UIView *enlargedPhotoViewOutlet;
     __weak IBOutlet MKMapView *mapView;
     __weak IBOutlet UIView *loadingOverlay;
     //Just to deal with map zoom issue
     BOOL isZoomedInYet;
     __weak IBOutlet UIImageView *photoViewerUIImageView;
+    BOOL didSelectThumbnail;
 }
 
+- (IBAction)closePhotoButtonPressed:(id)sender;
 
 @end
 
@@ -51,6 +54,7 @@ dispatch_queue_t newQueue;
 {
     [super viewDidLoad];
     isZoomedInYet = NO;
+    didSelectThumbnail = NO;
     //God help us, please make the location services work! Puh_LEASE JESUS
     //[self startLocationUpdates];
     //Moved this here (ross 3.25.13)
@@ -417,8 +421,54 @@ dispatch_queue_t newQueue;
 //
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    
+    if (didSelectThumbnail == NO)
+    {
+
+    didSelectThumbnail = YES;
     [view squishImage];
+    
+    
+    
+    //..............NEW 3/27.. TO BE PLAYED WITH TO SCALE PHOTO WHEN SELECTED..
+    //FROM CORE GRAPHIC EXERCIZE............
+    
+//    CGSize sizeOfNewImage =  CGSizeMake(sizeScaled, sizeScaled);
+//    
+////This gets a new context of size sizeOfNewImage
+//    UIGraphicsBeginImageContext(sizeOfNewImage);
+//    
+//    //
+//    //THE BEGINNING OF DOING STUFF ON A NEW DESK (context)
+//    //
+//    
+////Grab whatever is on the desk (context)
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+////This changes the interpolation level. If you are using a small image, use low interpolation
+//CGContextSetInterpolationQuality(context, kCGInterpolationLow);
+//CGContextSetInterpolationQuality(context, kCGInterpolationMedium);
+//CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
+//    
+////draw the jake picture on our new desk (context)
+////(This was originally the image size - 256x256 - we changed it)
+//[jake drawInRect:CGRectMake(0, 0, sizeOfNewImage.width, sizeOfNewImage.height)];
+//    
+////pick up image from the desk (context)
+//UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+//    
+//UIGraphicsEndImageContext();
+//    
+////THE END OF DOING STUFF
+//    
+//myViewOfJake.image = scaledImage;
+////resizing the frame of the view of the image to match
+//myViewOfJake.frame = CGRectMake(0, 0, sizeOfNewImage.width, sizeOfNewImage.height);
+////recenter the view after changing the frame
+//myViewOfJake.center = self.view.center;
+    
+    //NEW END 3/27 ..............TO BE PLAYED WITH TO SCALE PHOTO WHEN SELECTED
+
+    
+    
     [photoViewerUIImageView raiseImageView];
     selectedAnnotation = view.annotation;
     
@@ -429,7 +479,15 @@ dispatch_queue_t newQueue;
     NSData *photoData = [NSData dataWithContentsOfURL:photoFullSizeURL];
     UIImage *photoFullSize = [UIImage imageWithData:photoData];
     photoViewerUIImageView.image = photoFullSize;
+    //photoViewerUIImageView.image = [UIImage imageNamed:@"xmark.png"];
+    [enlargedPhotoViewOutlet addSubview:photoViewerUIImageView];
+    //enlargedPhotoViewOutlet.subvie
     
+    [enlargedPhotoViewOutlet lowerImageView];
+    
+    
+    
+    }
     
     
     //Note: This should break when we switch from Yelp annotations
@@ -447,6 +505,18 @@ dispatch_queue_t newQueue;
     
     //NSLog(@"Logging out the annotation %@", view.annotation.title);
 }
+
+
+- (IBAction)closePhotoButtonPressed:(id)sender
+{
+    if (didSelectThumbnail == YES) {
+        [enlargedPhotoViewOutlet raiseImageView];
+    }
+    
+    
+    didSelectThumbnail = NO;
+}
+
 
 //
 // User taps on disclosure button to see more Yelp data.
@@ -515,5 +585,6 @@ dispatch_queue_t newQueue;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

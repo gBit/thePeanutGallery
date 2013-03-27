@@ -12,5 +12,6 @@
 
 -(void)squishImage;
 -(void)raiseImageView;
+-(void)lowerImageView;
 
 @end

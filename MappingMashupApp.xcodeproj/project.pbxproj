@@ -11,6 +11,7 @@
 		6B2D7B2A16F8FE2B00E6D3A5 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D7B2916F8FE2B00E6D3A5 /* Photo.m */; };
 		6B2D7B2D16F8FE2B00E6D3A5 /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D7B2C16F8FE2B00E6D3A5 /* Business.m */; };
 		6B2F834B16FF51C4004551F9 /* BookmarkedBusiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2F834A16FF51C4004551F9 /* BookmarkedBusiness.m */; };
+		6B66DA1217034B30001CC055 /* closeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B66DA1117034B30001CC055 /* closeButton@2x.png */; };
 		830729D416F766D6000F0037 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 830729D216F766D6000F0037 /* Model.xcdatamodeld */; };
 		830E6BB117011CDE009FBD5B /* yelpMapViewShader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 830E6BB017011CDE009FBD5B /* yelpMapViewShader@2x.png */; };
 		830E6BB517011DB1009FBD5B /* mapShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 830E6BB417011DB1009FBD5B /* mapShadow@2x.png */; };
@@ -94,6 +95,7 @@
 		6B2D7B2C16F8FE2B00E6D3A5 /* Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Business.m; path = ../Business.m; sourceTree = "<group>"; };
 		6B2F834916FF51C4004551F9 /* BookmarkedBusiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkedBusiness.h; sourceTree = "<group>"; };
 		6B2F834A16FF51C4004551F9 /* BookmarkedBusiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkedBusiness.m; sourceTree = "<group>"; };
+		6B66DA1117034B30001CC055 /* closeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closeButton@2x.png"; sourceTree = "<group>"; };
 		830729D316F766D6000F0037 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		830E6BB017011CDE009FBD5B /* yelpMapViewShader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yelpMapViewShader@2x.png"; sourceTree = "<group>"; };
 		830E6BB417011DB1009FBD5B /* mapShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapShadow@2x.png"; sourceTree = "<group>"; };
@@ -234,7 +236,6 @@
 		8F372B0916F244C800302B80 /* MappingMashupApp */ = {
 			isa = PBXGroup;
 			children = (
-				B482103C16FFE568004EE1CF /* Categories */,
 				83D97AF916FB970F00B525E2 /* CustomCalloutClasses */,
 				830729D216F766D6000F0037 /* Model.xcdatamodeld */,
 				8F372B1B16F244C800302B80 /* MainStoryboard.storyboard */,
@@ -286,13 +287,12 @@
 		8F372B5C16F2698B00302B80 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B482103C16FFE568004EE1CF /* Categories */,
 				B425501016F6B1D1005CCC9E /* Managed */,
 				B425500716F6B158005CCC9E /* Venue.h */,
 				B425500816F6B158005CCC9E /* Venue.m */,
 				8F372B5916F2678A00302B80 /* Annotation.h */,
 				8F372B5A16F2678A00302B80 /* Annotation.m */,
-				6B2A007616FB984600F0C703 /* NSString+Extended.h */,
-				6B2A007716FB984600F0C703 /* NSString+Extended.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -327,6 +327,7 @@
 		8F3AD83816F90A0300BEEB3A /* Custom Images */ = {
 			isa = PBXGroup;
 			children = (
+				6B66DA1117034B30001CC055 /* closeButton@2x.png */,
 				835CB1AF1702558B009190FA /* forwardArrow@2x.png */,
 				835CB1AD17025521009190FA /* backArrow@2x.png */,
 				836B862217024F1700B593A4 /* addBookmarkC@2x.png */,
@@ -378,6 +379,8 @@
 			children = (
 				B482103E16FFE579004EE1CF /* UIView+AnimationTools.h */,
 				B482103F16FFE579004EE1CF /* UIView+AnimationTools.m */,
+				6B2A007616FB984600F0C703 /* NSString+Extended.h */,
+				6B2A007716FB984600F0C703 /* NSString+Extended.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				836B862317024F1700B593A4 /* addBookmarkC@2x.png in Resources */,
 				835CB1AE17025521009190FA /* backArrow@2x.png in Resources */,
 				835CB1B01702558B009190FA /* forwardArrow@2x.png in Resources */,
+				6B66DA1217034B30001CC055 /* closeButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
