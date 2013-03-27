@@ -12,6 +12,9 @@
 		6B2D7B2D16F8FE2B00E6D3A5 /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D7B2C16F8FE2B00E6D3A5 /* Business.m */; };
 		6B2F834B16FF51C4004551F9 /* BookmarkedBusiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2F834A16FF51C4004551F9 /* BookmarkedBusiness.m */; };
 		6B66DA1217034B30001CC055 /* closeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B66DA1117034B30001CC055 /* closeButton@2x.png */; };
+		6B6EB7BC17039FD500B66CA9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6EB7BA17039FD500B66CA9 /* Default.png */; };
+		6B6EB7BD17039FD500B66CA9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6EB7BB17039FD500B66CA9 /* Default@2x.png */; };
+		6B6EB7C01703A1F600B66CA9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6EB7BF1703A1F600B66CA9 /* Default-568h@2x.png */; };
 		830729D416F766D6000F0037 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 830729D216F766D6000F0037 /* Model.xcdatamodeld */; };
 		830E6BB117011CDE009FBD5B /* yelpMapViewShader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 830E6BB017011CDE009FBD5B /* yelpMapViewShader@2x.png */; };
 		830E6BB517011DB1009FBD5B /* mapShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 830E6BB417011DB1009FBD5B /* mapShadow@2x.png */; };
@@ -33,7 +36,6 @@
 		83B0D00A16FA1A8900C9D8F8 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0D00916FA1A8900C9D8F8 /* HistoryViewController.m */; };
 		83BB6B6B16FA0A31003A4506 /* circleMask6464.png in Resources */ = {isa = PBXBuildFile; fileRef = 83BB6B6A16FA0A31003A4506 /* circleMask6464.png */; };
 		83BB6B6E16FA0A64003A4506 /* circleMask6464@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83BB6B6D16FA0A64003A4506 /* circleMask6464@2x.png */; };
-		83C36E3E1700B8B400C1A147 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83C36E3D1700B8B400C1A147 /* Default-568h@2x.png */; };
 		83D7203716FF964A0012A0B0 /* loadingPage.png in Resources */ = {isa = PBXBuildFile; fileRef = 83D7203616FF964A0012A0B0 /* loadingPage.png */; };
 		83D97AF416FB859C00B525E2 /* circleMask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83D97AF316FB859C00B525E2 /* circleMask@2x.png */; };
 		83D97AF616FB872000B525E2 /* circleMaskShine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83D97AF516FB872000B525E2 /* circleMaskShine@2x.png */; };
@@ -45,8 +47,6 @@
 		8F372B0E16F244C800302B80 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8F372B0C16F244C800302B80 /* InfoPlist.strings */; };
 		8F372B1016F244C800302B80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B0F16F244C800302B80 /* main.m */; };
 		8F372B1416F244C800302B80 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B1316F244C800302B80 /* AppDelegate.m */; };
-		8F372B1616F244C800302B80 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F372B1516F244C800302B80 /* Default.png */; };
-		8F372B1816F244C800302B80 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F372B1716F244C800302B80 /* Default@2x.png */; };
 		8F372B1D16F244C800302B80 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F372B1B16F244C800302B80 /* MainStoryboard.storyboard */; };
 		8F372B2016F244C800302B80 /* YelpMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F372B1F16F244C800302B80 /* YelpMapViewController.m */; };
 		8F372B3216F24B3900302B80 /* libYelpKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F372B2D16F24AC200302B80 /* libYelpKit.a */; };
@@ -96,6 +96,9 @@
 		6B2F834916FF51C4004551F9 /* BookmarkedBusiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkedBusiness.h; sourceTree = "<group>"; };
 		6B2F834A16FF51C4004551F9 /* BookmarkedBusiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkedBusiness.m; sourceTree = "<group>"; };
 		6B66DA1117034B30001CC055 /* closeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closeButton@2x.png"; sourceTree = "<group>"; };
+		6B6EB7BA17039FD500B66CA9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		6B6EB7BB17039FD500B66CA9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		6B6EB7BF1703A1F600B66CA9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		830729D316F766D6000F0037 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		830E6BB017011CDE009FBD5B /* yelpMapViewShader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yelpMapViewShader@2x.png"; sourceTree = "<group>"; };
 		830E6BB417011DB1009FBD5B /* mapShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapShadow@2x.png"; sourceTree = "<group>"; };
@@ -121,7 +124,6 @@
 		83BB6B6A16FA0A31003A4506 /* circleMask6464.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circleMask6464.png; sourceTree = "<group>"; };
 		83BB6B6D16FA0A64003A4506 /* circleMask6464@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circleMask6464@2x.png"; sourceTree = "<group>"; };
 		83BB6B6F16FA0B1A003A4506 /* RossScratchpad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RossScratchpad.h; sourceTree = "<group>"; };
-		83C36E3D1700B8B400C1A147 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		83D7203616FF964A0012A0B0 /* loadingPage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingPage.png; sourceTree = "<group>"; };
 		83D97AF316FB859C00B525E2 /* circleMask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circleMask@2x.png"; sourceTree = "<group>"; };
 		83D97AF516FB872000B525E2 /* circleMaskShine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "circleMaskShine@2x.png"; path = "MappingMashupApp/circleMaskShine@2x.png"; sourceTree = "<group>"; };
@@ -138,8 +140,6 @@
 		8F372B1116F244C800302B80 /* MappingMashupApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MappingMashupApp-Prefix.pch"; sourceTree = "<group>"; };
 		8F372B1216F244C800302B80 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8F372B1316F244C800302B80 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8F372B1516F244C800302B80 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		8F372B1716F244C800302B80 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8F372B1C16F244C800302B80 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		8F372B1E16F244C800302B80 /* YelpMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YelpMapViewController.h; sourceTree = "<group>"; };
 		8F372B1F16F244C800302B80 /* YelpMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YelpMapViewController.m; sourceTree = "<group>"; };
@@ -252,15 +252,15 @@
 		8F372B0A16F244C800302B80 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6B6EB7BA17039FD500B66CA9 /* Default.png */,
+				6B6EB7BB17039FD500B66CA9 /* Default@2x.png */,
+				6B6EB7BF1703A1F600B66CA9 /* Default-568h@2x.png */,
 				8F3AD83816F90A0300BEEB3A /* Custom Images */,
 				8F372B0B16F244C800302B80 /* MappingMashupApp-Info.plist */,
 				8F372B0C16F244C800302B80 /* InfoPlist.strings */,
 				8F372B0F16F244C800302B80 /* main.m */,
 				8F372B1116F244C800302B80 /* MappingMashupApp-Prefix.pch */,
 				837D9F1E1701F56700565291 /* appIcon114x114.png */,
-				8F372B1516F244C800302B80 /* Default.png */,
-				83C36E3D1700B8B400C1A147 /* Default-568h@2x.png */,
-				8F372B1716F244C800302B80 /* Default@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -461,8 +461,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F372B0E16F244C800302B80 /* InfoPlist.strings in Resources */,
-				8F372B1616F244C800302B80 /* Default.png in Resources */,
-				8F372B1816F244C800302B80 /* Default@2x.png in Resources */,
 				8F372B1D16F244C800302B80 /* MainStoryboard.storyboard in Resources */,
 				8335571916F754C800DB17D5 /* xmark.png in Resources */,
 				8335571D16F7579600DB17D5 /* wifiIcon2@2x.png in Resources */,
@@ -474,7 +472,6 @@
 				83D97AF416FB859C00B525E2 /* circleMask@2x.png in Resources */,
 				83D97AF616FB872000B525E2 /* circleMaskShine@2x.png in Resources */,
 				83D7203716FF964A0012A0B0 /* loadingPage.png in Resources */,
-				83C36E3E1700B8B400C1A147 /* Default-568h@2x.png in Resources */,
 				830E6BB117011CDE009FBD5B /* yelpMapViewShader@2x.png in Resources */,
 				830E6BB517011DB1009FBD5B /* mapShadow@2x.png in Resources */,
 				830E6BB717011E8B009FBD5B /* mapShadowTop@2x.png in Resources */,
@@ -487,6 +484,9 @@
 				835CB1AE17025521009190FA /* backArrow@2x.png in Resources */,
 				835CB1B01702558B009190FA /* forwardArrow@2x.png in Resources */,
 				6B66DA1217034B30001CC055 /* closeButton@2x.png in Resources */,
+				6B6EB7BC17039FD500B66CA9 /* Default.png in Resources */,
+				6B6EB7BD17039FD500B66CA9 /* Default@2x.png in Resources */,
+				6B6EB7C01703A1F600B66CA9 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

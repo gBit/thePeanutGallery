@@ -17,6 +17,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+    
+    
+    
+    
+    
+    
     
     // what's file manager?
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -24,6 +31,8 @@
     NSURL *modelURL = [[NSBundle mainBundle]URLForResource:@"Model" withExtension:@"momd"];
     NSURL *sqliteURL = [documentsDirectory URLByAppendingPathComponent:@"Model.sqlite"];
     NSError *error;
+    
+    
     
     managedObjectModel = [[NSManagedObjectModel alloc]initWithContentsOfURL:modelURL];
     
@@ -43,7 +52,25 @@
     //myCurrentGPSLocation = locationManager.coordinate;
     //NSLog(@"This is our coordinate %f", locationManager.coordinate.latitude);
     
+    
+    UIImageView *imageView =[[UIImageView alloc]initWithFrame:self.window.bounds];
+    UIImage *image = [UIImage imageNamed:@"Default.png"];
+    if (!image) {
+        NSLog(@" we failed to load the image during the screen thing in the didFinish.. in the AppDelegate at line 24");
+    }
+    imageView.image = image;
+    [self.window addSubview:imageView];
+    [self.window makeKeyAndVisible];
+    [self.window bringSubviewToFront:imageView];
+    [self performSelector:@selector(removeSplash:) withObject:imageView afterDelay:2];
+    
+    
     return YES;
+}
+
+-(void)removeSplash:(UIImageView*)splashView
+{
+    [splashView removeFromSuperview];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
