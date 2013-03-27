@@ -32,6 +32,11 @@
 		836B861D1702479600B593A4 /* addBookmarkButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 836B861C1702479600B593A4 /* addBookmarkButton@2x.png */; };
 		836B862317024F1700B593A4 /* addBookmarkC@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 836B862217024F1700B593A4 /* addBookmarkC@2x.png */; };
 		837D9F1F1701F56700565291 /* appIcon114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 837D9F1E1701F56700565291 /* appIcon114x114.png */; };
+		838961501703914700CC86B9 /* DavidFinalLarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8389614C1703914700CC86B9 /* DavidFinalLarge@2x.png */; };
+		838961511703914700CC86B9 /* EmilyFinalLarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8389614D1703914700CC86B9 /* EmilyFinalLarge@2x.png */; };
+		838961521703914700CC86B9 /* PaulFinalLarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8389614E1703914700CC86B9 /* PaulFinalLarge@2x.png */; };
+		838961531703914700CC86B9 /* RossFinalLarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8389614F1703914700CC86B9 /* RossFinalLarge@2x.png */; };
+		838961571703AECF00CC86B9 /* wiWhere512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 838961561703AECF00CC86B9 /* wiWhere512@2x.png */; };
 		83B0D00516FA1A1900C9D8F8 /* BookmarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0D00416FA1A1900C9D8F8 /* BookmarksViewController.m */; };
 		83B0D00A16FA1A8900C9D8F8 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0D00916FA1A8900C9D8F8 /* HistoryViewController.m */; };
 		83BB6B6B16FA0A31003A4506 /* circleMask6464.png in Resources */ = {isa = PBXBuildFile; fileRef = 83BB6B6A16FA0A31003A4506 /* circleMask6464.png */; };
@@ -117,6 +122,11 @@
 		836B861C1702479600B593A4 /* addBookmarkButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "addBookmarkButton@2x.png"; path = "MappingMashupApp/addBookmarkButton@2x.png"; sourceTree = "<group>"; };
 		836B862217024F1700B593A4 /* addBookmarkC@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "addBookmarkC@2x.png"; path = "MappingMashupApp/addBookmarkC@2x.png"; sourceTree = "<group>"; };
 		837D9F1E1701F56700565291 /* appIcon114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon114x114.png; sourceTree = "<group>"; };
+		8389614C1703914700CC86B9 /* DavidFinalLarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DavidFinalLarge@2x.png"; sourceTree = "<group>"; };
+		8389614D1703914700CC86B9 /* EmilyFinalLarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EmilyFinalLarge@2x.png"; sourceTree = "<group>"; };
+		8389614E1703914700CC86B9 /* PaulFinalLarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PaulFinalLarge@2x.png"; sourceTree = "<group>"; };
+		8389614F1703914700CC86B9 /* RossFinalLarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RossFinalLarge@2x.png"; sourceTree = "<group>"; };
+		838961561703AECF00CC86B9 /* wiWhere512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wiWhere512@2x.png"; sourceTree = "<group>"; };
 		83B0D00316FA1A1900C9D8F8 /* BookmarksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarksViewController.h; sourceTree = "<group>"; };
 		83B0D00416FA1A1900C9D8F8 /* BookmarksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarksViewController.m; sourceTree = "<group>"; };
 		83B0D00816FA1A8900C9D8F8 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
@@ -327,6 +337,11 @@
 		8F3AD83816F90A0300BEEB3A /* Custom Images */ = {
 			isa = PBXGroup;
 			children = (
+				838961561703AECF00CC86B9 /* wiWhere512@2x.png */,
+				8389614C1703914700CC86B9 /* DavidFinalLarge@2x.png */,
+				8389614D1703914700CC86B9 /* EmilyFinalLarge@2x.png */,
+				8389614E1703914700CC86B9 /* PaulFinalLarge@2x.png */,
+				8389614F1703914700CC86B9 /* RossFinalLarge@2x.png */,
 				6B66DA1117034B30001CC055 /* closeButton@2x.png */,
 				835CB1AF1702558B009190FA /* forwardArrow@2x.png */,
 				835CB1AD17025521009190FA /* backArrow@2x.png */,
@@ -487,6 +502,11 @@
 				6B6EB7BC17039FD500B66CA9 /* Default.png in Resources */,
 				6B6EB7BD17039FD500B66CA9 /* Default@2x.png in Resources */,
 				6B6EB7C01703A1F600B66CA9 /* Default-568h@2x.png in Resources */,
+				838961501703914700CC86B9 /* DavidFinalLarge@2x.png in Resources */,
+				838961511703914700CC86B9 /* EmilyFinalLarge@2x.png in Resources */,
+				838961521703914700CC86B9 /* PaulFinalLarge@2x.png in Resources */,
+				838961531703914700CC86B9 /* RossFinalLarge@2x.png in Resources */,
+				838961571703AECF00CC86B9 /* wiWhere512@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

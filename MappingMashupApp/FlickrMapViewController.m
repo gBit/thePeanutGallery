@@ -39,8 +39,12 @@
     BOOL isZoomedInYet;
     __weak IBOutlet UIImageView *photoViewerUIImageView;
     BOOL didSelectThumbnail;
+    __weak IBOutlet UILabel *bioLabel;
+    __weak IBOutlet UIScrollView *bioScrollView;
+    
 }
 - (IBAction)fullSizedPhotoTapped:(id)sender;
+- (IBAction)infoButtonPressed:(id)sender;
 
 - (IBAction)closePhotoButtonPressed:(id)sender;
 
@@ -67,6 +71,9 @@ dispatch_queue_t newQueue;
     [missLocationManager startUpdatingLocation];
 //    NSDate *future = [NSDate dateWithTimeIntervalSinceNow: 3];
 //    [NSThread sleepUntilDate:future];
+    
+    //Code for bio page
+    bioScrollView.contentSize = bioLabel.frame.size;
     
     
     //Add refresh button to Bookmarks viewController --CURRENTLY GOES TO BOOKMARKS, NEED TO WRITE METHOD FOR THIS
@@ -479,6 +486,9 @@ dispatch_queue_t newQueue;
     photoThumbnailStringToPass = selectedAnnotation.urlString;
     
     [self performSegueWithIdentifier:@"toYelpMapView" sender:nil];
+}
+
+- (IBAction)infoButtonPressed:(id)sender {
 }
 
 - (IBAction)closePhotoButtonPressed:(id)sender
