@@ -66,8 +66,11 @@
     {
 //        .latitudeDelta = 0.01810686f,
 //        .longitudeDelta = 0.01810686f
-        .latitudeDelta = 0.01450686f,
-        .longitudeDelta = 0.01450686f
+//        .latitudeDelta = 0.01450686f,
+//        .longitudeDelta = 0.01450686f
+        
+        .latitudeDelta = 0.00750686f,
+        .longitudeDelta = 0.00750686f
     };
     
     MKCoordinateRegion originRegion = {originLocationCoordinate, originSpan};

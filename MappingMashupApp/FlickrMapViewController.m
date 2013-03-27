@@ -40,6 +40,7 @@
     __weak IBOutlet UIImageView *photoViewerUIImageView;
     BOOL didSelectThumbnail;
 }
+- (IBAction)fullSizedPhotoTapped:(id)sender;
 
 - (IBAction)closePhotoButtonPressed:(id)sender;
 
@@ -98,7 +99,7 @@ dispatch_queue_t newQueue;
         
     };
     NSLog(@"%f %f", mobileMakers.latitude, mobileMakers.longitude);
-    MKCircle *overlay = [MKCircle circleWithCenterCoordinate:mobileMakers radius:100000];
+    MKCircle *overlay = [MKCircle circleWithCenterCoordinate:mobileMakers radius:1000000000];
 
     
     overlay.title = @"Current region";
@@ -217,8 +218,11 @@ dispatch_queue_t newQueue;
     {
 //        .latitudeDelta = 0.01810686f,
 //        .longitudeDelta = 0.01810686f
-        .latitudeDelta = 0.00950686f,
-        .longitudeDelta = 0.00950686f
+//        .latitudeDelta = 0.00950686f,
+//        .longitudeDelta = 0.00950686f
+        .latitudeDelta = 0.00550686f,
+        .longitudeDelta = 0.00550686f
+
     };
     
     MKCoordinateRegion region = {missLocationManager.location.coordinate, span};
@@ -404,7 +408,7 @@ dispatch_queue_t newQueue;
     {
         MKCircleView*    aView = [[MKCircleView alloc] initWithCircle:(MKCircle *)overlay];
         
-        aView.fillColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+        aView.fillColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
         aView.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
         aView.lineWidth = 1;
         
@@ -427,49 +431,7 @@ dispatch_queue_t newQueue;
     didSelectThumbnail = YES;
     [view squishImage];
     
-    
-    
-    //..............NEW 3/27.. TO BE PLAYED WITH TO SCALE PHOTO WHEN SELECTED..
-    //FROM CORE GRAPHIC EXERCIZE............
-    
-//    CGSize sizeOfNewImage =  CGSizeMake(sizeScaled, sizeScaled);
-//    
-////This gets a new context of size sizeOfNewImage
-//    UIGraphicsBeginImageContext(sizeOfNewImage);
-//    
-//    //
-//    //THE BEGINNING OF DOING STUFF ON A NEW DESK (context)
-//    //
-//    
-////Grab whatever is on the desk (context)
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-////This changes the interpolation level. If you are using a small image, use low interpolation
-//CGContextSetInterpolationQuality(context, kCGInterpolationLow);
-//CGContextSetInterpolationQuality(context, kCGInterpolationMedium);
-//CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
-//    
-////draw the jake picture on our new desk (context)
-////(This was originally the image size - 256x256 - we changed it)
-//[jake drawInRect:CGRectMake(0, 0, sizeOfNewImage.width, sizeOfNewImage.height)];
-//    
-////pick up image from the desk (context)
-//UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-//    
-//UIGraphicsEndImageContext();
-//    
-////THE END OF DOING STUFF
-//    
-//myViewOfJake.image = scaledImage;
-////resizing the frame of the view of the image to match
-//myViewOfJake.frame = CGRectMake(0, 0, sizeOfNewImage.width, sizeOfNewImage.height);
-////recenter the view after changing the frame
-//myViewOfJake.center = self.view.center;
-    
-    //NEW END 3/27 ..............TO BE PLAYED WITH TO SCALE PHOTO WHEN SELECTED
-
-    
-    
-    [photoViewerUIImageView raiseImageView];
+ 
     selectedAnnotation = view.annotation;
     
     //Code to make the selected image show up in the photo viewer
@@ -479,9 +441,6 @@ dispatch_queue_t newQueue;
     NSData *photoData = [NSData dataWithContentsOfURL:photoFullSizeURL];
     UIImage *photoFullSize = [UIImage imageWithData:photoData];
     photoViewerUIImageView.image = photoFullSize;
-    //photoViewerUIImageView.image = [UIImage imageNamed:@"xmark.png"];
-    [enlargedPhotoViewOutlet addSubview:photoViewerUIImageView];
-    //enlargedPhotoViewOutlet.subvie
     
     [enlargedPhotoViewOutlet lowerImageView];
     
@@ -507,6 +466,16 @@ dispatch_queue_t newQueue;
 }
 
 
+- (IBAction)fullSizedPhotoTapped:(id)sender
+{
+    latitudeToPass = selectedAnnotation.coordinate.latitude;
+    longitudeToPass = selectedAnnotation.coordinate.longitude;
+    photoTitleToPass = selectedAnnotation.title;
+    photoThumbnailStringToPass = selectedAnnotation.urlString;
+    
+    [self performSegueWithIdentifier:@"toYelpMapView" sender:nil];
+}
+
 - (IBAction)closePhotoButtonPressed:(id)sender
 {
     if (didSelectThumbnail == YES) {
@@ -523,10 +492,9 @@ dispatch_queue_t newQueue;
 //
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    NSLog(@"This is the method we want!");
-    // [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"m.yelp.com"]];
-    NSLog(@"%@", view.annotation);
-    //These instance variables will be passed in the segue
+   
+    
+      //These instance variables will be passed in the segue
     latitudeToPass = selectedAnnotation.coordinate.latitude;
     longitudeToPass = selectedAnnotation.coordinate.longitude;
     photoTitleToPass = selectedAnnotation.title;
