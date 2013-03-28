@@ -29,5 +29,4 @@
 - (void)removePhotoObject:(Photo *)value;
 - (void)addPhoto:(NSSet *)values;
 - (void)removePhoto:(NSSet *)values;
-
 @end

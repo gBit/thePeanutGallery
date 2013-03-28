@@ -12,6 +12,7 @@
 #import "LocationManager.h"
 #import <MapKit/MapKit.h>
 #import "Venue.h"
+#import "Annotation.h"
 
 @protocol APIManagerDelegate <NSObject>
 
@@ -34,5 +35,7 @@
 - (void)searchYelpThenFlickrForDelegates;
 - (void)searchYelpForDelegates;
 - (NSMutableArray*)searchFlickr;
+- (void)retrieveFullSizedImageForSelectedAnnotation:(Annotation*)annotation;
+
 
 @end

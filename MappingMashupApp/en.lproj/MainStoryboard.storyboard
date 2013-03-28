@@ -110,7 +110,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="fse-RH-zXz">
-                                <rect key="frame" x="0.0" y="193" width="320" height="311"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="43E-w0-dI6"/>
                                 </connections>
@@ -120,28 +120,26 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadowTop@2x.png" id="P1J-cx-1od">
-                                <rect key="frame" x="0.0" y="174" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="-31" width="320" height="92"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" id="hsR-e8-4fb">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="195"/>
+                                <rect key="frame" x="5" y="5" width="155" height="195"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" id="RGB-yg-ZJ4">
-                                        <rect key="frame" x="4" y="4" width="312" height="187"/>
+                                        <rect key="frame" x="3" y="3" width="149" height="187"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" alpha="0.33000000000000002" contentMode="scaleAspectFill" image="yelpMapViewShader@2x.png" id="Vpb-I3-WRC">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="195"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadowTop@2x.png" id="2CT-2T-Ig3">
-                                        <rect key="frame" x="0.0" y="-15" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rZB-mu-OXy">
-                                        <rect key="frame" x="0.0" y="4" width="320" height="198"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal">
@@ -163,6 +161,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="WiFi Venues" id="ONv-7V-dEl"/>
                     <connections>
+                        <outlet property="photoViewerButton" destination="rZB-mu-OXy" id="beX-k3-5vg"/>
                         <outlet property="photoViewerUIImageView" destination="RGB-yg-ZJ4" id="f5B-9i-u7Z"/>
                         <outlet property="yelpMapView" destination="fse-RH-zXz" id="HHQ-eP-hJK"/>
                         <segue destination="qVE-kj-ncM" kind="push" identifier="toYelpWebPage" id="grn-P3-leO"/>
@@ -589,6 +588,7 @@
         <class className="FlickrMapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrMapViewController.h"/>
             <relationships>
+                <relationship kind="action" name="backToFlickrMapView:" candidateClass="UIStoryboardSegue"/>
                 <relationship kind="action" name="closePhotoButtonPressed:"/>
                 <relationship kind="action" name="fullSizedPhotoTapped:"/>
                 <relationship kind="action" name="infoButtonPressed:"/>
@@ -607,10 +607,14 @@
                 <relationship kind="outlet" name="historyTableViewOutlet" candidateClass="UITableView"/>
             </relationships>
         </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
         <class className="YelpMapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/YelpMapViewController.h"/>
             <relationships>
                 <relationship kind="action" name="largePhotoTapped:"/>
+                <relationship kind="outlet" name="photoViewerButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="photoViewerUIImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="yelpMapView" candidateClass="MKMapView"/>
             </relationships>
@@ -634,7 +638,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="IAP-L1-hhl"/>
         <segue reference="grn-P3-leO"/>
-        <segue reference="Th0-2G-EcE"/>
     </inferredMetricsTieBreakers>
 </document>

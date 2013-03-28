@@ -31,10 +31,10 @@
     CLLocationManager *locationManager;
     Annotation *selectedAnnotation;
     Annotation *originAnnotation;
-   // NSMutableArray *venuesArray;
     NSMutableArray *photosArray;
     
     __weak IBOutlet UIImageView *photoViewerUIImageView;
+    __weak IBOutlet UIButton *photoViewerButton;
     __weak IBOutlet MKMapView *yelpMapView;
 }
 - (IBAction)largePhotoTapped:(id)sender;
@@ -43,20 +43,19 @@
 @end
 
 @implementation YelpMapViewController
-@synthesize managedObjectContext, originPhotoLatitude, originPhotoLongitude, originPhotoTitle, originPhotoThumbnailString;
+@synthesize managedObjectContext, originPhotoLatitude, originPhotoLongitude, originPhotoTitle, originPhotoThumbnailURL;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     
     // Core Data
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
     
     // Location Services
-    //locationManager = appDelegate.locationManager;
     [yelpMapView setShowsUserLocation:YES];
+    
     //Set map region to the imported lat/long
     CLLocationCoordinate2D originLocationCoordinate =
     {
@@ -80,73 +79,65 @@
     APIManager *yelpAPIManager = [[APIManager alloc] initWithYelpSearch:@"free%20wifi" andLocation:originLocationCoordinate withMaxResults:15];
     yelpAPIManager.delegate = self;
     
-    //Add Bookmarks button
+    // Add Bookmarks button
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(bookmarkButtonPressed)];
-    //Note bookmarkButtonPressed method needs to be copied in
     
+    // Annotation
+    originAnnotation = [[Annotation alloc] initWithCoordinate:originLocationCoordinate title:originPhotoTitle subtitle:@"Your Selected Photo" urlString:originPhotoThumbnailURL];
     
-    NSString *photoFullSizeURLString = [originPhotoThumbnailString stringByReplacingOccurrencesOfString:@"s.jpg" withString:@"n.jpg"];
-    NSURL *photoFullSizeURL = [NSURL URLWithString:photoFullSizeURLString];
-    
-    NSData *photoData = [NSData dataWithContentsOfURL:photoFullSizeURL];
-    UIImage *photoFullSize = [UIImage imageWithData:photoData];
-    photoViewerUIImageView.image = photoFullSize;
-    
-    
-
-    originAnnotation = [[Annotation alloc] initWithCoordinate:originLocationCoordinate title:originPhotoTitle subtitle:@"Your Selected Photo" urlString:originPhotoThumbnailString];
-    
-    //This may break the view (trying to draw custom annotation for this origin Photo pin.
     selectedAnnotation = originAnnotation;
     
-    //Darkening overlay on map, if we want one
+    // Darkening overlay on map, if we want one
     MKCircle *overlay = [MKCircle circleWithCenterCoordinate:originLocationCoordinate radius:100000];
     overlay.title = @"Current region";
     [yelpMapView addOverlay:overlay];
     
-    
     [yelpMapView setRegion:originRegion animated:YES];
-     [yelpMapView addAnnotation:originAnnotation];
-    
+    [yelpMapView addAnnotation:originAnnotation];
     
     [yelpAPIManager searchYelpForDelegates];
     
-    //[self addPinsToMap];
+    [self retrieveFullSizedImageForSelectedPhoto:originPhotoThumbnailURL];
 }
+
+// working with existing structure, this passes in an NSString (as opposed to an Annotation)
+// needs flexibility so it can be refactored and placed in the APIManager class
+- (void)retrieveFullSizedImageForSelectedPhoto:(NSString*)photoThumbnailURL
+{
+    // grab the medium sized version of the annotion image from flickr
+    NSString *photoFullSizeURLString = [photoThumbnailURL stringByReplacingOccurrencesOfString:@"s.jpg" withString:@"n.jpg"];
+    NSURL *photoFullSizeURL = [NSURL URLWithString:photoFullSizeURLString];
+    NSData *photoData = [NSData dataWithContentsOfURL:photoFullSizeURL];
+    UIImage *photoFullSize = [UIImage imageWithData:photoData];
+    
+    // adjust the containing view and imageView to match the photo's aspect ratio
+    float photoWidth = photoFullSize.size.width;
+    float photoHeight = photoFullSize.size.height;
+    float photoAspectRatio = photoWidth/photoHeight;
+    
+    // for this view, we've scaled it to 1/4 of the screen
+    float imageViewWidth = photoViewerUIImageView.frame.size.width;
+    float imageViewHeight = imageViewWidth/photoAspectRatio;
+    
+    // frame positioning is also adjusted from flickr view
+    CGRect scaledImageView = CGRectMake(3.0f, 3.0f, imageViewWidth, imageViewHeight);
+    [photoViewerUIImageView setFrame:scaledImageView];
+    photoViewerUIImageView.image = photoFullSize;
+    
+    // now the superview
+    CGRect scaledSuperView = CGRectMake(5.0f, 5.0f, imageViewWidth + 6, imageViewHeight + 6);
+    [photoViewerUIImageView.superview setFrame:scaledSuperView];
+    
+    // and last, but not least, the button
+    CGRect scaledButton = CGRectMake(0.0f, 0.0f, scaledSuperView.size.width + 10, scaledSuperView.size.height + 10);
+    [photoViewerButton setFrame:scaledButton];
+}
+
 
 # pragma mark - User Location Methods
-// deprecated: fix later
-
-/*
--(void)locationManager:(CLLocationManager*)manager
-   didUpdateToLocation:(CLLocation *)newLocation
-          fromLocation:(CLLocation *)oldLocation
-{
-    //how many seconds ago was this new location created
-    NSTimeInterval time = [[newLocation timestamp] timeIntervalSinceNow];
-    
-    //CLLocation manager will return last found location
-    //if this location was made more than 3 minutes ago, ignore
-    if (time<-180) {
-        return;
-    }
-    [self foundLocation:newLocation];
-}
-
-
-
--(void)mapView:(MKMapView *)userMapView didUpdateUserLocation:(MKUserLocation *)userLocation
-{
-    CLLocationCoordinate2D loc = userLocation.coordinate;
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
-    
-    [userMapView setRegion:region animated:YES];
-}
-*/
 -(void) didReceiveYelpData:(NSMutableArray *)venuesArray
 {
      [self addPinsToMap:venuesArray];
-
 }
 
 # pragma mark - Annotation Methods
@@ -164,30 +155,16 @@
 
 - (void)addPinsToMap:(NSMutableArray*)venuesArray;
 {
-    // make region our area
-//    MKCoordinateSpan span =
-//    {
-//        .latitudeDelta = 0.01810686f,
-//        .longitudeDelta = 0.01810686f
-//    };
-//    
-//    MKCoordinateRegion region = {locationManager.coordinate, span};
-    //set region to mapview
-    //[mapView setRegion:region animated:YES];
-    
     for (int i = 0; i < venuesArray.count; i++)
     {
-        //CLLocation *venueLocation = [[venuesArray objectAtIndex:i] location];
         NSString *venueName = [[venuesArray objectAtIndex:i] name];
         
         //coordinate make
-        
         float annotationLatitude =[[[venuesArray objectAtIndex:i] valueForKey:@"latitude"] floatValue];
         float annotationLongitude =[[[venuesArray objectAtIndex:i] valueForKey:@"longitude"] floatValue];
         
         NSNumber *latitude = [[venuesArray objectAtIndex:i] valueForKey:@"latitude"];
         NSNumber *longitude = [[venuesArray objectAtIndex:i] valueForKey:@"longitude"];
-        
         
         CLLocationCoordinate2D venueCoordinate = {annotationLatitude, annotationLongitude};
         
@@ -201,42 +178,9 @@
         myAnnotation.yelpURLString = urlString;
         myAnnotation.phone = [[venuesArray objectAtIndex:i] valueForKey:@"phone"];
         
-        
         //add to map
         [yelpMapView addAnnotation:myAnnotation];
     }
-    
-    
-//    for (int i = 0; i < venuesArray.count; i++)
-//    {
-//        CLLocation *venueLocation = [[venuesArray objectAtIndex:i] location];
-//        NSString *venueName = [[venuesArray objectAtIndex:i] name];
-//        
-//        //coordinate make
-//        CLLocationCoordinate2D venueCoordinate;
-//        venueCoordinate.longitude = venueLocation.coordinate.longitude;
-//        venueCoordinate.latitude = venueLocation.coordinate.latitude;
-//        
-//        //
-//        // REVISE TO LEVERAGE NEW CUSTOM INITS //
-//        //
-//        // create annotation
-//        // Annotation *myAnnotation = [[Annotation alloc] initWithPosition:placeCoordinate];
-//        // myAnnotation.title = nameOfPlace;
-//        // myAnnotation.subtitle = @"Demo subtitle";
-//        
-//        //NSLog(@"%@", returnedArray);
-//        //Add code here to capture yelp page URL
-//        //NSString *yelpURLString = [[returnedArray objectAtIndex:i] valueForKey:@"yelpURL"];
-//        //NSLog(@"%@", yelpURLString);
-//        //myAnnotation.yelpPageURL = yelpURLString;
-//        
-//        //add to map
-//        //[myMapView addAnnotation:myAnnotation];
-//        
-//        
-//    }
-    //NSLog(@"%@", [[myMapView.annotations objectAtIndex:0] title]);
 }
 
 -(MKAnnotationView*)mapView:(MKMapView*)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -257,22 +201,16 @@
         return nil;
     }
     
-    //    [detailButton addTarget:self
-    //                     action:@selector(goToYelpPage)
-    //           forControlEvents:UIControlEventTouchUpInside];
     annotationView.canShowCallout = YES;
     annotationView.image = [UIImage imageNamed:@"wifiIcon.png"];
-    //annotationView.image = selectedannotation.thumbnail;
     annotationView.rightCalloutAccessoryView = detailButton;
     
     if([annotation isKindOfClass: [MKUserLocation class]])
     {
         return nil;
     }
-    
     return annotationView;
 }
-
 
 //Method for creating a map overlay
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay
@@ -321,7 +259,6 @@
     }
 }
 
-
 //Masking method
 - (UIImage*) createMaskWith: (UIImage *)maskImage onImage:(UIImage*) subjectImage
 {
@@ -341,25 +278,19 @@
     return finalImage;
 }
 
-
-
-
 //
 // User taps on disclosure button to see more Yelp data.
 //
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
     NSLog(@"This is the method we want!");
-    // [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"m.yelp.com"]];
-    [self performSegueWithIdentifier:@"toYelpWebPage" sender:nil];
-    
+    [self performSegueWithIdentifier:@"toYelpWebPage" sender:nil];    
 }
 
 -(void) bookmarkButtonPressed
 {
     NSLog(@"User pressed button to go to bookmarks");
     [self performSegueWithIdentifier: @"yelpPageToBookmarks" sender:self];
-    
 }
 
 # pragma mark - Transitions
@@ -370,23 +301,13 @@
     {
         
     YelpWebPageBrowser * ywpb = [segue destinationViewController];
-    //Future Ross, this might break
-    
-    //carry properties over to webview so we can create a bookmarked managed object
+
     ywpb.yelpURLString = selectedAnnotation.yelpURLString;
     ywpb.phone = selectedAnnotation.phone;
     ywpb.latitude = selectedAnnotation.latitude;
     ywpb.longitude = selectedAnnotation.longitude;
     ywpb.name = selectedAnnotation.name;
     ywpb.viewDate = [NSDate date];
-        
-        
-        
-
-        
-        
-        
-    
     }
 }
 

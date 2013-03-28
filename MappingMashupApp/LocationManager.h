@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
+#import "Annotation.h"
 
 
 @interface LocationManager : NSObject <CLLocationManagerDelegate>
@@ -22,5 +23,6 @@
 //- (LocationManager *)initWithLatitude:(float)latitude andLongitude:(float)longitude;
 
 - (id)initWithCurrentLocationAndUpdates;
+//- (void)retrieveFullSizedImageForSelectedAnnotation:(Annotation*)annotation;
 
 @end

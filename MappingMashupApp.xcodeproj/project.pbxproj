@@ -136,7 +136,6 @@
 		83B0D00916FA1A8900C9D8F8 /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		83BB6B6A16FA0A31003A4506 /* circleMask6464.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circleMask6464.png; sourceTree = "<group>"; };
 		83BB6B6D16FA0A64003A4506 /* circleMask6464@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circleMask6464@2x.png"; sourceTree = "<group>"; };
-		83BB6B6F16FA0B1A003A4506 /* RossScratchpad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RossScratchpad.h; sourceTree = "<group>"; };
 		83D7203616FF964A0012A0B0 /* loadingPage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingPage.png; sourceTree = "<group>"; };
 		83D97AF316FB859C00B525E2 /* circleMask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circleMask@2x.png"; sourceTree = "<group>"; };
 		83D97AF516FB872000B525E2 /* circleMaskShine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "circleMaskShine@2x.png"; path = "MappingMashupApp/circleMaskShine@2x.png"; sourceTree = "<group>"; };
@@ -169,7 +168,6 @@
 		8F372B5716F2672100302B80 /* ResultsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsManager.m; sourceTree = "<group>"; };
 		8F372B5916F2678A00302B80 /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
 		8F372B5A16F2678A00302B80 /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
-		B40B477116F68CB4006BD4CE /* copyOfVenue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = copyOfVenue.h; sourceTree = "<group>"; };
 		B40B477416F68FC1006BD4CE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B425500716F6B158005CCC9E /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Venue.h; path = ../Venue.h; sourceTree = "<group>"; };
 		B425500816F6B158005CCC9E /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Venue.m; path = ../Venue.m; sourceTree = "<group>"; };
@@ -207,13 +205,6 @@
 			name = "Tab View Items";
 			sourceTree = "<group>";
 		};
-		83D97AF916FB970F00B525E2 /* CustomCalloutClasses */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = CustomCalloutClasses;
-			sourceTree = "<group>";
-		};
 		8F372AF716F244C800302B80 = {
 			isa = PBXGroup;
 			children = (
@@ -249,10 +240,8 @@
 		8F372B0916F244C800302B80 /* MappingMashupApp */ = {
 			isa = PBXGroup;
 			children = (
-				83D97AF916FB970F00B525E2 /* CustomCalloutClasses */,
 				830729D216F766D6000F0037 /* Model.xcdatamodeld */,
 				8F372B1B16F244C800302B80 /* MainStoryboard.storyboard */,
-				B40B477616F69055006BD4CE /* Backups */,
 				8F372B5C16F2698B00302B80 /* Classes */,
 				8F372B4F16F2661300302B80 /* Delegates */,
 				8F372B5D16F269A700302B80 /* Managers */,
@@ -326,9 +315,9 @@
 		8F372B5E16F269B100302B80 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				83B0D00716FA1A2000C9D8F8 /* Tab View Items */,
 				839BFAE01703BF550061F5BC /* AboutUsViewController.h */,
 				839BFAE11703BF560061F5BC /* AboutUsViewController.m */,
-				83B0D00716FA1A2000C9D8F8 /* Tab View Items */,
 				83FE37E016F76CD6000C9935 /* FlickrMapViewController.h */,
 				83FE37E116F76CD6000C9935 /* FlickrMapViewController.m */,
 				8F372B1E16F244C800302B80 /* YelpMapViewController.h */,
@@ -370,15 +359,6 @@
 			);
 			name = "Custom Images";
 			path = ..;
-			sourceTree = "<group>";
-		};
-		B40B477616F69055006BD4CE /* Backups */ = {
-			isa = PBXGroup;
-			children = (
-				83BB6B6F16FA0B1A003A4506 /* RossScratchpad.h */,
-				B40B477116F68CB4006BD4CE /* copyOfVenue.h */,
-			);
-			name = Backups;
 			sourceTree = "<group>";
 		};
 		B425501016F6B1D1005CCC9E /* Managed */ = {

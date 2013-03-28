@@ -16,6 +16,6 @@
 @property (assign, nonatomic) float originPhotoLatitude;
 @property (assign, nonatomic) float originPhotoLongitude;
 @property (assign, nonatomic) NSString * originPhotoTitle;
-@property (assign, nonatomic) NSString * originPhotoThumbnailString;
+@property (assign, nonatomic) NSString * originPhotoThumbnailURL;
 
 @end

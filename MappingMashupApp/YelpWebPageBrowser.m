@@ -23,6 +23,7 @@
     __weak IBOutlet UIButton *backButton;
     __weak IBOutlet UIButton *forwardButton;
 }
+
 //Add buttons for left/right here
 - (IBAction)backButtonPress:(id)sender;
 - (IBAction)forwardButtonPress:(id)sender;
@@ -33,9 +34,6 @@
 
 @synthesize yelpURLString,managedObjectContext, name, latitude, longitude, phone, viewDate;
 
-
-
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -44,7 +42,6 @@
     }
     return self;
 }
-
 
 - (void)viewDidLoad
 {
@@ -58,38 +55,17 @@
     currentBusiness = [self fetchBusinessShownInWebpage];
     
     //Adds bookmark button to top right corner
-    //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addBookmark)];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"addBookmarkC"] style:UIBarButtonItemStyleBordered target:self action:@selector(addBookmark)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"addBookmarkC"] style:UIBarButtonItemStyleBordered target:self action:@selector(addBookmark)];
     
     //Enable button just in case
     [self.navigationItem.rightBarButtonItem setEnabled:YES];
     [self fetchToSeeIfCurrentBusinessIsBookmarkedAndSetButtonDisabled];
-    //Check to see if this venue is already bookmarked
-//    if (venue.isBookmarked == YES)
-//    {
-//        NSLog(@"Page already bookmarked");
-//        [self.navigationItem.rightBarButtonItem setEnabled:NO];
-//    }
-
 
     //Load yelp page
     NSString *homePage = [NSString stringWithFormat:@"%@", yelpURLString];
     NSURL * url = [NSURL URLWithString:homePage];
     NSURLRequest * urlRequest = [NSURLRequest requestWithURL:url];
 	[webView loadRequest: urlRequest];
-    
-    //Scroll off "swipe to navigate" message after 1.5 seconds
-    //Hold for 1.5 seconds, then scroll off left side.
-//    [UIView animateWithDuration:1.0 animations:^(void)
-//        {popoutView.center = CGPointMake(popoutView.center.x, popoutView.center.y-10);}
-//                     completion:^(BOOL finished){
-//                         [UIView animateWithDuration:2.5 animations:
-//                          ^{popoutView.center = CGPointMake(popoutView.center.x, popoutView.center.y+200);
-//                              popoutView.alpha = 0;
-//                          }
-//                          ];
-//                                                }
-//    ];
     
     [UIView animateWithDuration:0.0
                           delay:0.0
@@ -104,16 +80,12 @@
 
     backButton.enabled = NO;
     forwardButton.enabled = NO;
-
-
-    
-    //End of method bracket
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     //Code to manage back/forward buttons
-    if ([webView canGoBack] == NO)
+    if (![webView canGoBack])
     {
         backButton.enabled = NO;
     }
@@ -122,7 +94,7 @@
         backButton.enabled = YES;
     }
     
-    if ([webView canGoForward] == NO)
+    if (![webView canGoForward])
     {
         forwardButton.enabled = NO;
     }
@@ -157,22 +129,16 @@
     if ([fetchResultsController.fetchedObjects count] > 0) {
         [self.navigationItem.rightBarButtonItem setEnabled: NO];
     }
-
 }
-
-
-
 
 -(void) addBookmark
 {
-    
     //this code will change the bookmark attribute on the currentbusiness "Business" class object
     //AND create a new "BoomarkedBusiness" class object with the same attributes, so that it may persist even if removed from the history list
     
     currentBusiness.isBookmarked = [NSNumber numberWithBool:YES];
     
     BookmarkedBusiness *businessToBookmark = [NSEntityDescription insertNewObjectForEntityForName:@"BookmarkedBusiness" inManagedObjectContext:managedObjectContext];
-    
     
     businessToBookmark.name = name;
     businessToBookmark.phone = phone;
@@ -187,7 +153,6 @@
     {
         NSLog(@"failed to save: %@", [error userInfo]);
     }
-    
     
     popoutViewTextLabel.text = @"Bookmark added";
     //Scroll on, pause for 1.5 seconds, scroll off
@@ -207,7 +172,6 @@
                           ];
                      }
      ];
-    
     //Disable button so they can't bookmark the same page again.
     [self.navigationItem.rightBarButtonItem setEnabled:NO];
 }
@@ -215,24 +179,15 @@
 //Add to bookmarks.
 -(void)addBookmarkStatusTo: (Business*)business
 {
-
     //venue.isBookmarked = YES;
     NSError *error;
     if (![self.managedObjectContext save:&error])
     {
         NSLog(@"Add bookmark status failed.");
     }
-    
-    
-    
-    
-    
-    
 }
 
-
 //fetch the managed object of the business we're looking at in this webView
-
 -(Business*) fetchBusinessShownInWebpage
 {
     NSArray *businessesArray;
@@ -254,24 +209,15 @@
     fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     
     [fetchResultsController performFetch:&searchError];
-    //Something about making the arrays equal size or some shit. Gawd.
     //This will update your display array with your fetch results
-    
     
     businessesArray = fetchResultsController.fetchedObjects;
     
     if (businessesArray != nil && businessesArray.count > 0) {
         business = [businessesArray objectAtIndex:0];
     }
-    
-    
     return business;
-    
 }
-
-
-
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -283,11 +229,9 @@
 
 - (IBAction)backButtonPress:(id)sender {
     [webView goBack];
-
 }
 
 - (IBAction)forwardButtonPress:(id)sender {
     [webView goForward];
-
 }
 @end

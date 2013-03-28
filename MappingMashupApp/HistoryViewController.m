@@ -36,25 +36,18 @@
 
 - (void)viewDidLoad
 {
-    
     // Core Data
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
-    
     
     [super viewDidLoad];
     self.title = @"History";
     
     historyArray = [self allEntitiesNamed:@"Business"];
-
-    
-    
-    //testHistory = [[NSArray alloc] initWithObjects:@"History 1", @"History 2", @"History 3", nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
     [historyTableViewOutlet reloadData];
 }
 
@@ -67,13 +60,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //1. declare a cell
-    UITableViewCell * currentCell;
-    
-    //2. see if there are any cells we can reuse
+    UITableViewCell * currentCell;    
     currentCell = [tableView dequeueReusableCellWithIdentifier:@"HistoryReuseIdentifier"];
 	
-    //3. if not, create one to use!
 	if(currentCell == nil)
     {
         currentCell = [[UITableViewCell alloc]
@@ -81,24 +70,17 @@
                        reuseIdentifier:@"HistoryReuseIdentifier"];
         currentCell.accessoryType =     UITableViewCellAccessoryDisclosureIndicator;
 	}
-	//4. change the textLabel to reflect the data we are using.
     
     Business *currentBusiness = [historyArray objectAtIndex:[indexPath row] ];
-    
 	currentCell.textLabel.text = currentBusiness.name;
     currentCell.detailTextLabel.text = currentBusiness.phone;
 	return currentCell;
-    
 }
 
-//When row is selected
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     [tableView deselectRowAtIndexPath: indexPath animated:YES];
-    
 }
-
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return YES if you want the specified item to be editable.
@@ -113,7 +95,6 @@
         //Put code here to delete the object from the managedObjectContext..............
         
         Business *business = [historyArray objectAtIndex:indexPath.row];
-        //business.isBookmarked = [NSNumber numberWithBool:NO];
         
         [managedObjectContext deleteObject:business];
         
@@ -123,16 +104,9 @@
             //NSLog(@"Add bookmark status failed.");
         }
         
-       // historyArray = [self allEntitiesNamed:@"Business"];
-        
-        
         historyArray = [self fetchBookmarks];
         
-        [tableView reloadData];
-        //[self removeBookmarkStatusFrom:business]
-        
-
-    }
+        [tableView reloadData];    }
 }
 
 //core data fetch
@@ -146,10 +120,8 @@
     fetchRequest.entity = entity;
     [fetchRequest setSortDescriptors:sortDescriptorArray];
 
-    
     return [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
 }
-
 
 //core data fetch for bookmarked businesses
 -(NSArray*) fetchBookmarks
@@ -170,44 +142,25 @@
     //    NSPredicate *testForTrue = [NSPredicate predicateWithFormat:@"anAttribute == YES"];
     //.............................................................................................
     
-    
-//    if ([mySearchText isEqualToString:@""])
-//    {
-//        predicate = nil;
-//    }
-    
     //Lock and load
     [fetchRequest setSortDescriptors:sortDescriptorArray];
-    //[fetchRequest setPredicate:predicate];
     [fetchRequest setEntity:entityDescription];
     fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     
     [fetchResultsController performFetch:&searchError];
-    //Something about making the arrays equal size or some shit. Gawd.
-    //This will update your display array with your fetch results
     bookmarkArray = fetchResultsController.fetchedObjects;
     
-    
     return fetchResultsController.fetchedObjects;
-    
 }
-
-
 
 //Delete an object from the History.
 -(void)deleteVenue: (Venue*)venue
 {
-//    [self.myManagedObjectContext deleteObject:venue];
     NSError *error;
-//    if (![self.myManagedObjectContext save:&error])
     {
         NSLog(@"Delete History item method failed: %@", error);
     }
 }
-
-
-
-
 
 #pragma mark -- segue methods
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -215,7 +168,6 @@
     YelpWebPageBrowser * ywpb = [segue destinationViewController];
 
     NSIndexPath *path = historyTableViewOutlet.indexPathForSelectedRow;
-    //ywpb.yelpURLString = [[historyArray objectAtIndex:path.row] yelpURLString];
     Business *businessForSegue = [historyArray objectAtIndex:path.row];
     ywpb.yelpURLString = [[historyArray objectAtIndex:path.row] yelpURLString];
     ywpb.name = businessForSegue.name;
@@ -223,13 +175,7 @@
     ywpb.latitude = businessForSegue.latitude;
     ywpb.phone = businessForSegue.phone;
     ywpb.viewDate = businessForSegue.viewDate;
-    
-    
-
 }
-
-
-
 
 #pragma mark -- end of document
 - (void)didReceiveMemoryWarning

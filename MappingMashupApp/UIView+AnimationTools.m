@@ -23,29 +23,24 @@
                      }];
 }
 
-
-
 -(void)lowerImageView
 {
     
     [UIView animateWithDuration:0.5
                      animations:^void(void)
-     {
-         self.center = CGPointMake(self.center.x, self.frame.size.height/2 + 10);
-         //self.alpha = 0.90;
-     }];
+                     {
+                         self.center = CGPointMake(self.center.x, self.frame.size.height/2 + 10);
+                         //self.alpha = 0.90;
+                     }];
 }
-
 
 -(void)raiseImageView
 {
     [UIView animateWithDuration:0.5
                      animations:^void(void)
-     {
-         self.center = CGPointMake(self.center.x, self.center.y - self.frame.size.height * 1.5 - 10);
-         //self.alpha = 0.90;
-     }];
+                     {
+                         self.center = CGPointMake(self.center.x, self.center.y - self.frame.size.height * 1.5 - 10);
+                         //self.alpha = 0.90;
+                     }];
 }
-
-
 @end

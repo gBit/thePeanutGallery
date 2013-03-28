@@ -17,27 +17,18 @@
 @property (strong, nonatomic) NSString *urlString;
 @property (strong, nonatomic) NSString *flickrThumbnailString;
 
-
-
-
-
 //these are properties we need  on a pinAnnotation to make an entity.  We may be duplicating info above.  Added by David 3/21/13
-    @property (nonatomic, retain) NSNumber * latitude;
-    @property (nonatomic, retain) NSNumber * longitude;
-    @property (nonatomic, retain) NSString * name;
-    @property (nonatomic, retain) NSString * phone;
-    @property (nonatomic, retain) NSNumber * isBookmarked;
-    @property (nonatomic, retain) NSDate * viewDate;
-    @property (nonatomic, retain) NSString * yelpURLString;
-    @property (nonatomic, retain) NSSet *photo;
-
-
-
-//- initWithPosition:(CLLocationCoordinate2D)coordinates;
+@property (nonatomic, retain) NSNumber * latitude;
+@property (nonatomic, retain) NSNumber * longitude;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * phone;
+@property (nonatomic, retain) NSNumber * isBookmarked;
+@property (nonatomic, retain) NSDate * viewDate;
+@property (nonatomic, retain) NSString * yelpURLString;
+@property (nonatomic, retain) NSSet *photo;
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coord
                    title:(NSString*)titleString
                 subtitle:(NSString*)subtitleString
-                 urlString:(NSString*)urlString;
-
+               urlString:(NSString*)urlString;
 @end

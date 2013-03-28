@@ -16,15 +16,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-
-    
-    
-    
-    
-    
-    
-    
+{    
     // what's file manager?
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSURL *documentsDirectory = [[fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];

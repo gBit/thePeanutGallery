@@ -132,6 +132,12 @@
     [locationManager stopUpdatingLocation];
 }
 
+-(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    NSLog(@"User gave permission to use location");
+    [self viewDidLoad];
+}
+
 -(void)didReceiveFlickrData:(NSMutableArray*)photosArray
 {
     
@@ -141,24 +147,21 @@
 
 -(void)didReceiveYelpData: (NSMutableArray*)venuesArray
 {
-    
     //[self addPinsToMap:venuesArray];
 }
 
 
 - (void)addPinsToMap:(NSMutableArray*)venuesArray;
 {
-    
     // make region our area
     MKCoordinateSpan span =
     {
-//        .latitudeDelta = 0.01810686f,
-//        .longitudeDelta = 0.01810686f
-        .latitudeDelta = 0.00950686f,
-        .longitudeDelta = 0.00950686f
+        .latitudeDelta = 0.01810686f,
+        .longitudeDelta = 0.01810686f
+//        .latitudeDelta = 0.00950686f,
+//        .longitudeDelta = 0.00950686f
 //        .latitudeDelta = 0.00550686f,
-  //      .longitudeDelta = 0.00550686f
-
+//        .longitudeDelta = 0.00550686f
     };
     
     MKCoordinateRegion region = {missLocationManager.location.coordinate, span};
@@ -318,32 +321,25 @@
 //
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    
-    if([view.annotation isKindOfClass: [MKUserLocation class]])
-    {
+    if ([view.annotation isKindOfClass: [MKUserLocation class]])
         return;
-    }
-    if (didSelectThumbnail == NO)
+    
+    selectedAnnotation = view.annotation;
+    [self retrieveFullSizedImageForSelectedAnnotation:selectedAnnotation];
+    
+    if (!didSelectThumbnail)
     {
-        didSelectThumbnail = YES;
         [view squishImage];
-     
-        selectedAnnotation = view.annotation;
-        [self displayFullSizedImageForSelectedAnnotation:selectedAnnotation];
         
         // adjust entry point for animation (as determined by image size)
         photoViewerUIImageView.superview.center = CGPointMake(photoViewerUIImageView.superview.center.x, -photoViewerUIImageView.superview.frame.size.height);
-        
         [enlargedPhotoViewOutlet lowerImageView];
-    }
-    else
-    {
-        selectedAnnotation = view.annotation;
-        [self displayFullSizedImageForSelectedAnnotation:selectedAnnotation];
-    }
+        
+        didSelectThumbnail = YES;
+    } 
 }
 
-- (void)displayFullSizedImageForSelectedAnnotation:(Annotation*)annotation
+- (void)retrieveFullSizedImageForSelectedAnnotation:(Annotation*)annotation
 {
     // grab the medium sized version of the annotion image from flickr
     NSString *photoFullSizeURLString = [annotation.flickrThumbnailString stringByReplacingOccurrencesOfString:@"s.jpg" withString:@"n.jpg"];
@@ -446,7 +442,7 @@
     ymvc.originPhotoLongitude = longitudeToPass;
     ymvc.originPhotoLatitude = latitudeToPass;
         ymvc.originPhotoTitle = photoTitleToPass;
-        ymvc.originPhotoThumbnailString = photoThumbnailStringToPass;
+        ymvc.originPhotoThumbnailURL = photoThumbnailStringToPass;
     }
 }
 

@@ -19,10 +19,5 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-//Property for current location coordinate
 @property (strong, nonatomic) LocationManager *locationManager;
-
-
-
-
 @end

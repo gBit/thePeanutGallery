@@ -10,8 +10,6 @@
 
 @interface NSString (Extended)
 
-
 - (NSString *)urlencode;
-
 
 @end

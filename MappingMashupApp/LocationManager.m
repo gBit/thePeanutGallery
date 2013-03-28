@@ -80,4 +80,29 @@
     alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error description] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
 }
+
+//- (void)retrieveFullSizedImageForSelectedAnnotation:(Annotation*)annotation
+//{
+//    // grab the medium sized version of the annotion image from flickr
+//    NSString *photoFullSizeURLString = [annotation.flickrThumbnailString stringByReplacingOccurrencesOfString:@"s.jpg" withString:@"n.jpg"];
+//    NSURL *photoFullSizeURL = [NSURL URLWithString:photoFullSizeURLString];
+//    NSData *photoData = [NSData dataWithContentsOfURL:photoFullSizeURL];
+//    UIImage *photoFullSize = [UIImage imageWithData:photoData];
+//
+//    // adjust the containing view and imageView to match the photo's aspect ratio
+//    float photoWidth = photoFullSize.size.width;
+//    float photoHeight = photoFullSize.size.height;
+//    float photoAspectRatio = photoWidth/photoHeight;
+//
+//    float imageViewWidth = photoViewerUIImageView.frame.size.width;
+//    float imageViewHeight = imageViewWidth/photoAspectRatio;
+//
+//    CGRect scaledImageView = CGRectMake(5.0f, 5.0f, imageViewWidth, imageViewHeight);
+//    [photoViewerUIImageView setFrame:scaledImageView];
+//    photoViewerUIImageView.image = photoFullSize;
+//
+//    CGRect scaledSuperView = CGRectMake(10.0f, 10.0f, imageViewWidth + 10, imageViewHeight + 10);
+//    [photoViewerUIImageView.superview setFrame:scaledSuperView];
+//}
+
 @end

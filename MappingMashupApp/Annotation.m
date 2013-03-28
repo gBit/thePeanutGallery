@@ -11,22 +11,10 @@
 @implementation Annotation
 @synthesize coordinate,title,subtitle, urlString, latitude, longitude, name, phone, isBookmarked, viewDate, yelpURLString, photo;
 
-
-
-
-
-//- initWithPosition:(CLLocationCoordinate2D *)coordinates
-//{
-//    if (self = [super init]) {
-//        self.coordinate = *(coordinates);
-//    }
-//    return self;
-//}
-
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coord
                    title:(NSString*)titleString
                 subtitle:(NSString*)subtitleString
-                 urlString:(NSString *)urlString
+               urlString:(NSString *)urlString
 {
     if (self = [super init])
     {
@@ -35,8 +23,6 @@
         self.subtitle = subtitleString;
         self.urlString = urlString;
     }
-    
     return self;
 }
-
 @end

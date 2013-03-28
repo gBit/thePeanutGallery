@@ -21,7 +21,7 @@
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error;
--(void)didReceiveYelpData: (NSMutableArray*)venuesArray;
+- (void)didReceiveYelpData: (NSMutableArray*)venuesArray;
 
 //NOT a pre-defined method
 -(void) startLocationUpdates;
