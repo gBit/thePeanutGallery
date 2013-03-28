@@ -38,7 +38,7 @@
     
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]initWithManagedObjectModel:managedObjectModel];
     
-    // if there isn't a data base....
+    // if there isn't a database....
     if ([persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:sqliteURL options:nil error:&error])
     {
         //create one.
@@ -51,14 +51,36 @@
     locationManager = [[LocationManager alloc] init];
     //myCurrentGPSLocation = locationManager.coordinate;
     //NSLog(@"This is our coordinate %f", locationManager.coordinate.latitude);
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    CGSize screenSize = screenBound.size;
+    CGFloat screenHeight = screenSize.height;
     
-    
+    //Setup for loading page
     UIImageView *imageView =[[UIImageView alloc]initWithFrame:self.window.bounds];
-    UIImage *image = [UIImage imageNamed:@"Default.png"];
-    if (!image) {
-        NSLog(@" we failed to load the image during the screen thing in the didFinish.. in the AppDelegate at line 24");
+
+    if (screenHeight == 480)
+    {
+            //Device is iPhone 4 or 4S in point height
+        UIImage *image = [UIImage imageNamed:@"Default@2x.png"];
+        if (!image)
+        {
+            NSLog(@" we failed to load the image during the screen thing in the didFinish.. in the AppDelegate at line 64");
+        }
+        imageView.image = image;
+
     }
-    imageView.image = image;
+    if (screenHeight == 568)
+    {
+        //Device is iPhone 5 in point height
+        UIImage *image = [UIImage imageNamed:@"Default-568h@2x.png"];
+        if (!image)
+        {
+            NSLog(@" we failed to load the image during the screen thing in the didFinish.. in the AppDelegate at line 74");
+        }
+        imageView.image = image;
+        
+    }
+
     [self.window addSubview:imageView];
     [self.window makeKeyAndVisible];
     [self.window bringSubviewToFront:imageView];
@@ -70,7 +92,13 @@
 
 -(void)removeSplash:(UIImageView*)splashView
 {
-    [splashView removeFromSuperview];
+    [UIView animateWithDuration:0.75 animations:^(void) { splashView.center = CGPointMake(splashView.center.x+400, splashView.center.y);
+    } completion:^(BOOL finished) {[splashView removeFromSuperview];}];
+//    [UIView animateWithDuration:1 animations:^(void)
+//    {
+//        splashView.center = CGPointMake(splashView.center.x+400, splashView.center.y);
+//    }];
+//    [splashView removeFromSuperview];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
