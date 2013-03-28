@@ -19,7 +19,6 @@
 #import "Photo.h"
 #import "Business.h"
 #import "UIView+AnimationTools.h"
-//Paul Testing - delete if this comment is still here on 3/24
 #import "ResultsManager.h"
 
 @interface FlickrMapViewController ()
@@ -60,9 +59,7 @@ dispatch_queue_t newQueue;
     [super viewDidLoad];
     isZoomedInYet = NO;
     didSelectThumbnail = NO;
-    //God help us, please make the location services work! Puh_LEASE JESUS
-    //[self startLocationUpdates];
-    //Moved this here (ross 3.25.13)
+
     if(missLocationManager == nil)
     {
         missLocationManager = [[CLLocationManager alloc]init];
@@ -441,41 +438,45 @@ dispatch_queue_t newQueue;
     }
     if (didSelectThumbnail == NO)
     {
-
-    didSelectThumbnail = YES;
-    [view squishImage];
-    
- 
-    selectedAnnotation = view.annotation;
-    
-    //Code to make the selected image show up in the photo viewer
-    NSString *photoFullSizeURLString = [selectedAnnotation.flickrThumbnailString stringByReplacingOccurrencesOfString:@"s.jpg" withString:@"n.jpg"];
-    NSURL *photoFullSizeURL = [NSURL URLWithString:photoFullSizeURLString];
-    
-    NSData *photoData = [NSData dataWithContentsOfURL:photoFullSizeURL];
-    UIImage *photoFullSize = [UIImage imageWithData:photoData];
-    photoViewerUIImageView.image = photoFullSize;
-    
-    [enlargedPhotoViewOutlet lowerImageView];
-    
-    
-    
-    }
-    
-    else{
+        didSelectThumbnail = YES;
+        [view squishImage];
+     
         selectedAnnotation = view.annotation;
+        [self displayFullSizedImageForSelectedAnnotation:selectedAnnotation];
         
-        //Code to make the selected image show up in the photo viewer
-        NSString *photoFullSizeURLString = [selectedAnnotation.flickrThumbnailString stringByReplacingOccurrencesOfString:@"s.jpg" withString:@"n.jpg"];
-        NSURL *photoFullSizeURL = [NSURL URLWithString:photoFullSizeURLString];
-        
-        NSData *photoData = [NSData dataWithContentsOfURL:photoFullSizeURL];
-        UIImage *photoFullSize = [UIImage imageWithData:photoData];
-        photoViewerUIImageView.image = photoFullSize;
-        
+        [enlargedPhotoViewOutlet lowerImageView];
+    }
+    else
+    {
+        selectedAnnotation = view.annotation;
+        [self displayFullSizedImageForSelectedAnnotation:selectedAnnotation];
+
     }
 }
 
+- (void)displayFullSizedImageForSelectedAnnotation:(Annotation*)annotation
+{
+    // grab the medium sized version of the annotion image from flickr
+    NSString *photoFullSizeURLString = [annotation.flickrThumbnailString stringByReplacingOccurrencesOfString:@"s.jpg" withString:@"n.jpg"];
+    NSURL *photoFullSizeURL = [NSURL URLWithString:photoFullSizeURLString];
+    NSData *photoData = [NSData dataWithContentsOfURL:photoFullSizeURL];
+    UIImage *photoFullSize = [UIImage imageWithData:photoData];
+    
+    // adjust the containing view and imageView to match the photo's aspect ratio
+    float photoWidth = photoFullSize.size.width;
+    float photoHeight = photoFullSize.size.height;
+    float photoAspectRatio = photoWidth/photoHeight;
+    
+    float imageViewWidth = photoViewerUIImageView.frame.size.width;
+    float imageViewHeight = imageViewWidth/photoAspectRatio;
+        
+    CGRect scaledImageView = CGRectMake(5.0f, 5.0f, imageViewWidth, imageViewHeight);
+    [photoViewerUIImageView setFrame:scaledImageView];
+    photoViewerUIImageView.image = photoFullSize;
+    
+    CGRect scaledSuperView = CGRectMake(10.0f, 10.0f, imageViewWidth + 10, imageViewHeight + 10);
+    [photoViewerUIImageView.superview setFrame:scaledSuperView];
+}
 
 - (IBAction)fullSizedPhotoTapped:(id)sender
 {
