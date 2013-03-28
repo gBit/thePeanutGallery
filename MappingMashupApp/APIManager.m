@@ -56,7 +56,7 @@
             keyToUse = @"xltTZDS7mgHV7wtu8MkZSg";
             break;
         case 2:
-            keyToUse = @"xltTZDS7mgHV7wtu8MkZSg"; //Currently disabled, was Paul's key, now a dupe of case 1
+            keyToUse = @"0mtAebqxwAxzHVOPI_OIyQ";
             break;
         case 3:
             keyToUse = @"ylWkpXJFz6-ZI3PvDG519A";
