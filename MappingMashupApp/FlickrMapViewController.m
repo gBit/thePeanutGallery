@@ -44,6 +44,7 @@
 }
 - (IBAction)fullSizedPhotoTapped:(id)sender;
 - (IBAction)infoButtonPressed:(id)sender;
+- (IBAction)largerClosePhotoButtonPressed:(id)sender;
 
 - (IBAction)closePhotoButtonPressed:(id)sender;
 
@@ -489,6 +490,16 @@ dispatch_queue_t newQueue;
 }
 
 - (IBAction)infoButtonPressed:(id)sender {
+}
+
+- (IBAction)largerClosePhotoButtonPressed:(id)sender
+{
+    if (didSelectThumbnail == YES)
+    {
+        [enlargedPhotoViewOutlet raiseImageView];
+    }
+    
+    didSelectThumbnail = NO;
 }
 
 - (IBAction)closePhotoButtonPressed:(id)sender
