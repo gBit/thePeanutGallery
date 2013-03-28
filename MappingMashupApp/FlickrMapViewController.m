@@ -25,7 +25,6 @@
 {
     LocationManager *locationManager;
     Annotation *selectedAnnotation;
-    //NSMutableArray *venuesArray;
     float latitudeToPass;
     float longitudeToPass;
     NSString * photoTitleToPass;
@@ -79,21 +78,14 @@
 
     NSDate *future = [NSDate dateWithTimeIntervalSinceNow: 2 ];
     [NSThread sleepUntilDate:future];
-    //Created method "bookmarkButtonPressed, currently has no action - End edit
     
     // Core Data
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
 
     [mapView setShowsUserLocation:YES];
-    
-    //Overlay activate
-    // Define an overlay that covers Colorado.
-//    MKCircle *overlay = [MKCircle circleWithCenterCoordinate:mapView.centerCoordinate radius:1000];
+
     CLLocationCoordinate2D mobileMakers = {
-//        .latitude = 41.894032,
-//        .longitude = -87.63472
-        //Non-hard coded location here
         .latitude = missLocationManager.location.coordinate.latitude,
         .longitude = missLocationManager.location.coordinate.longitude
         
@@ -108,11 +100,7 @@
 
     APIManager *mrAPIManager = [[APIManager alloc] initWithYelpSearch:@"'free%20wifi'" andLocation:mobileMakers withMaxResults:6];
     
-    //deleagtion begins
     mrAPIManager.delegate = self;
-     
-    // Allocate objects
-    // [possibly allocate the venuesArray later?]
    
     [mrAPIManager searchYelpThenFlickrForDelegates];
     
@@ -121,30 +109,6 @@
 }
 
 # pragma mark - User Location Methods
-// deprecated: fix later
--(void)locationManager:(CLLocationManager*)manager
-   didUpdateToLocation:(CLLocation *)newLocation
-          fromLocation:(CLLocation *)oldLocation
-{
-    //how many seconds ago was this new location created
-    //NSTimeInterval time = [[newLocation timestamp] timeIntervalSinceNow];
-    
-    //CLLocation manager will return last found location
-    //if this location was made more than 3 minutes ago, ignore
-//    if (time<-180) {
-//        return;
-//    }
-    //NSLog(@"%@", [newLocation description]);
-
-    //[self foundLocation:newLocation];
-}
-
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error
-{
-    //Code goes here, but it won't error quite yet, so HA.
-}
-
 -(void) startLocationUpdates
 {
     if(missLocationManager == nil)
@@ -155,38 +119,12 @@
     [missLocationManager startUpdatingLocation];
 }
 
--(void)mapView:(MKMapView *)userMapView didUpdateUserLocation:(MKUserLocation *)userLocation
-{
-    CLLocationCoordinate2D loc = userLocation.coordinate;
-//    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
-    
-    MKCoordinateSpan span =
-    {
-        //        .latitudeDelta = 0.01810686f,
-        //        .longitudeDelta = 0.01810686f
-        .latitudeDelta = 0.01250686f,
-        .longitudeDelta = 0.01250686f
-    };
-    
-    MKCoordinateRegion testRegion = MKCoordinateRegionMake(loc, span);
-    
-//    [userMapView setRegion:testRegion animated:YES];
-}
 
 # pragma mark - Annotation Methods
 -(void)foundLocation:(CLLocation*)loc
 {
     CLLocationCoordinate2D coord = [loc coordinate];
-    
-    //create an instances of annotation with the current data
-//    Annotation *annotation = [[Annotation alloc]initWithCoordinate:coord
-//                                                             title:@"title"
-//                                                          subtitle:@"Somebody does not want poop"
-//                                                           urlString:@"http://www.catstache.biz"];
-//    //add annotation to mapview
-//    [mapView addAnnotation:annotation];
-    
-    //zoom to region of location
+
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
     
     [mapView setRegion:region animated:YES];
@@ -227,11 +165,9 @@
     //set region to mapview
     if (isZoomedInYet == NO)
     {
-        
-    [mapView setRegion:region animated:YES];
+        [mapView setRegion:region animated:YES];
         isZoomedInYet = YES;
-}
-                       
+    }
                    
     for (int i = 0; i < venuesArray.count; i++)
     {
@@ -240,7 +176,6 @@
         NSString * venueURL = [[venuesArray objectAtIndex:i] urlString];
         
         //coordinate make
-        
         float annotationLatitude =[[[venuesArray objectAtIndex:i] valueForKey:@"latitude"] floatValue];
         float annotationLongitude =[[[venuesArray objectAtIndex:i] valueForKey:@"longitude"] floatValue];
     
@@ -248,8 +183,6 @@
 
         //NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"yelpURL"];
         NSString *urlString = [[venuesArray objectAtIndex:i] valueForKey:@"imageURL"];
-        
-//        Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:@"Demo Subtite" urlString:urlString];
         
         Annotation *myAnnotation = [[Annotation alloc] initWithCoordinate:venueCoordinate title:venueName subtitle:venueURL urlString:urlString];
         myAnnotation.flickrThumbnailString = [[venuesArray objectAtIndex:i] imageURL];
@@ -259,17 +192,13 @@
 
         //add to map
         [mapView addAnnotation:myAnnotation];
-        
     }
-
 }
-
 
 -(void) addPhotosToMap: (NSMutableArray*)photosArray
 {
     NSLog(@"%@", photosArray);
 }
-
 
 -(MKAnnotationView*)mapView:(MKMapView*)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
@@ -283,11 +212,7 @@
     if (annotationView == nil) {
         annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
     }
-    
 
-    //    [detailButton addTarget:self
-    //                     action:@selector(goToYelpPage)
-    //           forControlEvents:UIControlEventTouchUpInside];
     annotationView.canShowCallout = YES;
 
     annotationView.image = [UIImage imageNamed:@"wifiIcon.png"];
@@ -300,39 +225,8 @@
     [imageWithFrame.layer setBorderColor: [[UIColor whiteColor] CGColor]];
     [imageWithFrame.layer setBorderWidth: 4.0];
     [annotationView addSubview:imageWithFrame];
-
-    //Add frame to annotation
-//    annotationView.image = [UIImage imageNamed:[NSString stringWithFormat:@"F.png"]];
-//    
-//    UIImage *frame = [UIImage imageNamed:[NSString stringWithFormat:@"F.png"];
-//                      UIImage *image = photoThumbnailImage;
-//                      
-//                      UIGraphicsBeginImageContext(CGSizeMake(pin.size.width, pin.size.height));
-//                      
-//                      [frame drawInRect:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-//                      [image drawInRect:CGRectMake(4, 4, 60, 60)]; // the frame your inner image
-//                      //maybe you should draw the left bottom icon here,
-//                      
-//                      
-//                      //then set back the new image, done
-//                      annotationView.image = UIGraphicsGetImageFromCurrentImageContext();
-//                      
-//                      UIGraphicsEndImageContext();
-    
-    
     
     annotationView.image = photoThumbnailImage;
-
-//    dispatch_async(newQueue,^void(void)
-//                   {
-//                       UIImage * mask = [UIImage imageNamed:@"circleMask.png"];
-//                       UIImage *maskedAnnotationImage = [self createMaskWith:mask onImage:photoThumbnailImage];
-//                       dispatch_async(dispatch_get_main_queue(),^void (void)
-//                                      {
-//                                          annotationView.image = photoThumbnailImage;
-//                                      });
-//                       
-//                   });
 
     //Set the imageView inside the 
     UIImageView *photoContainer = [[UIImageView alloc] initWithImage:photoThumbnailImage];
@@ -349,7 +243,6 @@
     
     //annotationView.image = maskedAnnotationImage;
     annotationView.rightCalloutAccessoryView = detailButton;
-
     
     //Move "add bookmark" notification off-screen
     //Re-enable refresh button
@@ -364,11 +257,6 @@
                                 {
                                     [self.navigationItem.leftBarButtonItem setEnabled:YES];
                                 }];
-
-//    [UIView animateWithDuration:3.5 animations:^(void) {
-//        loadingOverlay.alpha = 0;}];
-    
-    
     return annotationView;
 }
 
@@ -388,7 +276,6 @@
     
     return resultingImage;
 }
-
 
 - (UIImage*) createMaskWith: (UIImage *)maskImage onImage:(UIImage*) subjectImage
 {
@@ -413,7 +300,7 @@
 {
     if ([overlay isKindOfClass:[MKCircle class]])
     {
-        MKCircleView*    aView = [[MKCircleView alloc] initWithCircle:(MKCircle *)overlay];
+        MKCircleView *aView = [[MKCircleView alloc] initWithCircle:(MKCircle *)overlay];
         
         aView.fillColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
         aView.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
@@ -421,7 +308,6 @@
         
         return aView;
     }
-    
     return nil;
 }
 
@@ -434,7 +320,6 @@
 {
     
     if([view.annotation isKindOfClass: [MKUserLocation class]])
-        
     {
         return;
     }
@@ -446,13 +331,15 @@
         selectedAnnotation = view.annotation;
         [self displayFullSizedImageForSelectedAnnotation:selectedAnnotation];
         
+        // adjust entry point for animation (as determined by image size)
+        photoViewerUIImageView.superview.center = CGPointMake(photoViewerUIImageView.superview.center.x, -photoViewerUIImageView.superview.frame.size.height);
+        
         [enlargedPhotoViewOutlet lowerImageView];
     }
     else
     {
         selectedAnnotation = view.annotation;
         [self displayFullSizedImageForSelectedAnnotation:selectedAnnotation];
-
     }
 }
 
@@ -505,22 +392,19 @@
 
 - (IBAction)closePhotoButtonPressed:(id)sender
 {
-    if (didSelectThumbnail == YES) {
+    if (didSelectThumbnail == YES)
+    {
         [enlargedPhotoViewOutlet raiseImageView];
     }
-    
-    
+        
     didSelectThumbnail = NO;
 }
-
 
 //
 // User taps on disclosure button to see more Yelp data.
 //
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-   
-    
       //These instance variables will be passed in the segue
     latitudeToPass = selectedAnnotation.coordinate.latitude;
     longitudeToPass = selectedAnnotation.coordinate.longitude;
@@ -528,7 +412,6 @@
     photoThumbnailStringToPass = selectedAnnotation.urlString;
     
     [self performSegueWithIdentifier:@"toYelpMapView" sender:nil];
-    
 }
 
 -(void)refreshButtonPressed
@@ -579,7 +462,6 @@
 {
     NSLog(@"User pressed button to go to bookmarks");
     [self performSegueWithIdentifier: @"toBookmarksAndHistory" sender:self];
-
 }
 
 # pragma  mark - End of document

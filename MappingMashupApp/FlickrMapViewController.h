@@ -13,24 +13,15 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Venue.h"
 
-
-
 @interface FlickrMapViewController : UIViewController <MKMapViewDelegate, APIManagerDelegate, CLLocationManagerDelegate>
 {
     CLLocationManager *missLocationManager;
 }
--(void)didReceiveYelpData: (NSMutableArray*)venuesArray;
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-
-
-- (void)locationManager:(CLLocationManager *)manager
-	didUpdateToLocation:(CLLocation *)newLocation
-		   fromLocation:(CLLocation *)oldLocation;
-
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error;
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error;
+-(void)didReceiveYelpData: (NSMutableArray*)venuesArray;
 
 //NOT a pre-defined method
 -(void) startLocationUpdates;

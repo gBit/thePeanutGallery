@@ -20,61 +20,39 @@
 //
 - (APIManager*)initWithYelpSearch:(NSString*)search andLocation:(CLLocationCoordinate2D)userLocation withMaxResults: (int) maxItems
 {
-//    
-//    float latitude = 41.894032;
-//    float longitude = -87.634742;
     float latitude = userLocation.latitude;
     NSLog(@"%f", latitude);
     float longitude = userLocation.longitude;
     NSLog(@"%f", longitude);
     
-//     maxItems = 6;
     float radius = 0.802336;
-    
 
-    
-    //'Ross''s Yelp API key
-    //z8HZy2Hb2axZox05xfTW9w
-    
-    //Emily's Yelp Key
-    //xltTZDS7mgHV7wtu8MkZSg
-    
-    //Paul's Yelp Key
-    //0mtAebqxwAxzHVOPI_OIyQ
-    
-    //David's Yelp Key
-    //ylWkpXJFz6-ZI3PvDG519A
-    
-    //ARC4Random goes in here.
+    // Randomize keys
     NSString *keyToUse = @"";
     
     switch (arc4random()%4) {
         case 0:
-            keyToUse = @"z8HZy2Hb2axZox05xfTW9w";
+            keyToUse = @"z8HZy2Hb2axZox05xfTW9w"; //Ross
             break;
         case 1:
-            keyToUse = @"xltTZDS7mgHV7wtu8MkZSg";
+            keyToUse = @"xltTZDS7mgHV7wtu8MkZSg"; //Em
             break;
         case 2:
-            keyToUse = @"0mtAebqxwAxzHVOPI_OIyQ";
+            keyToUse = @"0mtAebqxwAxzHVOPI_OIyQ"; //Paul
             break;
         case 3:
-            keyToUse = @"ylWkpXJFz6-ZI3PvDG519A";
+            keyToUse = @"ylWkpXJFz6-ZI3PvDG519A"; //David
             break;          
         default:
-            keyToUse = @"z8HZy2Hb2axZox05xfTW9w"; // Emily's Yelp Key
+            keyToUse = @"z8HZy2Hb2axZox05xfTW9w";
             NSLog(@"Did not return a proper Yelp key, returned default on random test");
             break;
     }
     
-    //Eventually, add if statement here if we need it, to cycle through limited-use keys
-    
     yelpAPICall = [NSString stringWithFormat:@"http://api.yelp.com/business_review_search?term=%@&lat=%f&long=%f&radius=%f&limit=%d&ywsid=%@", search, latitude, longitude, radius, maxItems, keyToUse];
     NSLog(@"%@", yelpAPICall);
     
-    
     return self;
-    
 }
 
 #pragma mark - Yelp Methods
@@ -90,10 +68,7 @@
                                      NSMutableArray *venuesArray = [self createVenuesArray:yelpBusinessesArray];
                                      
                                      [[self delegate] didReceiveYelpData:venuesArray];
-                                     //
-                                     //this will only start a search of one venue,
-                                     //update to create method to loop through venues array...
-                                     //
+
                                      int i = 0;
                                      for (i=0; i < yelpBusinessesArray.count; i++)
                                      {
@@ -101,29 +76,24 @@
                                      NSString *search = @"color,+colorful,+shadow,+macro,+graffiti,+architecture,+street";
                                      NSString* latitude = [[yelpBusinessesArray objectAtIndex:i] valueForKey:@"latitude"];
                                      NSString *longitude = [[yelpBusinessesArray objectAtIndex:i] valueForKey:@"longitude"] ;
-
-                                     
-                                         //Paul's Flickr API Key 8ee0fab323e06c0f242ddc5e43e5ef2d
-                                         //Em's Flickr API Key 90087da25a0e607ed65734c6bbd4bc01dec7b05e
-                                         //Ross Flickr API Key 4dcd4b336fc303a2d36023d3c4c1b214
-                                         //David FLickr API Key b4a287d18b3f7398ffb4ab9f1b961e22
                                          
                                          NSString *flickrKeyToUse = @"";
                                          
                                          switch (arc4random()%4) {
                                              case 0:
-                                                 flickrKeyToUse = @"90087da25a0e607ed65734c6bbd4bc01dec7b05e";
+                                                 flickrKeyToUse = @"90087da25a0e607ed65734c6bbd4bc01dec7b05e"; //Em
                                                  break;
                                              case 1:
-                                                 flickrKeyToUse = @"4dcd4b336fc303a2d36023d3c4c1b214";
+                                                 flickrKeyToUse = @"4dcd4b336fc303a2d36023d3c4c1b214"; //Ross
                                                  break;
                                              case 2:
-                                                 flickrKeyToUse = @"8ee0fab323e06c0f242ddc5e43e5ef2d";                                                  break;
+                                                 flickrKeyToUse = @"8ee0fab323e06c0f242ddc5e43e5ef2d"; //Paul
+                                                 break;
                                              case 3:
-                                                 flickrKeyToUse = @"b4a287d18b3f7398ffb4ab9f1b961e22";
+                                                 flickrKeyToUse = @"b4a287d18b3f7398ffb4ab9f1b961e22"; //David
                                                  break;          
                                              default:
-                                                 flickrKeyToUse = @"4dcd4b336fc303a2d36023d3c4c1b214"; // Ross' Flickr Key
+                                                 flickrKeyToUse = @"4dcd4b336fc303a2d36023d3c4c1b214";
                                                  NSLog(@"Did not return a proper Yelp key, returned default on random test");
                                                  break;
                                          }
@@ -133,12 +103,6 @@
                                          
                                          [self searchFlickrWithLatitude:latitude andLongitude:longitude];
                                      }
-                                     
-                                     /*
-                                     NSMutableArray *photosArray = [self searchFlickrWithLatitude:latitude andLongitude:longitude];
-                                      */
-
-
                                  }
                         failBlock:^ void (YKHTTPError *error)
                                  {
@@ -150,8 +114,6 @@
      ];
 }
 
-//New method for just yelp search, no flickr integration
-//Use this in yelpMapViewController only
 - (void)searchYelpForDelegates
 {
     YKURL *yelpURL = [YKURL URLString:yelpAPICall];
@@ -164,7 +126,6 @@
          
          [[self delegate] didReceiveYelpData:venuesArray];
          }
-     
                         failBlock:^ void (YKHTTPError *error)
      {
          if (error)
@@ -182,25 +143,17 @@
     
     for (NSDictionary *business in jsonArray)
     {
-//        float latitude = [[business valueForKey:@"latitude"] floatValue];
-//        float longitude = [[business valueForKey:@"longitude"] floatValue];
-//        CLLocation *loc = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
-        
         Venue *currentVenue = [[Venue alloc] init];
         currentVenue.name = [business valueForKey:@"name"];
-        //currentVenue.location = loc;
         currentVenue.urlString= [business valueForKey:@"url"];
         currentVenue.longitude =[[ business valueForKey:@"longitude"] floatValue];
         currentVenue.latitude = [[business valueForKey:@"latitude"] floatValue];
         currentVenue.photoTitle = [business valueForKey:@"title"];
         currentVenue.phone = [business valueForKey:@"address1"];
-        
-        
+                
         [yelpVenuesArray addObject:currentVenue];
-        
     }
     return yelpVenuesArray;
-    
 }
 
 #pragma mark - Flickr Methods
@@ -239,7 +192,6 @@
     {
         float latitude = [[photo valueForKey:@"latitude"] floatValue];
         float longitude = [[photo valueForKey:@"longitude"] floatValue];
-        //CLLocation *loc = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
         
         Venue *currentPhoto = [[Venue alloc] init];
         currentPhoto.name = [photo valueForKey:@"title"];
@@ -248,7 +200,6 @@
         currentPhoto.latitude = latitude;
         currentPhoto.urlString= [photo valueForKey:@"url"];
         currentPhoto.imageURL = [photo valueForKey:@"url_sq"];
-        //Include new property and line to assign value for thumbnail URL
         
         [flickrPhotosArray addObject:currentPhoto];
     }
