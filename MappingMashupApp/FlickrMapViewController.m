@@ -170,8 +170,8 @@ dispatch_queue_t newQueue;
     {
         //        .latitudeDelta = 0.01810686f,
         //        .longitudeDelta = 0.01810686f
-        .latitudeDelta = 0.00950686f,
-        .longitudeDelta = 0.00950686f
+        .latitudeDelta = 0.01250686f,
+        .longitudeDelta = 0.01250686f
     };
     
     MKCoordinateRegion testRegion = MKCoordinateRegionMake(loc, span);
@@ -222,10 +222,10 @@ dispatch_queue_t newQueue;
     {
 //        .latitudeDelta = 0.01810686f,
 //        .longitudeDelta = 0.01810686f
-//        .latitudeDelta = 0.00950686f,
-//        .longitudeDelta = 0.00950686f
-        .latitudeDelta = 0.00550686f,
-        .longitudeDelta = 0.00550686f
+        .latitudeDelta = 0.00950686f,
+        .longitudeDelta = 0.00950686f
+//        .latitudeDelta = 0.00550686f,
+  //      .longitudeDelta = 0.00550686f
 
     };
     
@@ -521,6 +521,8 @@ dispatch_queue_t newQueue;
 
 -(void)refreshButtonPressed
 {
+    [enlargedPhotoViewOutlet raiseImageView];
+    isZoomedInYet = NO;
     [mapView removeAnnotations : mapView.annotations ];
     [mapView removeOverlays:mapView.overlays];
     

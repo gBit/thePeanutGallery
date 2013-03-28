@@ -29,7 +29,7 @@
     NSLog(@"%f", longitude);
     
 //     maxItems = 6;
-    float radius = 0.402336;
+    float radius = 0.802336;
     
 
     
