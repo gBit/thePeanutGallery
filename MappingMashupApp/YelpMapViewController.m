@@ -318,31 +318,7 @@
         {
             NSLog(@"failed to save: %@", [error userInfo]);
         }
-    
     }
-//    @property (nonatomic, retain) NSNumber * latitude;
-//    @property (nonatomic, retain) NSNumber * longitude;
-//    @property (nonatomic, retain) NSString * name;
-//    @property (nonatomic, retain) NSString * phone;
-//    @property (nonatomic, retain) NSNumber * isBookmarked;
-//    @property (nonatomic, retain) NSDate * viewDate;
-//    @property (nonatomic, retain) NSString * yelpURLString;
-//    @property (nonatomic, retain) NSSet *photo;
-    
-    //Note: This should break when we switch from Yelp annotations
-    //to Flickr photos.
-    //Once it doees work, delete this comment
-//    Business *selectedBusiness = [NSEntityDescription insertNewObjectForEntityForName:@"Business" inManagedObjectContext:managedObjectContext];
-//    
-//    selectedBusiness.name = view.annotation.title;
-//    
-//    NSError *error;
-//    if (![managedObjectContext save:&error])
-//    {
-//        NSLog(@"failed to save: %@", [error userInfo]);
-//    }
-    
-    //NSLog(@"Logging out the annotation %@", view.annotation.title);
 }
 
 
