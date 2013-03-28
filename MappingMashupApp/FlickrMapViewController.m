@@ -40,6 +40,7 @@
     BOOL didSelectThumbnail;
     __weak IBOutlet UILabel *bioLabel;
     __weak IBOutlet UIScrollView *bioScrollView;
+    BOOL refreshEnabled;
     
 }
 - (IBAction)fullSizedPhotoTapped:(id)sender;
@@ -53,8 +54,6 @@
 @implementation FlickrMapViewController
 @synthesize managedObjectContext;
 
-dispatch_queue_t newQueue;
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -67,14 +66,10 @@ dispatch_queue_t newQueue;
     }
     missLocationManager.delegate = self;
     [missLocationManager startUpdatingLocation];
-//    NSDate *future = [NSDate dateWithTimeIntervalSinceNow: 3];
-//    [NSThread sleepUntilDate:future];
     
     //Code for bio page
     bioScrollView.contentSize = bioLabel.frame.size;
-    
-    
-    //Add refresh button to Bookmarks viewController --CURRENTLY GOES TO BOOKMARKS, NEED TO WRITE METHOD FOR THIS
+
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshButtonPressed)];
     [self.navigationItem.leftBarButtonItem setEnabled:NO];
 
@@ -103,15 +98,13 @@ dispatch_queue_t newQueue;
         .longitude = missLocationManager.location.coordinate.longitude
         
     };
-    NSLog(@"%f %f", mobileMakers.latitude, mobileMakers.longitude);
+
     MKCircle *overlay = [MKCircle circleWithCenterCoordinate:mobileMakers radius:1000000000];
 
     
     overlay.title = @"Current region";
     
     [mapView addOverlay:overlay];
-    
-    //- (APIManager*)initWithYelpSearch:(NSString*)search andLocation:(CLLocationCoordinate2D)userLocation withMaxResults: (int) maxItems
 
     APIManager *mrAPIManager = [[APIManager alloc] initWithYelpSearch:@"'free%20wifi'" andLocation:mobileMakers withMaxResults:6];
     
@@ -280,7 +273,6 @@ dispatch_queue_t newQueue;
 
 -(MKAnnotationView*)mapView:(MKMapView*)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
-    newQueue = dispatch_queue_create("com.thePeanutGallery.maskGCDTest", NULL);
     
     UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"myAnnotation"];
@@ -361,8 +353,17 @@ dispatch_queue_t newQueue;
     
     //Move "add bookmark" notification off-screen
     //Re-enable refresh button
-    [UIView animateWithDuration:3.5 delay:2.0 options:nil animations:^(void) { loadingOverlay.alpha = 0; } completion:^(BOOL finished){    [self.navigationItem.leftBarButtonItem setEnabled:YES];
-}];
+    [UIView animateWithDuration:3.5
+                          delay:2.0
+                        options:nil 
+                     animations:^(void)
+                                {
+                                    loadingOverlay.alpha = 0;
+                                }
+                     completion:^(BOOL finished)
+                                {
+                                    [self.navigationItem.leftBarButtonItem setEnabled:YES];
+                                }];
 
 //    [UIView animateWithDuration:3.5 animations:^(void) {
 //        loadingOverlay.alpha = 0;}];
@@ -532,18 +533,25 @@ dispatch_queue_t newQueue;
 
 -(void)refreshButtonPressed
 {
+    refreshEnabled = NO;
+    
     [enlargedPhotoViewOutlet raiseImageView];
     isZoomedInYet = NO;
     [mapView removeAnnotations : mapView.annotations ];
     [mapView removeOverlays:mapView.overlays];
-    
     [self.navigationItem.leftBarButtonItem setEnabled:NO];
+    [self performSelector:@selector(enableRefreshButton) withObject:self afterDelay:5];
 
     [UIView animateWithDuration:0.5 animations:^(void) {
         loadingOverlay.alpha = 1;}];
     [self viewDidLoad];
 }
 
+-(void)enableRefreshButton
+{
+    [self.navigationItem.leftBarButtonItem setEnabled:YES];
+    
+}
 
 # pragma mark - Transitions
 

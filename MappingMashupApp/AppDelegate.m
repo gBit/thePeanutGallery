@@ -84,7 +84,7 @@
     [self.window addSubview:imageView];
     [self.window makeKeyAndVisible];
     [self.window bringSubviewToFront:imageView];
-    [self performSelector:@selector(removeSplash:) withObject:imageView afterDelay:2];
+    [self performSelector:@selector(removeSplash:) withObject:imageView afterDelay:0.5];
     
     
     return YES;
