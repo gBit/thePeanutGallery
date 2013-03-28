@@ -69,7 +69,7 @@
     
     [UIView animateWithDuration:0.0
                           delay:0.0
-                        options: UIViewAnimationCurveEaseIn
+                        options: UIViewAnimationOptionCurveEaseIn
                      animations:^{
                          popoutView.center = CGPointMake(popoutView.center.x, popoutView.center.y+200);
                          popoutView.alpha = 0;
@@ -82,10 +82,10 @@
     forwardButton.enabled = NO;
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
+- (void)webViewDidFinishLoad:(UIWebView *)loadingWebView
 {
     //Code to manage back/forward buttons
-    if (![webView canGoBack])
+    if (![loadingWebView canGoBack])
     {
         backButton.enabled = NO;
     }
@@ -94,7 +94,7 @@
         backButton.enabled = YES;
     }
     
-    if (![webView canGoForward])
+    if (![loadingWebView canGoForward])
     {
         forwardButton.enabled = NO;
     }
@@ -196,7 +196,6 @@
     NSFetchRequest * fetchRequest = [[NSFetchRequest alloc]init];
     NSFetchedResultsController * fetchResultsController;
     
-    NSString *predicateURLString = [yelpURLString urlencode];
     //Now customize your search! We'd want to switch this to see if isBookmarked == true
     NSArray * sortDescriptors = [[NSArray alloc] initWithObjects:nil];
     NSPredicate * predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"yelpURLString == '%@'", yelpURLString]];

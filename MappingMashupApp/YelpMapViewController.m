@@ -100,40 +100,6 @@
     [self retrieveFullSizedImageForSelectedPhoto:originPhotoThumbnailURL];
 }
 
-// working with existing structure, this passes in an NSString (as opposed to an Annotation)
-// needs flexibility so it can be refactored and placed in the APIManager class
-- (void)retrieveFullSizedImageForSelectedPhoto:(NSString*)photoThumbnailURL
-{
-    // grab the medium sized version of the annotion image from flickr
-    NSString *photoFullSizeURLString = [photoThumbnailURL stringByReplacingOccurrencesOfString:@"s.jpg" withString:@"n.jpg"];
-    NSURL *photoFullSizeURL = [NSURL URLWithString:photoFullSizeURLString];
-    NSData *photoData = [NSData dataWithContentsOfURL:photoFullSizeURL];
-    UIImage *photoFullSize = [UIImage imageWithData:photoData];
-    
-    // adjust the containing view and imageView to match the photo's aspect ratio
-    float photoWidth = photoFullSize.size.width;
-    float photoHeight = photoFullSize.size.height;
-    float photoAspectRatio = photoWidth/photoHeight;
-    
-    // for this view, we've scaled it to 1/4 of the screen
-    float imageViewWidth = photoViewerUIImageView.frame.size.width;
-    float imageViewHeight = imageViewWidth/photoAspectRatio;
-    
-    // frame positioning is also adjusted from flickr view
-    CGRect scaledImageView = CGRectMake(3.0f, 3.0f, imageViewWidth, imageViewHeight);
-    [photoViewerUIImageView setFrame:scaledImageView];
-    photoViewerUIImageView.image = photoFullSize;
-    
-    // now the superview
-    CGRect scaledSuperView = CGRectMake(5.0f, 5.0f, imageViewWidth + 6, imageViewHeight + 6);
-    [photoViewerUIImageView.superview setFrame:scaledSuperView];
-    
-    // and last, but not least, the button
-    CGRect scaledButton = CGRectMake(0.0f, 0.0f, scaledSuperView.size.width + 10, scaledSuperView.size.height + 10);
-    [photoViewerButton setFrame:scaledButton];
-}
-
-
 # pragma mark - User Location Methods
 -(void) didReceiveYelpData:(NSMutableArray *)venuesArray
 {
@@ -212,7 +178,7 @@
     return annotationView;
 }
 
-//Method for creating a map overlay
+// Method for creating a map overlay
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay
 {
     if ([overlay isKindOfClass:[MKCircle class]])
@@ -238,25 +204,82 @@
     //If statement to prevent crash if you tap Current Location pin.
     if(![view.annotation isKindOfClass:[MKUserLocation class]])
     {
-    selectedAnnotation = view.annotation;
-    
-    Business *selectedBusiness = [NSEntityDescription insertNewObjectForEntityForName:@"Business" inManagedObjectContext:managedObjectContext];
-    
-    selectedBusiness.latitude = selectedAnnotation.latitude;
-    selectedBusiness.longitude = selectedAnnotation.longitude;
-    selectedBusiness.name = selectedAnnotation.name;
-    selectedBusiness.yelpURLString = selectedAnnotation.yelpURLString;
-    selectedBusiness.viewDate = selectedAnnotation.viewDate;
+        selectedAnnotation = view.annotation;
+        
+        Business *selectedBusiness = [NSEntityDescription insertNewObjectForEntityForName:@"Business"
+                                                                   inManagedObjectContext:managedObjectContext];
+        
+        selectedBusiness.latitude = selectedAnnotation.latitude;
+        selectedBusiness.longitude = selectedAnnotation.longitude;
+        selectedBusiness.name = selectedAnnotation.name;
+        selectedBusiness.yelpURLString = selectedAnnotation.yelpURLString;
+        selectedBusiness.viewDate = selectedAnnotation.viewDate;
         NSLog(@"Selected business view date:%@", selectedAnnotation.viewDate);
-    selectedBusiness.phone = selectedAnnotation.phone;
-    
-    
+        selectedBusiness.phone = selectedAnnotation.phone;
+        
         NSError *error;
         if (![managedObjectContext save:&error])
         {
             NSLog(@"failed to save: %@", [error userInfo]);
         }
     }
+}
+
+// User taps on disclosure button to see more Yelp data. //
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    NSLog(@"This is the method we want!");
+    [self performSegueWithIdentifier:@"toYelpWebPage" sender:nil];
+}
+
+-(void) bookmarkButtonPressed
+{
+    NSLog(@"User pressed button to go to bookmarks");
+    [self performSegueWithIdentifier: @"yelpPageToBookmarks" sender:self];
+}
+
+- (IBAction)largePhotoTapped:(id)sender {
+    [yelpMapView selectAnnotation:originAnnotation animated:YES];
+}
+
+// working with existing structure, this passes in an NSString (as opposed to an Annotation)
+// needs flexibility so it can be refactored and placed in the APIManager class
+- (void)retrieveFullSizedImageForSelectedPhoto:(NSString*)photoThumbnailURL
+{
+    // grab the medium sized version of the annotion image from flickr
+    NSString *photoFullSizeURLString = [photoThumbnailURL stringByReplacingOccurrencesOfString:@"s.jpg" withString:@"n.jpg"];
+    NSURL *photoFullSizeURL = [NSURL URLWithString:photoFullSizeURLString];
+    NSData *photoData = [NSData dataWithContentsOfURL:photoFullSizeURL];
+    UIImage *photoFullSize = [UIImage imageWithData:photoData];
+    
+    // adjust the containing view and imageView to match the photo's aspect ratio
+    float photoWidth = photoFullSize.size.width;
+    float photoHeight = photoFullSize.size.height;
+    float photoAspectRatio = photoWidth/photoHeight;
+    
+    // for this view, we've scaled it to 1/4 of the screen
+    float imageViewWidth = photoViewerUIImageView.frame.size.width;
+    float imageViewHeight = imageViewWidth/photoAspectRatio;
+    
+    // since portrait images frequently obscure the annotation, we'll scale them down a bit
+    if (photoAspectRatio < 1)
+    {
+        imageViewWidth *= 0.75f;
+        imageViewHeight *= 0.75f;
+    }
+    
+    // frame positioning is also adjusted from flickr view
+    CGRect scaledImageView = CGRectMake(3.0f, 3.0f, imageViewWidth, imageViewHeight);
+    [photoViewerUIImageView setFrame:scaledImageView];
+    photoViewerUIImageView.image = photoFullSize;
+    
+    // now the superview
+    CGRect scaledSuperView = CGRectMake(5.0f, 5.0f, imageViewWidth + 6, imageViewHeight + 6);
+    [photoViewerUIImageView.superview setFrame:scaledSuperView];
+    
+    // and last, but not least, the button
+    CGRect scaledButton = CGRectMake(0.0f, 0.0f, scaledSuperView.size.width + 10, scaledSuperView.size.height + 10);
+    [photoViewerButton setFrame:scaledButton];
 }
 
 //Masking method
@@ -278,20 +301,6 @@
     return finalImage;
 }
 
-//
-// User taps on disclosure button to see more Yelp data.
-//
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
-{
-    NSLog(@"This is the method we want!");
-    [self performSegueWithIdentifier:@"toYelpWebPage" sender:nil];    
-}
-
--(void) bookmarkButtonPressed
-{
-    NSLog(@"User pressed button to go to bookmarks");
-    [self performSegueWithIdentifier: @"yelpPageToBookmarks" sender:self];
-}
 
 # pragma mark - Transitions
 
@@ -327,7 +336,4 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)largePhotoTapped:(id)sender {
-    [yelpMapView selectAnnotation:originAnnotation animated:YES];
-}
 @end

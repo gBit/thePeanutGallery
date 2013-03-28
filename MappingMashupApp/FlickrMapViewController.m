@@ -30,6 +30,7 @@
     NSString * photoTitleToPass;
     NSString * photoThumbnailStringToPass;
     
+    __weak IBOutlet UIButton *photoOverlayButton;
     __weak IBOutlet UIView *enlargedPhotoViewOutlet;
     __weak IBOutlet MKMapView *mapView;
     __weak IBOutlet UIView *loadingOverlay;
@@ -203,11 +204,11 @@
     NSLog(@"%@", photosArray);
 }
 
--(MKAnnotationView*)mapView:(MKMapView*)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+-(MKAnnotationView*)mapView:(MKMapView*)flickrMapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
     
     UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"myAnnotation"];
+    MKAnnotationView *annotationView = [flickrMapView dequeueReusableAnnotationViewWithIdentifier:@"myAnnotation"];
     if([annotation isKindOfClass: [MKUserLocation class]])
     {
         return nil;
@@ -251,7 +252,7 @@
     //Re-enable refresh button
     [UIView animateWithDuration:3.5
                           delay:2.0
-                        options:nil 
+                        options:UIViewAnimationOptionTransitionNone
                      animations:^(void)
                                 {
                                     loadingOverlay.alpha = 0;
@@ -361,6 +362,8 @@
     
     CGRect scaledSuperView = CGRectMake(10.0f, 10.0f, imageViewWidth + 10, imageViewHeight + 10);
     [photoViewerUIImageView.superview setFrame:scaledSuperView];
+    [photoOverlayButton setFrame:scaledSuperView];
+    
 }
 
 - (IBAction)fullSizedPhotoTapped:(id)sender

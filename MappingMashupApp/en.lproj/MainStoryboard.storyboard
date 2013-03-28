@@ -115,30 +115,24 @@
                                     <outlet property="delegate" destination="2" id="43E-w0-dI6"/>
                                 </connections>
                             </mapView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadow@2x.png" id="k24-NU-feF">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadow@2x.png" id="k24-NU-feF" userLabel="Bottom Shadow">
                                 <rect key="frame" x="0.0" y="475" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadowTop@2x.png" id="P1J-cx-1od">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadowTop@2x.png" id="P1J-cx-1od" userLabel="Top Shadow">
                                 <rect key="frame" x="0.0" y="-31" width="320" height="92"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <view contentMode="scaleToFill" id="hsR-e8-4fb">
+                            <view contentMode="scaleToFill" id="hsR-e8-4fb" userLabel="Photo View">
                                 <rect key="frame" x="5" y="5" width="155" height="195"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" id="RGB-yg-ZJ4">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" id="RGB-yg-ZJ4" userLabel="Photo Image View">
                                         <rect key="frame" x="3" y="3" width="149" height="187"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" alpha="0.33000000000000002" contentMode="scaleAspectFill" image="yelpMapViewShader@2x.png" id="Vpb-I3-WRC">
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadowTop@2x.png" id="2CT-2T-Ig3">
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rZB-mu-OXy">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rZB-mu-OXy" userLabel="Photo Overlay Button (Open Annotation)">
                                         <rect key="frame" x="0.0" y="0.0" width="160" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -187,7 +181,7 @@
                                     <outlet property="delegate" destination="L5I-mE-d7D" id="xGQ-az-UrA"/>
                                 </connections>
                             </mapView>
-                            <view contentMode="scaleToFill" id="OOa-i0-nDV">
+                            <view contentMode="scaleToFill" id="OOa-i0-nDV" userLabel="Photo View">
                                 <rect key="frame" x="10" y="-184" width="300" height="185"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -196,7 +190,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kbm-YI-FPA">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kbm-YI-FPA" userLabel="Photo Overlay Button (>> to YelpView)">
                                         <rect key="frame" x="0.0" y="0.0" width="266" height="186"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -211,7 +205,7 @@
                                             <action selector="fullSizedPhotoTapped:" destination="L5I-mE-d7D" eventType="touchUpInside" id="GwE-2G-FJ9"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jyC-X8-tkC">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jyC-X8-tkC" userLabel="X-Overlay Button (Close Photo)">
                                         <rect key="frame" x="261" y="0.0" width="39" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -226,7 +220,7 @@
                                             <action selector="largerClosePhotoButtonPressed:" destination="L5I-mE-d7D" eventType="touchUpInside" id="oWB-ih-hbL"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="l7g-9r-gcH">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="l7g-9r-gcH" userLabel="X Button (Close Photo)">
                                         <rect key="frame" x="268" y="-2" width="34" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -244,7 +238,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="WIM-HQ-xLH">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="WIM-HQ-xLH" userLabel="Info Button">
                                 <rect key="frame" x="291" y="465.5" width="18" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -260,37 +254,37 @@
                                     <segue destination="qNr-I4-kD3" kind="push" identifier="toAboutPage" id="tlW-C7-EqV"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" id="QIi-SX-ZAA">
+                            <view contentMode="scaleToFill" id="QIi-SX-ZAA" userLabel="Loading Page" colorLabel="IBBuiltInLabel-Red">
                                 <rect key="frame" x="0.0" y="-64" width="325" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="silverBG@2x.png" id="D5k-eU-WtS">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="silverBG@2x.png" id="D5k-eU-WtS" userLabel="Silver Background">
                                         <rect key="frame" x="0.0" y="52" width="320" height="568"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" id="BDR-6h-3HL">
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" id="BDR-6h-3HL" userLabel="Activity Indicator">
                                         <rect key="frame" x="144" y="331" width="37" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </activityIndicatorView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Experience your surroundings. Tap something interesting and we'll show you where you can get online for free." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GWX-UP-W0P">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Experience your surroundings. Tap something interesting and we'll show you where you can get online for free." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GWX-UP-W0P" userLabel="Description Label">
                                         <rect key="frame" x="20" y="232" width="285" height="91"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadow@2x.png" id="uCm-qi-JQe">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadow@2x.png" id="uCm-qi-JQe" userLabel="Bottom Shadow">
                                         <rect key="frame" x="-6" y="535" width="331" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="wiWhere512@2x.png" id="veT-vc-0vB">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="wiWhere512@2x.png" id="veT-vc-0vB" userLabel="Logo">
                                         <rect key="frame" x="98" y="96" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadowTop@2x.png" id="sq9-B6-zeb">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="mapShadowTop@2x.png" id="sq9-B6-zeb" userLabel="Top Shadow">
                                 <rect key="frame" x="0.0" y="-25" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -302,6 +296,7 @@
                         <outlet property="enlargedPhotoViewOutlet" destination="OOa-i0-nDV" id="xe8-AJ-DKV"/>
                         <outlet property="loadingOverlay" destination="QIi-SX-ZAA" id="TsT-yj-EFc"/>
                         <outlet property="mapView" destination="7uf-B3-ybP" id="qbj-0f-eqs"/>
+                        <outlet property="photoOverlayButton" destination="kbm-YI-FPA" id="UoZ-m1-l3E"/>
                         <outlet property="photoViewerUIImageView" destination="O4r-WJ-Sly" id="tZu-Yk-TTA"/>
                         <segue destination="2" kind="push" identifier="toYelpMapView" id="yxN-ze-z9q"/>
                         <segue destination="jTz-JW-Bre" kind="push" identifier="toBookmarksAndHistory" id="Th0-2G-EcE"/>
@@ -562,83 +557,14 @@
         <image name="silverBG@2x.png" width="640" height="1136"/>
         <image name="webviewpopout_shelf@2x.png" width="640" height="94"/>
         <image name="wiWhere512@2x.png" width="512" height="512"/>
-        <image name="yelpMapViewShader@2x.png" width="640" height="390"/>
     </resources>
-    <classes>
-        <class className="AboutUsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutUsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="davidPeanutTapped:"/>
-                <relationship kind="action" name="emilyPeanutTapped:"/>
-                <relationship kind="action" name="paulPeanutTapped:"/>
-                <relationship kind="action" name="rossPeanutTapped:"/>
-                <relationship kind="outlet" name="aboutTextField" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="davidPeanut" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="emilyPeanut" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="paulPeanut" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="rossPeanut" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="BookmarksViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BookmarksViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableViewOutlet" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="FlickrMapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrMapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backToFlickrMapView:" candidateClass="UIStoryboardSegue"/>
-                <relationship kind="action" name="closePhotoButtonPressed:"/>
-                <relationship kind="action" name="fullSizedPhotoTapped:"/>
-                <relationship kind="action" name="infoButtonPressed:"/>
-                <relationship kind="action" name="largerClosePhotoButtonPressed:"/>
-                <relationship kind="outlet" name="bioLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="bioScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="enlargedPhotoViewOutlet" candidateClass="UIView"/>
-                <relationship kind="outlet" name="loadingOverlay" candidateClass="UIView"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="photoViewerUIImageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="HistoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HistoryViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="historyTableViewOutlet" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="UIStoryboardSegue" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
-        </class>
-        <class className="YelpMapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/YelpMapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="largePhotoTapped:"/>
-                <relationship kind="outlet" name="photoViewerButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="photoViewerUIImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="yelpMapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="YelpWebPageBrowser" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/YelpWebPageBrowser.h"/>
-            <relationships>
-                <relationship kind="action" name="backButtonPress:"/>
-                <relationship kind="action" name="forwardButtonPress:"/>
-                <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="forwardButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="popoutView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="popoutViewTextLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="IAP-L1-hhl"/>
+        <segue reference="Th0-2G-EcE"/>
         <segue reference="grn-P3-leO"/>
     </inferredMetricsTieBreakers>
 </document>
