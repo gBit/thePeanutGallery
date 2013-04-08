@@ -29,6 +29,7 @@
     float longitudeToPass;
     NSString * photoTitleToPass;
     NSString * photoThumbnailStringToPass;
+
     
     __weak IBOutlet UIButton *photoOverlayButton;
     __weak IBOutlet UIView *enlargedPhotoViewOutlet;
@@ -66,6 +67,19 @@
     }
     missLocationManager.delegate = self;
     [missLocationManager startUpdatingLocation];
+    
+    float screenWidth = self.view.frame.size.width;
+    float screenHeight = self.view.frame.size.height;
+
+    
+    UIImageView *powered = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"poweredBy.png"]];
+    
+    float poweredImageWidth = powered.frame.size.width;
+    float poweredImageHeight = powered.frame.size.height;
+    
+    powered.frame = CGRectMake(screenWidth - poweredImageWidth, screenHeight - poweredImageHeight, poweredImageWidth, poweredImageHeight);
+    [self.view addSubview:powered];
+    
     
     //Code for bio page
     bioScrollView.contentSize = bioLabel.frame.size;
