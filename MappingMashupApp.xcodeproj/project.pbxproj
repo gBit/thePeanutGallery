@@ -67,6 +67,8 @@
 		B425500916F6B158005CCC9E /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = B425500816F6B158005CCC9E /* Venue.m */; };
 		B448609417135FB400054C35 /* poweredBy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B448609317135FB400054C35 /* poweredBy@2x.png */; };
 		B482104016FFE579004EE1CF /* UIView+AnimationTools.m in Sources */ = {isa = PBXBuildFile; fileRef = B482103F16FFE579004EE1CF /* UIView+AnimationTools.m */; };
+		B4E072AE17148AA1008350D2 /* wiwhere57.png in Resources */ = {isa = PBXBuildFile; fileRef = B4E072AD17148AA1008350D2 /* wiwhere57.png */; };
+		B4E072B117148AA5008350D2 /* appIconwMMLogo114.png in Resources */ = {isa = PBXBuildFile; fileRef = B4E072B017148AA5008350D2 /* appIconwMMLogo114.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +177,8 @@
 		B448609317135FB400054C35 /* poweredBy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poweredBy@2x.png"; sourceTree = "<group>"; };
 		B482103E16FFE579004EE1CF /* UIView+AnimationTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AnimationTools.h"; sourceTree = "<group>"; };
 		B482103F16FFE579004EE1CF /* UIView+AnimationTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AnimationTools.m"; sourceTree = "<group>"; };
+		B4E072AD17148AA1008350D2 /* wiwhere57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wiwhere57.png; sourceTree = "<group>"; };
+		B4E072B017148AA5008350D2 /* appIconwMMLogo114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIconwMMLogo114.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +214,8 @@
 		8F372AF716F244C800302B80 = {
 			isa = PBXGroup;
 			children = (
+				B4E072B017148AA5008350D2 /* appIconwMMLogo114.png */,
+				B4E072AD17148AA1008350D2 /* wiwhere57.png */,
 				8F372B0916F244C800302B80 /* MappingMashupApp */,
 				8F372B0216F244C800302B80 /* Frameworks */,
 				8F372B0116F244C800302B80 /* Products */,
@@ -496,6 +502,8 @@
 				838961531703914700CC86B9 /* RossFinalLarge@2x.png in Resources */,
 				838961571703AECF00CC86B9 /* wiWhere512@2x.png in Resources */,
 				B448609417135FB400054C35 /* poweredBy@2x.png in Resources */,
+				B4E072AE17148AA1008350D2 /* wiwhere57.png in Resources */,
+				B4E072B117148AA5008350D2 /* appIconwMMLogo114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
