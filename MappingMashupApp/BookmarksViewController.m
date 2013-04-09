@@ -55,7 +55,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     bookmarkArray = [self allEntitiesNamed:@"BookmarkedBusiness"];
-
+self.navigationController.navigationBar.topItem.title = @"Bookmarks";
     [tableViewOutlet reloadData];
 }
 

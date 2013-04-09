@@ -46,7 +46,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //Custom formatting for navigation bar
     
     // Core Data
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
