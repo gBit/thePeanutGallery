@@ -29,7 +29,7 @@
     float longitudeToPass;
     NSString * photoTitleToPass;
     NSString * photoThumbnailStringToPass;
-
+    __weak IBOutlet UIButton *infoButtonOutlet;
     
     __weak IBOutlet UIButton *photoOverlayButton;
     __weak IBOutlet UIView *enlargedPhotoViewOutlet;
@@ -68,17 +68,24 @@
     missLocationManager.delegate = self;
     [missLocationManager startUpdatingLocation];
     
+    //
+    //Getting the size of the screen for image placement
+    //
     float screenWidth = self.view.frame.size.width;
     float screenHeight = self.view.frame.size.height;
-
     
     UIImageView *powered = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"poweredBy.png"]];
-    
     float poweredImageWidth = powered.frame.size.width;
     float poweredImageHeight = powered.frame.size.height;
-    
     powered.frame = CGRectMake(screenWidth - poweredImageWidth, screenHeight - poweredImageHeight, poweredImageWidth, poweredImageHeight);
     [self.view addSubview:powered];
+    
+    float infoButtonWidth = infoButtonOutlet.frame.size.width;
+    float infoButtonHeight = infoButtonOutlet.frame.size.width;
+    float infoButtonPositionX = powered.center.x - (infoButtonWidth/2);
+    float infoButtonPositionY = ((screenHeight - poweredImageHeight)-infoButtonHeight) - (screenHeight * 0.005);
+    
+    infoButtonOutlet.frame = CGRectMake(infoButtonPositionX, infoButtonPositionY, infoButtonWidth, infoButtonHeight);
     
     
     //Code for bio page
